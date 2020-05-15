@@ -87,6 +87,54 @@ div.mycontainer {
     padding-top: 20px;
 }
 
+div.categorywrapper {
+    width: 350px;
+    height: 90px;
+    margin: 0 auto;
+    /* background-color: brown; */
+    text-align: center;
+}
+
+div.categorywrapper form {
+    /* margin: 0 0px; */
+    display: inline-block;
+    /* background-color: chocolate; */
+}
+
+div.cb {
+    clear: both;
+}
+
+.picbutton {
+    width: 140px;
+    height:70px;
+
+}
+
+.picbutton:hover {
+    cursor: pointer;
+    transform: scale(1.2, 1.2);
+    transition-duration: 500ms;
+
+}
+
+#pic_btn_youtube {
+    background: url(images/youtube_logo.png) no-repeat center;
+    background-size: cover;
+    margin: 10px;
+    float: left;
+}
+
+#pic_btn_website {
+    /* background: url(images/tortoise_shape.png) no-repeat center; */
+    /* background-color: black; */
+    background: url(images/tortoise_shape.png) no-repeat center;
+    background-size: contain;
+    color: white;
+    font-size: 1.2em;
+    margin: 10px;
+    float: left;
+}
 
 /* **************************
     youtube
