@@ -1,0 +1,125 @@
+@charset "utf-8";
+
+
+/* **************************
+    fonts
+   ************************** */
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+JP&display=swap');
+
+
+
+/* **************************
+    モバイル用設定
+   ************************** */
+
+
+/* **************************
+    基本設定
+   ************************** */
+
+
+/* **************************
+    Header
+************************** */
+body {
+    background: url(images/congruent_outline.png);
+}
+header {
+    width: 100%;
+    height: 40px;
+    font-family: "Noto Sans", "Noto Sans JP";
+    background-color: #43A047;
+    line-height: 40px;
+    position: fixed;
+    top: 0;
+    position: relative;
+    clear: both;
+}
+
+div.headercontainer {
+    width: 300px;
+    height: 40px;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 18px;
+    /* border-bottom: 5px solid darkgreen; */
+
+}
+
+/* header span {
+    font-size: 15px;
+    height: 40px;
+    background-color: blue;
+} */
+
+span.hometxt {
+    display: none;
+}
+
+header a {
+    text-decoration: none;
+    color:black;
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    /* float: right; */
+    /* margin-right: 30px;
+    margin-top: 20px; */
+}
+
+header a:hover {
+    opacity: 0.8;
+}
+#homeicon {
+    font-size: 20px;
+    float: right;
+}
+
+/* **************************
+    mycontainer
+   ************************** */
+div.mycontainer {
+    max-width: 990px;
+    height: auto;
+    margin: 0 auto;
+    /* background-color: cadetblue; */
+    padding-top: 20px;
+}
+
+
+/* **************************
+    youtube
+   ************************** */
+
+
+div.channelwrapper {
+    width: 100%;
+    background-color: whitesmoke;
+    border: 1px solid black;
+    text-align: center;
+    margin-bottom: 30px;
+    overflow: hidden;
+    /* background-color: chocolate; */
+}
+
+div.channelwrapper p {
+    font-family: "Noto Sans", "Noto Sans JP";
+    color: gray;
+    font-size: 18px;
+    margin-top: 5px;
+}
+div.moviebox {
+    /* overflow: hidden; */
+    /* float: left; */ /*PCの場合はdisplay:inlineではなく、floatにすること */
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+iframe {
+    margin: 0;
+    padding: 0;
+    width: 330px;
+    height: 187px;
+}

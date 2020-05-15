@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- font awesome -->
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- lightbox -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js" type="text/javascript" ></script>
+    
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <title>Gallery</title>
+</head>
+<body>
+    <header>
+        <div class="headercontainer">
+            <h1>Gallery</h1>
+            <a href="..\home\index.html">
+                <span>Home</span>
+                <i class="fas fa-igloo" id="homeicon"></i>
+            </a>
+            <div class="clearf"></div>
+        </div>
+    </header>
+    
+    <div class="mycontainer">
+        <div id="tools">
+            <!-- 画像サイズ切替ボタン -->
+            <div class="btn-group btn-group-toggle" id="picsize" data-toggle="buttons">
+                <label class="btn btn-secondary btn-sm">
+                    <input type="radio" name="options" id="option1" autocomplete="off">Large
+                </label>
+                <label class="btn btn-secondary btn-sm active">
+                    <input type="radio" name="options" id="option2" autocomplete="off" checked>Middle
+                </label>
+                <label class="btn btn-secondary btn-sm">
+                    <input type="radio" name="options" id="option3" autocomplete="off">Small
+                </label>
+            </div>
+            
+            <!-- 検索 -->
+            <button type="submit" class="searchbtn">GO</button>
+            <input type="text" placeholder="Enter keywords here">
+            <div class="clearf"></div>
+        </div> <!--toolbar-->
+
+        <div class="category clearf" data-num = "1">
+            <h2>2019 August</h2>
+            <div class="collapseicon"  id="category1">＜＜クリックで開閉＞＞</div>
+            <div class="clearf"></div>
+        </div>
+
+        <div class="photoarea" id="area1">
+            <div class="photoframe size-nrm">
+                <a href="images/2019-08-25 17.17.20_preview.jpeg" data-lightbox = "lb"><img class="thumbnails size-nrm" src="images/2019-08-25 17.17.20_preview.jpeg" alt=""></a>
+                <div class="picnote">testnote</div>
+            </div>
+            <div class="photoframe size-nrm">
+                <a href="images/2019-08-25 17.18.27_preview.jpeg" data-lightbox="lb"><img class="thumbnails size-nrm" src="images/2019-08-25 17.18.27_preview.jpeg" alt=""></a>
+            </div>
+            <div class="photoframe size-nrm">
+                <a href="images/2019-08-25 20.21.00_preview.jpeg" data-lightbox = "lb" ><img class="thumbnails size-nrm" src="images/2019-08-25 20.21.00_preview.jpeg" alt=""></a>
+                <div class="picnote">testnotetestnoteeeeeeeeddddddddddddddddeeeee</div>
+            </div>
+            <div class="photoframe size-nrm">
+                <a href="#"><img class="thumbnails" src="images/2019-09-16 15.21.03-3_preview.jpeg" alt=""></a>
+            </div>
+            <div class="photoframe size-nrm">
+                    <a href="#"><img class="thumbnails" src="images/2019-11-17 08.43.55_preview.jpeg" alt=""></a>
+            </div>
+            <div class="photoframe size-nrm">
+                <a href="#"><img class="thumbnails" src="images/2019-11-24 09.17.50_preview.jpeg" alt=""></a>
+            </div>
+            <div class="photoframe size-nrm">
+                <a href="#"><img class="thumbnails" src="images/2019-11-24 09.18.04_preview.jpeg" alt=""></a>
+            </div>
+            <div class="photoframe size-nrm">
+                <a href="#"><img class="thumbnails" src="images/2019-11-24 09.18.04_preview.jpeg" alt=""></a>
+            </div>
+            <div class="photoframe size-nrm">
+                <a href="#"><img class="thumbnails" src="images/2019-11-24 09.18.04_preview.jpeg" alt=""></a>
+            </div>
+            <div class="photoframe size-nrm">
+                <a href="#"><img class="thumbnails" src="images/2019-11-24 09.18.04_preview.jpeg" alt=""></a>
+            </div>
+            <div class="photoframe size-nrm">
+                <a href="#"><img class="thumbnails" src="images/2019-11-24 09.18.04_preview.jpeg" alt=""></a>
+            </div>
+            <div class="photoframe size-nrm">
+                <a href="#"><img class="thumbnails" src="images/2019-11-24 09.18.04_preview.jpeg" alt=""></a>
+            </div>
+            <div class="clearf"></div>
+        </div> <!--photoarea-->
+
+        <div class="category clearf" data-num = "2">
+            <h2>2019 September</h2>
+            <div class="collapseicon">＜＜クリックで開閉＞＞</div>
+            <div class="clearf"></div>
+
+        </div>
+        <div class="photoarea" id="area2">
+            <div class="photoframe size-nrm">
+                <a href="#"><img class="thumbnails" src="images/2019-11-24 09.18.04_preview.jpeg" alt=""></a>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script src="main.js"></script>
+
+</body>
+</html>
