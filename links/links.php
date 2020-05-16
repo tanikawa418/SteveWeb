@@ -1,5 +1,6 @@
 <?php
-    
+
+
 if(!empty($_POST)){
     if($_POST['category'] !== ''){
         $category = $_POST['category'];
@@ -16,7 +17,7 @@ if(!empty($_POST)){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../common/reset.css" media="screen and (min-width: 1025px)">
+    <link rel="stylesheet" href="../common/css/reset.css">
     <link rel="stylesheet" href="style.css">
     <!-- font awesome -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
@@ -34,6 +35,8 @@ if(!empty($_POST)){
         </a>
 
     </header>
+    <?php require('../common/php/dbconnect.php'); ?>
+
     <div class="mycontainer">
         <div class="categorywrapper">
             <p>カテゴリを選んでください</p>
@@ -114,13 +117,30 @@ if(!empty($_POST)){
                 }
             }
         }elseif(isset($category) && $category == 'website'){
-            print 'website<br>';
-            echo '<a href="https://woriver.com/8601/" target="_blank">リクガメの飼育方法</a>';
+            // print 'website<br>';
+        
+            // echo '<a href="https://woriver.com/8601/" target="_blank">リクガメの飼育方法</a>';
             
         }
 
     ?>
-    
+
+    <div class="sitewrapper">
+        <div class="sitetitle">
+            <span class="span_title">title</span>
+            <span class="span_link_icon"><a href="#"><i class="fas fa-external-link-alt"></i></a></span>
+            <div class="cb"></div>
+        </div>
+        <div class="sitecontents">
+            <dl>
+                <dt>URL</dt>
+                <dd><a href="http://www.sample/home/" target="_blank">http://www.sample/home/</a></dd>
+                <dt>Notes</dt>
+                <dd>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia repellendus aut quibusdam nostrum pariatur eos odio, explicabo quis quo iure commodi! Aliquam inventore delectus suscipit architecto ab exercitationem molestias incidunt?</dd>
+                <dd><a href="https://webliker.info/13381/"><img title="HTMLの説明リストタグ【dl・dt・dd】の使い方を徹底解説 | webliker" src="http://capture.heartrails.com/free/1589612975069?https://webliker.info/13381/" alt="https://webliker.info/13381/" width="200" height="300" /></a></dd>
+            </dl>
+        </div>
+    </div>
     </div> <!--mycontainer -->
 
 </body>
