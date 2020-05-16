@@ -3,18 +3,16 @@
 require('../common/php/dbconnect.php');
 
 if(!empty($_POST)){
-    if($_POST['category'] !== ''){
+    if($_POST['category'] !== ''){ //カテゴリを選ばせるまではDBへの問い合わせをしない
         $category = $_POST['category'];
 
         if($category == 'youtube'){
             $stmt = $db->query('SELECT * FROM youtube_rss WHERE load_default<>0 ORDER BY display_order');
-            $arr_feed = array();
-            foreach($stmt as $value){
-                print('<p>');
-                print($value['youtube_id']) . ':';
-                print($value['rss_url']);
-                print('</p>');
+            
+            $arr_feed = array(); //空配列の定義
 
+            foreach($stmt as $value){
+                //urlを配列に格納
                 array_push($arr_feed,$value['rss_url']);
             }
         }
@@ -22,11 +20,8 @@ if(!empty($_POST)){
 }else{
     // print '$_POSTがカラです';
 }
-
-
-
-
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -73,19 +68,6 @@ if(!empty($_POST)){
         // FeedのURLをセット
         if(isset($category) && $category == 'youtube'){
 
-            // var_dump($_POST);
-            // exit();
-
-            // $arr_feed=array(
-            //     "https://www.youtube.com/feeds/videos.xml?channel_id=UCri4bglAZURuJVgYQAFwjHA",
-            //     "https://www.youtube.com/feeds/videos.xml?channel_id=UConWtiDi5UKJ-dmZdCUCXyQ",
-            //     "https://www.youtube.com/feeds/videos.xml?channel_id=UC3MdojXyKFqEQqNhfxiQZCQ",
-                
-            // );
-            
-            // echo '<ol>';
-            
-            
             for($x=0; $x<count($arr_feed); $x++){
                 //RSSフィードの数だけ順に繰り返す
 
@@ -95,7 +77,7 @@ if(!empty($_POST)){
                 // xmlファイルの読み込み
                 $xmlTree = simplexml_load_file($feed);
                 
-                // 配列に変換
+                // 読み込んだ内容を配列に変換
                 $obj = get_object_vars($xmlTree);
                 
                 // YoutubeのRSSはentryタグに情報が入ってるので、それを変数に格納
@@ -112,7 +94,7 @@ if(!empty($_POST)){
                     echo '<p class="channeltitle">' .$obj_channel_title . '</p>';
                     
                     // for($i=0; $i<$obj_count; $i++){
-                    for($i=0; $i<4; $i++){  //重いので一時的に2件ずつに
+                    for($i=0; $i<4; $i++){  //重いので一時的に件数制限
                         foreach($obj_entry[$i] as $key => $value){ //全てのタグを参照し、その都度$valueに設定し直す
                             
                             if($key == "id"){
@@ -156,6 +138,14 @@ if(!empty($_POST)){
             </dl>
         </div>
     </div>
+
+    <div class="sitewrapper" id="sitewrapper">
+
+    </div>
+
+    <script>
+        
+    </script>
     </div> <!--mycontainer -->
 
 </body>

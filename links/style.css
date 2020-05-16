@@ -23,7 +23,7 @@
     Header
 ************************** */
 body {
-    /* background: url(images/congruent_outline.png); */
+    background: url(images/congruent_outline.png);
     background-color: lightgray;
 }
 header {
@@ -114,7 +114,7 @@ div.cb {
 .picbutton {
     width: 140px;
     height:70px;
-
+    /* background-color:white; */
 }
 
 .picbutton:hover {
@@ -186,7 +186,7 @@ div.sitewrapper {
     width: 100%;
     /* background-color: indigo; */
     border: 1px solid black;
-    padding-top: 20px;
+    padding: 20px 0;
 
 }
 
