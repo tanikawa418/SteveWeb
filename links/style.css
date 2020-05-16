@@ -23,7 +23,7 @@
     Header
 ************************** */
 body {
-    background: url(images/congruent_outline.png);
+    /* background: url(images/congruent_outline.png); */
     background-color: lightgray;
 }
 header {

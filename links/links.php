@@ -1,15 +1,31 @@
 <?php
 
+require('../common/php/dbconnect.php');
 
 if(!empty($_POST)){
     if($_POST['category'] !== ''){
         $category = $_POST['category'];
-    }
 
-    
+        if($category == 'youtube'){
+            $stmt = $db->query('SELECT * FROM youtube_rss WHERE load_default<>0 ORDER BY display_order');
+            $arr_feed = array();
+            foreach($stmt as $value){
+                print('<p>');
+                print($value['youtube_id']) . ':';
+                print($value['rss_url']);
+                print('</p>');
+
+                array_push($arr_feed,$value['rss_url']);
+            }
+        }
+    }
 }else{
     // print '$_POSTがカラです';
 }
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -35,7 +51,6 @@ if(!empty($_POST)){
         </a>
 
     </header>
-    <?php require('../common/php/dbconnect.php'); ?>
 
     <div class="mycontainer">
         <div class="categorywrapper">
@@ -61,12 +76,12 @@ if(!empty($_POST)){
             // var_dump($_POST);
             // exit();
 
-            $arr_feed=array(
-                "https://www.youtube.com/feeds/videos.xml?channel_id=UCri4bglAZURuJVgYQAFwjHA",
-                "https://www.youtube.com/feeds/videos.xml?channel_id=UConWtiDi5UKJ-dmZdCUCXyQ",
-                "https://www.youtube.com/feeds/videos.xml?channel_id=UC3MdojXyKFqEQqNhfxiQZCQ",
+            // $arr_feed=array(
+            //     "https://www.youtube.com/feeds/videos.xml?channel_id=UCri4bglAZURuJVgYQAFwjHA",
+            //     "https://www.youtube.com/feeds/videos.xml?channel_id=UConWtiDi5UKJ-dmZdCUCXyQ",
+            //     "https://www.youtube.com/feeds/videos.xml?channel_id=UC3MdojXyKFqEQqNhfxiQZCQ",
                 
-            );
+            // );
             
             // echo '<ol>';
             
