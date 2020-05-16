@@ -36,6 +36,7 @@ if(!empty($_POST)){
     </header>
     <div class="mycontainer">
         <div class="categorywrapper">
+            <p>カテゴリを選んでください</p>
             <form action="" method="post">
                 <input type="hidden" name="category" value="youtube">
                 <!-- <input type="submit" value="送信する"> -->
@@ -113,11 +114,12 @@ if(!empty($_POST)){
                 }
             }
         }elseif(isset($category) && $category == 'website'){
-            print 'website';
+            print 'website<br>';
+            echo '<a href="https://woriver.com/8601/" target="_blank">リクガメの飼育方法</a>';
+            
         }
 
     ?>
-        
     
     </div> <!--mycontainer -->
 
