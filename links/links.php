@@ -15,7 +15,17 @@ if(!empty($_POST)){
                 //urlを配列に格納
                 array_push($arr_feed,$value['rss_url']);
             }
+            unset($stmt);
+            unset($value);
+        }elseif($category == 'website'){
+            $stmt = $db->query('SELECT * FROM websites WHERE load_default<>0 ORDER BY display_order');
+            $arr_weblink = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            // print_r($arr_weblink);
+            $jsonData = json_encode($arr_weblink);
+            unset($stmt);
+            unset($value);
         }
+
     }
 }else{
     // print '$_POSTがカラです';
@@ -122,9 +132,9 @@ if(!empty($_POST)){
 
     ?>
 
-    <div class="sitewrapper">
+    <!-- <div class="sitewrapper">
         <div class="sitetitle">
-            <span class="span_title">title</span>
+            <span class="span_title">静的生成Title</span>
             <span class="span_link_icon"><a href="#"><i class="fas fa-external-link-alt"></i></a></span>
             <div class="cb"></div>
         </div>
@@ -134,19 +144,112 @@ if(!empty($_POST)){
                 <dd><a href="http://www.sample/home/" target="_blank">http://www.sample/home/</a></dd>
                 <dt>Notes</dt>
                 <dd>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia repellendus aut quibusdam nostrum pariatur eos odio, explicabo quis quo iure commodi! Aliquam inventore delectus suscipit architecto ab exercitationem molestias incidunt?</dd>
-                <dd><a href="https://webliker.info/13381/"><img title="HTMLの説明リストタグ【dl・dt・dd】の使い方を徹底解説 | webliker" src="http://capture.heartrails.com/free/1589612975069?https://webliker.info/13381/" alt="https://webliker.info/13381/" width="200" height="300" /></a></dd>
+                <!-- <dd><a href="https://webliker.info/13381/"><img title="HTMLの説明リストタグ【dl・dt・dd】の使い方を徹底解説 | webliker" src="http://capture.heartrails.com/free/1589612975069?https://webliker.info/13381/" alt="https://webliker.info/13381/" width="200" height="300" /></a></dd> -->
             </dl>
         </div>
-    </div>
+    </div> 
+    
+    <div id="card"></div>
+    
+</div> <!--mycontainer -->
+    <script type="text/javascript">
+        var mywrapper;
+        var mytitleDiv;
+        var mytitle;
+        var mycb;
+        var getid;
+        var mycontents;
+        var mydl;
+        var mydt;
+        var mydd;
+        var weblinks = <?php echo $jsonData;?>;
 
-    <div class="sitewrapper" id="sitewrapper">
+        console.log('length:' + weblinks.length);
+        for (var i=0; i<weblinks.length; i++){
+            
+            mywrapper = document.createElement('div');
+            mywrapper.className = 'sitewrapper';
+            //create Div.sitetitle
+            mytitleDiv = document.createElement('div');
+            mytitleDiv.className = 'sitetitle';
+            //create span.sitetitle
+            mytitle = document.createElement('span');
+            mytitle.className = 'span_title';
+            mytitle.innerHTML = weblinks[i]['title'];
+            // console.log('weblinks.title is ' + weblinks[i]['title']);
+            // console.log('weblinks.url is ' + weblinks[i]['site_url']);
+            // console.log(weblinks);
+            // console.log(mytitleDiv.innerHTML);
 
-    </div>
+            // create span.span_link_icon
+            myicon = document.createElement('span');
+            myicon.className = 'span_link_icon';
+            myicon.innerHTML = '<a href="#"><i class="fas fa-external-link-alt"></i></a>';
 
-    <script>
-        
-    </script>
-    </div> <!--mycontainer -->
+            // div.cb
+            mycb = document.createElement('div');
+            mycb.className = 'cb';
+
+            //Div.sitetitleにappend
+            mytitleDiv.appendChild(mytitle);
+            // mytitleDiv.appendChild(myicon);
+            mytitleDiv.appendChild(mycb);
+
+            //create div.sitecontents
+            mycontents = document.createElement('div');
+            mycontents.className = 'sitecontents';
+
+            //dl
+            mydl = document.createElement('dl');
+            // URL
+            mydt = document.createElement('dt');
+            mydt.innerHTML = 'URL';
+            mydd = document.createElement('dd');
+            mydd.innerHTML = '<a href="' + weblinks[i]['site_url'] + '" target="_blank">' + weblinks[i]['site_url'] + '</a>';
+            mydl.appendChild(mydt);
+            mydl.appendChild(mydd);
+            
+            // Notes
+            mydt = document.createElement('dt');
+            mydt.innerHTML = 'Notes';
+            mydd = document.createElement('dd');
+            mydd.innerHTML = weblinks[i]['note'];
+            mydl.appendChild(mydt);
+            mydl.appendChild(mydd);
+
+            //dlをdiv.sitecontentsにappend
+            mycontents.appendChild(mydl);
+
+
+
+
+
+            // window.onload = function() {getid = document.createElement('div')};
+            // getid.className = "sitewrapper";
+            // window.onload = function(){getid.appendChild(mytitleDiv);}
+
+            mywrapper.appendChild(mytitleDiv);
+            mywrapper.appendChild(mycontents);
+            document.getElementById('card').appendChild(mywrapper);
+            
+            
+            
+            
+        }
+
+
+
+
+
+
+
+
+
+
+
+        </script>
 
 </body>
 </html>
+
+
