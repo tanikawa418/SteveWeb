@@ -1,22 +1,34 @@
 <?php
-    
-if(!empty($_POST)){
-    if($_POST['category'] !== ''){
-        $category = $_POST['category'];
-    }
 
-    
+require('../common/php/dbconnect.php');
+
+if(!empty($_POST)){
+    if($_POST['category'] !== ''){ //カテゴリを選ばせるまではDBへの問い合わせをしない
+        $category = $_POST['category'];
+
+        if($category == 'youtube'){
+            $stmt = $db->query('SELECT * FROM youtube_rss WHERE load_default<>0 ORDER BY display_order');
+            
+            $arr_feed = array(); //空配列の定義
+
+            foreach($stmt as $value){
+                //urlを配列に格納
+                array_push($arr_feed,$value['rss_url']);
+            }
+        }
+    }
 }else{
     // print '$_POSTがカラです';
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../common/reset.css" media="screen and (min-width: 1025px)">
+    <link rel="stylesheet" href="../common/css/reset.css">
     <link rel="stylesheet" href="style.css">
     <!-- font awesome -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
@@ -34,6 +46,7 @@ if(!empty($_POST)){
         </a>
 
     </header>
+
     <div class="mycontainer">
         <div class="categorywrapper">
             <p>カテゴリを選んでください</p>
@@ -55,19 +68,6 @@ if(!empty($_POST)){
         // FeedのURLをセット
         if(isset($category) && $category == 'youtube'){
 
-            // var_dump($_POST);
-            // exit();
-
-            $arr_feed=array(
-                "https://www.youtube.com/feeds/videos.xml?channel_id=UCri4bglAZURuJVgYQAFwjHA",
-                "https://www.youtube.com/feeds/videos.xml?channel_id=UConWtiDi5UKJ-dmZdCUCXyQ",
-                "https://www.youtube.com/feeds/videos.xml?channel_id=UC3MdojXyKFqEQqNhfxiQZCQ",
-                
-            );
-            
-            // echo '<ol>';
-            
-            
             for($x=0; $x<count($arr_feed); $x++){
                 //RSSフィードの数だけ順に繰り返す
 
@@ -77,7 +77,7 @@ if(!empty($_POST)){
                 // xmlファイルの読み込み
                 $xmlTree = simplexml_load_file($feed);
                 
-                // 配列に変換
+                // 読み込んだ内容を配列に変換
                 $obj = get_object_vars($xmlTree);
                 
                 // YoutubeのRSSはentryタグに情報が入ってるので、それを変数に格納
@@ -94,7 +94,7 @@ if(!empty($_POST)){
                     echo '<p class="channeltitle">' .$obj_channel_title . '</p>';
                     
                     // for($i=0; $i<$obj_count; $i++){
-                    for($i=0; $i<4; $i++){  //重いので一時的に2件ずつに
+                    for($i=0; $i<4; $i++){  //重いので一時的に件数制限
                         foreach($obj_entry[$i] as $key => $value){ //全てのタグを参照し、その都度$valueに設定し直す
                             
                             if($key == "id"){
@@ -114,13 +114,38 @@ if(!empty($_POST)){
                 }
             }
         }elseif(isset($category) && $category == 'website'){
-            print 'website<br>';
-            echo '<a href="https://woriver.com/8601/" target="_blank">リクガメの飼育方法</a>';
+            // print 'website<br>';
+        
+            // echo '<a href="https://woriver.com/8601/" target="_blank">リクガメの飼育方法</a>';
             
         }
 
     ?>
-    
+
+    <div class="sitewrapper">
+        <div class="sitetitle">
+            <span class="span_title">title</span>
+            <span class="span_link_icon"><a href="#"><i class="fas fa-external-link-alt"></i></a></span>
+            <div class="cb"></div>
+        </div>
+        <div class="sitecontents">
+            <dl>
+                <dt>URL</dt>
+                <dd><a href="http://www.sample/home/" target="_blank">http://www.sample/home/</a></dd>
+                <dt>Notes</dt>
+                <dd>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia repellendus aut quibusdam nostrum pariatur eos odio, explicabo quis quo iure commodi! Aliquam inventore delectus suscipit architecto ab exercitationem molestias incidunt?</dd>
+                <dd><a href="https://webliker.info/13381/"><img title="HTMLの説明リストタグ【dl・dt・dd】の使い方を徹底解説 | webliker" src="http://capture.heartrails.com/free/1589612975069?https://webliker.info/13381/" alt="https://webliker.info/13381/" width="200" height="300" /></a></dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="sitewrapper" id="sitewrapper">
+
+    </div>
+
+    <script>
+        
+    </script>
     </div> <!--mycontainer -->
 
 </body>

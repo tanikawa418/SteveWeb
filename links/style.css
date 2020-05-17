@@ -24,6 +24,7 @@
 ************************** */
 body {
     background: url(images/congruent_outline.png);
+    background-color: lightgray;
 }
 header {
     width: 100%;
@@ -87,9 +88,14 @@ div.mycontainer {
     padding-top: 20px;
 }
 
+/* **************************
+    category
+   ************************** */
+
+
 div.categorywrapper {
     width: 350px;
-    height: 90px;
+    height: 150px;
     margin: 0 auto;
     /* background-color: brown; */
     text-align: center;
@@ -108,7 +114,7 @@ div.cb {
 .picbutton {
     width: 140px;
     height:70px;
-
+    /* background-color:white; */
 }
 
 .picbutton:hover {
@@ -170,4 +176,75 @@ iframe {
     padding: 0;
     width: 330px;
     height: 187px;
+}
+
+/* **************************
+    website
+   ************************** */
+
+div.sitewrapper {
+    width: 100%;
+    /* background-color: indigo; */
+    border: 1px solid black;
+    padding: 20px 0;
+
+}
+
+div.sitetitle {
+    width: 80%;
+    height: 40px;
+    padding: 0 10px;
+    border: none;
+    border-left: 10px solid #66BB6A;
+    background-color: #C8E6C9;
+    margin: 0 auto;
+    vertical-align: middle;
+    font-size: 20px;
+    line-height: 40px;
+    /* background-color: lightsalmon; */
+}
+
+span.span_title {
+    float: left;
+    font-size: 1.5em;
+}
+
+span.span_link_icon {
+    float: right;
+    margin-right: 10px;
+}
+
+span.span_link_icon {
+    text-decoration: none;
+}
+
+span.span_link_icon:hover{
+    transform: scale(1.4,1.4);
+    transition-duration: 500ms;
+}
+
+div.sitecontents {
+    width: 80%;
+    height: auto;
+    padding: 10px;
+    border: none;
+    border-left: 10px solid #66BB6A;
+    background-color: #C8E6C9;
+    margin: 0 auto;
+    margin-top: 10px;
+    vertical-align: middle;
+    font-size: 20px;
+    /* line-height: 40px; */
+    /* background-color: lightsalmon; */
+
+}
+
+div.sitecontents dl dt{
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+div.sitecontents dl dd{
+    margin: 10px;
+    font-size: 1em;
 }
