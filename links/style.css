@@ -184,29 +184,29 @@ iframe {
 
 div.sitewrapper {
     width: 100%;
-    /* background-color: indigo; */
     border: 1px solid black;
     padding: 20px 0;
-
+    margin-top: 20px;
 }
 
 div.sitetitle {
     width: 80%;
-    height: 40px;
-    padding: 0 10px;
+    height: auto;
+    padding: 5px 10px;
     border: none;
-    border-left: 10px solid #66BB6A;
+    border-left: 10px solid rgb(67, 126, 70);
     background-color: #C8E6C9;
     margin: 0 auto;
     vertical-align: middle;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 40px;
     /* background-color: lightsalmon; */
 }
 
 span.span_title {
+    display: block;
     float: left;
-    font-size: 1.5em;
+    font-size: 1.3em;
 }
 
 span.span_link_icon {
