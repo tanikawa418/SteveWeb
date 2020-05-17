@@ -157,7 +157,6 @@ if(!empty($_POST)){
         var mytitleDiv;
         var mytitle;
         var mycb;
-        var getid;
         var mycontents;
         var mydl;
         var mydt;
@@ -176,10 +175,6 @@ if(!empty($_POST)){
             mytitle = document.createElement('span');
             mytitle.className = 'span_title';
             mytitle.innerHTML = weblinks[i]['title'];
-            // console.log('weblinks.title is ' + weblinks[i]['title']);
-            // console.log('weblinks.url is ' + weblinks[i]['site_url']);
-            // console.log(weblinks);
-            // console.log(mytitleDiv.innerHTML);
 
             // create span.span_link_icon
             myicon = document.createElement('span');
@@ -219,14 +214,6 @@ if(!empty($_POST)){
 
             //dlをdiv.sitecontentsにappend
             mycontents.appendChild(mydl);
-
-
-
-
-
-            // window.onload = function() {getid = document.createElement('div')};
-            // getid.className = "sitewrapper";
-            // window.onload = function(){getid.appendChild(mytitleDiv);}
 
             mywrapper.appendChild(mytitleDiv);
             mywrapper.appendChild(mycontents);
