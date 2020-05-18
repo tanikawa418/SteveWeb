@@ -243,6 +243,7 @@ if(!empty($_POST)){
                 mydt.innerHTML = 'Notes';
                 mydd = document.createElement('dd');
                 mydd.innerHTML = weblinks[i]['note'];
+                mydd.className = 'notecontents';
                 mydl.appendChild(mydt);
                 mydl.appendChild(mydd);
     
@@ -274,18 +275,6 @@ if(!empty($_POST)){
                 // removeElm();
                 
             },false);
-
-            
-            
-
-
-
-
-
-
-
-
-
 
 
         </script>

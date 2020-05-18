@@ -1,0 +1,323 @@
+@charset "utf-8";
+
+
+/* **************************
+    fonts
+   ************************** */
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+JP&display=swap');
+
+
+
+/* **************************
+    モバイル用設定
+   ************************** */
+
+
+/* **************************
+    基本設定
+   ************************** */
+
+
+/* **************************
+    Header
+************************** */
+body {
+    background: url(images/light_honeycomb_@2X.png);
+    /* background-color: lightgray; */
+}
+header {
+    width: 100%;
+    height: 40px;
+    font-family: "Noto Sans", "Noto Sans JP";
+    background-color: #29632d;
+    line-height: 40px;
+    position: fixed;
+    top: 0;
+    position: relative;
+    clear: both;
+    color: rgb(200,200,200);
+}
+
+div.headercontainer {
+    width: 300px;
+    height: 40px;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 18px;
+    /* border-bottom: 5px solid darkgreen; */
+
+}
+
+span.hometxt {
+    display: none;
+}
+
+header a {
+    text-decoration: none;
+    color:black;
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+}
+
+header a:hover {
+    opacity: 0.8;
+}
+#homeicon {
+    font-size: 20px;
+    float: right;
+}
+
+/* **************************
+    mycontainer
+   ************************** */
+div.mycontainer {
+    max-width: 990px;
+    height: auto;
+    margin: 0 auto;
+    /* background-color: cadetblue; */
+    padding-top: 20px;
+}
+
+/* **************************
+    card
+   ************************** */
+
+div.card {
+    width: 340px;
+    height: 142px;
+    margin: 0 auto;
+    margin-top: 20px;
+
+    box-shadow:
+    0 1.9px 2.5px rgba(0, 0, 0, 0.057),
+    0 5px 6.1px rgba(0, 0, 0, 0.076),
+    0 10.1px 11.4px rgba(0, 0, 0, 0.086),
+    0 19.2px 19.8px rgba(0, 0, 0, 0.092),
+    0 38.4px 34.8px rgba(0, 0, 0, 0.1),
+    0 101px 74px rgba(0, 0, 0, 0.13);
+}
+
+div.cardleft {
+    width: 100px;
+    height: 142px;
+    float: left;
+}
+
+img.thumbnails {
+    max-width: 100%;
+}
+
+div.cardright {
+    width: 240px;
+    height: 142px;
+    float: right;
+}
+
+div.cardheader {
+    width: 240px;
+    height: 38px;
+}
+
+div.carddate {
+    background-color: white;
+    width: 136px;
+    height: 38px;
+    font-size: 1.3em;
+    padding-left: 10px;
+    line-height: 38px;
+    float: left;
+}
+
+div.cardprofile {
+    background-color: white;
+    width: 94px;
+    height: 38px;
+    text-align: right;
+    float: right;
+}
+
+div.cardprofile span{
+    display: none; /*モバイルでは非表示*/
+}
+
+
+
+div.profile_pic_frame {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid gray;
+    display: inline-block;
+}
+
+div.cardcontents {
+    width: 240px;
+    height: 104px;
+}
+
+div.carddata {
+    width: 120px;
+    height: 100px;
+    padding-left: 5px;
+    padding-top: 4px;
+    background-color: white;
+    float: left;
+}
+
+div.carddata tr{
+    line-height: 1.5;
+}
+div.carddata th {
+    font-weight: bold;
+    width: 3em;
+}
+
+div.carddata td {
+    margin-left: 5px;
+    text-align: right;
+}
+
+div.cardnotes {
+    width: 115px;
+    height: 100px;
+    padding-top: 4px;
+    font-size: 0.9em;
+    overflow: hidden;
+    background-color: white;
+    float: right;
+}
+
+/* ***************************************
+    Settings for PC
+   ************************************ */
+
+
+@media screen and (min-width:500px){
+
+    header {
+     width: 100%;
+     height: 60px;
+     line-height: 60px;
+    }
+ 
+    div.headercontainer {
+        width: 300px;
+        height: 40px;
+        font-size: 40px;
+    
+    }   
+    
+    #homeicon {
+        font-size: 30px;
+    }
+}
+
+
+/* **************************
+    mycontainer
+   ************************** */
+
+@media screen and (min-width:500px){
+
+    div.mycontainer {
+        max-width: 990px;
+        height: 100vh;
+        padding-top: 20px;
+        background-color:rgba(240,240,240,0.5);
+        text-align: center;
+    }
+}
+/* **************************
+    card
+   ************************** */
+
+@media screen and (min-width:500px){
+
+    div.card {
+        width: 450px;
+        height: 180px;
+        margin-top: 40px;
+        margin-left: 10px;
+        margin-right: 10px;
+        display: inline-block;
+    }
+
+    div.cardleft {
+        width: 140px;
+        height: 200px;
+    }
+
+
+    div.cardright {
+        width: 309px;
+        height: 146px;
+    }
+
+    div.cardheader {
+        width: 309px;
+        height: 53px;
+    }
+
+    div.carddate {
+        width: 181px;
+        height: 53px;
+        font-size: 1.3em;
+        padding-left: 10px;
+        line-height: 38px;
+    }
+
+    div.cardprofile {
+        width: 118px;
+        height: 53px;
+    }
+
+    div.cardprofile span{
+        display: initial; /*モバイルでは非表示*/
+        float: right;
+    }
+    
+
+    div.profile_pic_frame {
+        width: 50px;
+        height: 50px;
+        float: right;
+    }
+
+    div.cardcontents {
+        width: 309px;
+        height: 146px;
+    }
+
+    div.carddata {
+        width: 160px;
+        height: 142px;
+        padding-left: 5px;
+        padding-top: 4px;
+    }
+
+    div.carddata tr{
+        line-height: 1.5;
+    }
+    div.carddata th {
+        width: 3em;
+    }
+
+    div.carddata td {
+        margin-left: 5px;
+    }
+
+    div.cardnotes {
+        width: 139px;
+        height: 142px;
+        padding-top: 4px;
+        padding-right: 5px;
+        font-size: 0.9em;
+    }
+
+
+}
+
+
+
