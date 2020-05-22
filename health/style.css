@@ -23,7 +23,7 @@
     Header
 ************************** */
 body {
-    background: url(images/light_honeycomb_@2X.png);
+    background: url(../common/images/design/light_honeycomb_@2X.png);
     /* background-color: lightgray; */
 }
 header {
@@ -107,6 +107,7 @@ div.cardleft {
 
 img.thumbnails {
     max-width: 100%;
+    
 }
 
 div.cardright {
@@ -149,6 +150,9 @@ div.profile_pic_frame {
     height: 38px;
     border-radius: 50%;
     border: 1px solid gray;
+    /* background: url("../common/images/profile/steve1.jpg")no-repeat; */
+    /* background-position: center;
+    background-size: cover; */
     display: inline-block;
 }
 
@@ -174,19 +178,46 @@ div.carddata th {
     width: 3em;
 }
 
-div.carddata td {
-    margin-left: 5px;
+td.tdData {
+    /* margin-left: 5px; */
+    text-align: right;
+    width: 2em;
+}
+
+td.tdUnit {
+    width: 1em;
     text-align: right;
 }
 
 div.cardnotes {
     width: 115px;
-    height: 100px;
-    padding-top: 4px;
+    height: 96px;
+    padding-top: 8px;
     font-size: 0.9em;
     overflow: hidden;
     background-color: white;
+    text-align: left;
     float: right;
+}
+
+/* **************************
+    Add
+   ************************** */
+div.addmark {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: orange;
+    font-size: 1.5em;
+    text-align: center;
+    line-height: 40px;
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+}
+
+div.addmark a {
+    text-decoration: none;
 }
 
 /* ***************************************
@@ -237,7 +268,7 @@ div.cardnotes {
 
     div.card {
         width: 450px;
-        height: 180px;
+        height: 198px;
         margin-top: 40px;
         margin-left: 10px;
         margin-right: 10px;
@@ -275,6 +306,7 @@ div.cardnotes {
 
     div.cardprofile span{
         display: initial; /*モバイルでは非表示*/
+        font-size: 0.8em;
         float: right;
     }
     
@@ -298,20 +330,30 @@ div.cardnotes {
     }
 
     div.carddata tr{
-        line-height: 1.5;
+        line-height: 2;
     }
+
     div.carddata th {
+        font-weight: bold;
         width: 3em;
     }
-
-    div.carddata td {
-        margin-left: 5px;
+    
+    td.tdData {
+        /* margin-left: 5px; */
+        text-align: right;
+        width: 3em;
+        font-weight: bold;
     }
-
+    
+    td.tdUnit {
+        width: 2.5em;
+        text-align: right;
+    }
+    
     div.cardnotes {
         width: 139px;
-        height: 142px;
-        padding-top: 4px;
+        height: 138px;
+        padding-top: 8px;
         padding-right: 5px;
         font-size: 0.9em;
     }
