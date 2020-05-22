@@ -30,6 +30,18 @@ if(!empty($_POST)){
 }else{
     // print '$_POSTがカラです';
 }
+
+
+$sql = 'SELECT * FROM mesurement ms INNER JOIN pets pt ON pt.pet_id = ms.pet_id ORDER BY ms.date DESC';
+
+$response = $db->query($sql,PDO::FETCH_ASSOC);
+$arr_health = $response->fetchAll(PDO::FETCH_ASSOC);
+// print_r($arr_health);
+$jsonData = json_encode($arr_health);
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -65,8 +77,7 @@ if(!empty($_POST)){
         </a>
 
     </header>
-
-    <div class="mycontainer cf">
+    <div class="mycontainer cf" id="mycontainer">
 
         <div class="card cf">
             <div class="cardleft">
@@ -77,11 +88,11 @@ if(!empty($_POST)){
                 <div class="cardheader cf">
                     <div class="carddate">2019/8/25</div>
                     <div class="cardprofile">
-                        <span>Steve1世</span>
                         <div class="profile_pic_frame">
-                            Dummy
+                            
                             <img src="#" alt="">
                         </div>
+                        <span>Steve1世</span>
                     </div>
                 </div>
                 <div class="cardcontents cf">
@@ -106,267 +117,142 @@ if(!empty($_POST)){
                         </table>
                     </div>
                     <div class="cardnotes">
-                        初めての身体測定！少しびっくりしてたみたいだけど、無事終了！元気に大きくなってね。
+                        静的生成のカードです
                     </div>
                 </div>
             </div>
         </div>
  
-        <div class="card cf">
-            <div class="cardleft">
-                <!-- <img src="images/DSC_0707.JPG" alt=""> -->
-                <a href="images/DSC_0707.JPG" data-lightbox = "lb"><img class="thumbnails" src="images/DSC_0707.JPG" alt=""></a>
-            </div>
-            <div class="cardright">
-                <div class="cardheader cf">
-                    <div class="carddate">2019/8/25</div>
-                    <div class="cardprofile">
-                        <span>Steve1世</span>
-                        <div class="profile_pic_frame">
-                            Dummy
-                            <img src="#" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="cardcontents cf">
-                    <div class="carddata">
-                        <table>
-                            <tr>
-                                <th>体重</th>
-                                <td>109.3 g</td>
-                            </tr>
-                            <tr>
-                                <th>長さ</th>
-                                <td>10.4 cm</td>
-                            </tr>
-                            <tr>
-                                <th>幅</th>
-                                <td>7.4 cm</td>
-                            </tr>
-                            <tr>
-                                <th>高さ</th>
-                                <td>- cm</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="cardnotes">
-                        初めての身体測定！少しびっくりしてたみたいだけど、無事終了！元気に大きくなってね。
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card cf">
-            <div class="cardleft">
-                <!-- <img src="images/DSC_0707.JPG" alt=""> -->
-                <a href="images/DSC_0707.JPG" data-lightbox = "lb"><img class="thumbnails" src="images/DSC_0707.JPG" alt=""></a>
-            </div>
-            <div class="cardright">
-                <div class="cardheader cf">
-                    <div class="carddate">2019/8/25</div>
-                    <div class="cardprofile">
-                        <span>Steve1世</span>
-                        <div class="profile_pic_frame">
-                            Dummy
-                            <img src="#" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="cardcontents cf">
-                    <div class="carddata">
-                        <table>
-                            <tr>
-                                <th>体重</th>
-                                <td>109.3 g</td>
-                            </tr>
-                            <tr>
-                                <th>長さ</th>
-                                <td>10.4 cm</td>
-                            </tr>
-                            <tr>
-                                <th>幅</th>
-                                <td>7.4 cm</td>
-                            </tr>
-                            <tr>
-                                <th>高さ</th>
-                                <td>- cm</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="cardnotes">
-                        初めての身体測定！少しびっくりしてたみたいだけど、無事終了！元気に大きくなってね。
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card cf">
-            <div class="cardleft">
-                <!-- <img src="images/DSC_0707.JPG" alt=""> -->
-                <a href="images/DSC_0707.JPG" data-lightbox = "lb"><img class="thumbnails" src="images/DSC_0707.JPG" alt=""></a>
-            </div>
-            <div class="cardright">
-                <div class="cardheader cf">
-                    <div class="carddate">2019/8/25</div>
-                    <div class="cardprofile">
-                        <span>Steve1世</span>
-                        <div class="profile_pic_frame">
-                            Dummy
-                            <img src="#" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="cardcontents cf">
-                    <div class="carddata">
-                        <table>
-                            <tr>
-                                <th>体重</th>
-                                <td>109.3 g</td>
-                            </tr>
-                            <tr>
-                                <th>長さ</th>
-                                <td>10.4 cm</td>
-                            </tr>
-                            <tr>
-                                <th>幅</th>
-                                <td>7.4 cm</td>
-                            </tr>
-                            <tr>
-                                <th>高さ</th>
-                                <td>- cm</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="cardnotes">
-                        初めての身体測定！少しびっくりしてたみたいだけど、無事終了！元気に大きくなってね。
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="card"></div>
-            
+        
     </div> <!--mycontainer -->
+    <div class="addmark">
+        <a href="input/mesurement_input.php"><i class="fas fa-plus"></i></a>    
+    
+    </div>
 
     
     <script type="text/javascript">
-        function removeElm(){
-            var target = document.getElementsByClassName('sitewrapper');
-            console.log('target.length : ' + target.length);
-            // for(var i = 0; i < target.length; i++){
-            while(target.length){
-                target[0].remove();
-                // console.log(i + 'removed');
-            }
-        }
+        // function removeElm(){
+        //     var target = document.getElementsByClassName('sitewrapper');
+        //     console.log('target.length : ' + target.length);
+        //     // for(var i = 0; i < target.length; i++){
+        //     while(target.length){
+        //         target[0].remove();
+        //         // console.log(i + 'removed');
+        //     }
+        // }
 
         // function removeElm(){
         //     var target = document.getElementById('card');
         //     target.removeChild();
         // }
-        function websiteLinkMark(key){
-            removeElm();
-            console.log('called');
-            var mywrapper;
-            var mytitleDiv;
-            var mytitle;
-            var mycb;
-            var mycontents;
-            var mydl;
-            var mydt;
-            var mydd;
-            var weblinks = <?php echo $jsonData;?>;
-    
-        
-    
-            // console.log('length:' + weblinks.length);
-    
-            for (var i=0; i<weblinks.length; i++){
-                var note = weblinks[i]['note'];
-                var result = note.match(key);
-                console.log('result : ' + result);
-                if(!result){
-                    console.log(weblinks[i]['site_id'] + ' : unmatched');
-                    
-                }else{
-    
-                    console.log(weblinks[i]['site_id'] + ' : matched');
-    
-    
-                mywrapper = document.createElement('div');
-                mywrapper.className = 'sitewrapper';
-                //create Div.sitetitle
-                mytitleDiv = document.createElement('div');
-                mytitleDiv.className = 'sitetitle';
-                //create span.sitetitle
-                mytitle = document.createElement('span');
-                mytitle.className = 'span_title';
-                mytitle.innerHTML = weblinks[i]['title'];
-    
-                // create span.span_link_icon
-                myicon = document.createElement('span');
-                myicon.className = 'span_link_icon';
-                myicon.innerHTML = '<a href="#"><i class="fas fa-external-link-alt"></i></a>';
-    
-                // div.cb
-                mycb = document.createElement('div');
-                mycb.className = 'cb';
-    
-                //Div.sitetitleにappend
-                mytitleDiv.appendChild(mytitle);
-                // mytitleDiv.appendChild(myicon);
-                mytitleDiv.appendChild(mycb);
-    
-                //create div.sitecontents
-                mycontents = document.createElement('div');
-                mycontents.className = 'sitecontents';
-    
-                //dl
-                mydl = document.createElement('dl');
-                // URL
-                mydt = document.createElement('dt');
-                mydt.innerHTML = 'URL';
-                mydd = document.createElement('dd');
-                mydd.innerHTML = '<a href="' + weblinks[i]['site_url'] + '" target="_blank">' + weblinks[i]['site_url'] + '</a>';
-                mydl.appendChild(mydt);
-                mydl.appendChild(mydd);
-                
-                // Notes
-                mydt = document.createElement('dt');
-                mydt.innerHTML = 'Notes';
-                mydd = document.createElement('dd');
-                mydd.innerHTML = weblinks[i]['note'];
-                mydd.className = 'notecontents';
-                mydl.appendChild(mydt);
-                mydl.appendChild(mydd);
-    
-                //dlをdiv.sitecontentsにappend
-                mycontents.appendChild(mydl);
-    
-                mywrapper.appendChild(mytitleDiv);
-                mywrapper.appendChild(mycontents);
-                document.getElementById('card').appendChild(mywrapper);
-                }  
-            }
-            console.log('end of weblinkmark()');
 
+        function healthDataMark(){
+            var healthData = <?php echo $jsonData; ?>;
+            console.log(healthData);
+
+            for(var i = 0; i<healthData.length; i++){
+                var myCard = document.createElement('div');
+                myCard.className = 'card cf';
+
+                var myCardLeft = document.createElement('div');
+                myCardLeft.className = 'cardleft';
+                var fileName = healthData[i]['pic_filename'];
+                myCardLeft.innerHTML ='<a href="images/' + fileName + '" data-lightbox = "lb"><img class="thumbnails" src="images/' + fileName + '" alt=""></a>';
+                
+                var myCardRight = document.createElement('div');
+                myCardRight.className = 'cardright';
+
+                    var myCardHeader = document.createElement('div');
+                    myCardHeader.className = 'cardheader cf';
+
+                        var myCardDate = document.createElement('div');
+                        myCardDate.className = 'carddate';
+                        myCardDate.innerHTML = healthData[i]['date'];
+
+                        var myCardProfile = document.createElement('div');
+                        myCardProfile.className = 'cardprofile';
+
+                            var myProfilePicFrame =document.createElement('div');
+                            myProfilePicFrame.className = 'profile_pic_frame';
+                            myProfilePicFrame.style.background = 'url(../common/images/profile/' + healthData[i]['profile_filename'] + ') no-repeat';
+                            myProfilePicFrame.style.backgroundPosition = 'center';
+                            myProfilePicFrame.style.backgroundSize = 'cover';
+
+                        myCardProfile.appendChild(myProfilePicFrame);
+
+
+
+                        // myCardProfile.innerHTML = healthData[i]['nickname'];
+
+                    myCardHeader.appendChild(myCardDate);
+                    myCardHeader.appendChild(myCardProfile);
+
+                    var myCardContents = document.createElement('div');
+                    myCardContents.className = 'cardcontents';
+
+                        var myCardData = document.createElement('div');
+                            myCardData.className = 'carddata';
+                            var myTable = document.createElement('table');
+                                var tableStr = "";
+                                tableStr += '<tr>';
+                                tableStr += '<th>体重</>';
+                                tableStr += '<td class="tdData">';
+                                tableStr += healthData[i]['weight'];
+                                tableStr += '</td>';
+                                tableStr += '<td class="tdUnit">g</td>';
+                                tableStr += '</tr>'
+
+                                tableStr += '<tr>';
+                                tableStr += '<th>長さ</>';
+                                tableStr += '<td class="tdData">';
+                                tableStr += healthData[i]['vertical'];
+                                tableStr += '</td>';
+                                tableStr += '<td class="tdUnit">cm</td>';
+                                tableStr += '</tr>'
+
+                                tableStr += '<tr>';
+                                tableStr += '<th>幅</>';
+                                tableStr += '<td class="tdData">';
+                                tableStr += healthData[i]['horizontal'];
+                                tableStr += '</td>';
+                                tableStr += '<td class="tdUnit">cm</td>';
+                                tableStr += '</tr>'
+
+                                tableStr += '<tr>';
+                                tableStr += '<th>高さ</>';
+                                tableStr += '<td class="tdData">';
+                                tableStr += healthData[i]['height'];
+                                tableStr += '</td>';
+                                tableStr += '<td class="tdUnit">cm</td>';
+                                tableStr += '</tr>'
+
+                            myTable.innerHTML = tableStr;
+
+                        myCardData.appendChild(myTable);
+
+                        var myCardnotes = document.createElement('div');
+                            myCardnotes.className = 'cardnotes';
+                        myCardnotes.innerHTML = healthData[i]['note'];
+
+                    myCardContents.appendChild(myCardData);
+                    myCardContents.appendChild(myCardnotes);
+
+                myCardRight.appendChild(myCardHeader);
+                myCardRight.appendChild(myCardContents);
+
+                myCard.appendChild(myCardLeft);
+                myCard.appendChild(myCardRight);
+
+
+                var myContainer = document.getElementById('mycontainer');
+                myContainer.appendChild(myCard);
+            }
         }
 
-        websiteLinkMark();
+        healthDataMark();
 
-            let input_kw = document.getElementById('site_kw');
-            var s;
-            input_kw.addEventListener('keyup',function(){
-                console.log('before s : ' + s);
-                if(s != input_kw.value){
-                    s = input_kw.value;
-                    console.log('after s : ' + s);
-                    console.log('websiteLinkMark() is called with parameter : ' + s);
-                    websiteLinkMark(s);
 
-                }
-                // removeElm();
-                
-            },false);
 
 
         </script>
