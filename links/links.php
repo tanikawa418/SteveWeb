@@ -1,23 +1,60 @@
 <?php
 
 require('../common/php/dbconnect.php');
-
+echo 'prev : '.$is_prev_mode;
 if(!empty($_POST)){
+    var_dump($_POST);
     if($_POST['category'] !== ''){ //カテゴリを選ばせるまではDBへの問い合わせをしない
         $category = $_POST['category'];
+        $refresh = $_POST['refresh'];
 
         if($category == 'youtube'){
-            $stmt = $db->query('SELECT * FROM youtube_rss WHERE load_default<>0 ORDER BY display_order');
-            
-            $arr_feed = array(); //空配列の定義
+            if($refresh == 'on'){ //初期表示など、DB接続リフレッシュの時
+                $stmt = $db->query('SELECT * FROM youtube_rss WHERE load_default<>0 ORDER BY display_order');
+                $arr_feed = array(); //空配列の定義
+    
+                foreach($stmt as $value){
+                    //urlを配列に格納
+                    array_push($arr_feed,$value['rss_url']);
+                }
+        
+                var_dump($arr_feed);
+                unset($stmt);
+                unset($value);
+                echo 'preview : ' . $_POST['preview'];
+                echo 'channel_id : ' . $_POST['channel_id'];
 
-            foreach($stmt as $value){
-                //urlを配列に格納
-                array_push($arr_feed,$value['rss_url']);
+            }elseif($_POST['preview']!=''){ //RSSプレビューの時
+                $arr_feed = array(); //空配列の定義
+                $channel_id = $_POST['channel_id']; //プレビュー対象だけを配列にセット
+                $is_prev_mode = '1';
+                array_push($arr_feed,'https://www.youtube.com/feeds/videos.xml?channel_id=' . $_POST['channel_id']);
+            }elseif($_POST['submit'] == '登録する'){
+
+                $sql = 'INSERT INTO `youtube_rss`(`youtube_name`, `rss_url`, `note`, `display_order`, `load_default`) VALUES ("",?,"",1,1)';
+                $stmt = $db->prepare($sql);
+                $stmt->execute(array('https://www.youtube.com/feeds/videos.xml?channel_id=' . $_POST['channel_id']));
+                $channel_id='';
+                $is_prev_mode = '0';
+                header('Location:links.php');
+                exit();
             }
-            unset($stmt);
-            unset($value);
+
+
         }elseif($category == 'website'){
+            if($_POST['submit']=='登録する'){
+                $sql = 'INSERT INTO `websites`(`site_name`, `site_url`, `title`, `note`, `display_order`, `load_default`) VALUES (?,?,?,?,1,1)';
+                $stmt = $db->prepare($sql);
+                $stmt->execute(array(
+                    $_POST['site_name'],
+                    $_POST['site_url'],
+                    $_POST['title'],
+                    $_POST['note']
+                ));
+                header('Location:links.php');
+                exit();
+
+            }
             $stmt = $db->query('SELECT * FROM websites WHERE load_default<>0 ORDER BY display_order');
             $arr_weblink = $stmt->fetchAll(PDO::FETCH_ASSOC);
             // print_r($arr_weblink);
@@ -28,7 +65,7 @@ if(!empty($_POST)){
 
     }
 }else{
-    // print '$_POSTがカラです';
+    print '$_POSTがカラです';
 }
 ?>
 
@@ -38,8 +75,11 @@ if(!empty($_POST)){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <link rel="stylesheet" href="../common/css/reset.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?dd">
     <!-- font awesome -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
@@ -61,18 +101,75 @@ if(!empty($_POST)){
         <div class="categorywrapper">
             <p>カテゴリを選んでください</p>
             <form action="" method="post">
-                <input type="hidden" name="category" value="youtube">
+            <input type="hidden" name="category" value="youtube">
+            <input type="hidden" name="refresh" value="on">
                 <!-- <input type="submit" value="送信する"> -->
                 <input id="pic_btn_youtube" class="picbutton" type="submit" name="submit" value="">
             </form>
             <form action="" method="post">
                 <!-- <input class="picbutton" type="image" name="submit" src="images/tortoise_shape.png" value="SUBMIT2"> -->
                 <input type="hidden" name="category" value="website">
+                <input type="hidden" name="refresh" value="on">
                 <input id="pic_btn_website" class="picbutton" type="submit" name="submit" value="Website">
             </form>
             <div class="cb"></div>
         </div>
 
+        <p class="<?php if(isset($category) && $category == 'youtube'){echo 'reveal';}else{echo 'hidden';}?>">
+        
+        <? echo $is_prev_mode;?>
+        <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#add_youtube" aria-expanded="false" id="collapse_btn_yt" aria-controls="add_youtube"> -->
+            <button id="collapse_btn_yt">
+                Youtube RSSを追加する
+            </button>
+        <!-- </button> -->
+        </p>
+        <!-- <div class="collapse" id="add_youtube"> -->
+            <div class="card card-body" style="display:<?php if($is_prev_mode=='1'){echo 'flex';}else{echo 'none';}?>" id="yt_form">
+                <form action="" method="post">
+                    チャンネルID
+                    <input type="hidden" name="refresh" value="off">
+                    <input type="hidden" name="category" value="youtube">
+                    <input type="text" name="channel_id" <?php if(isset($channel_id)){print('value='.$channel_id);}?>>
+                    <!-- <input type="button" name="preview" value="確認する"><br> -->
+                    <button type="submit" name="preview" value="チェック">チェックする</button>
+                    
+                    <button type="submit" name="submit" value="登録する">登録する</button>
+                    <p>
+                        <?php if($is_prev_mode=='1'){
+                            echo '<br>';
+                            echo '下にプレビューが正しく表示されたら登録可能です';
+                        }else{
+                            echo '<br>';
+                            echo 'YoutubeのチャンネルページのURLの最後の部分(「channel/」の後の部分)をコピペして、チェックするを押してください';
+                            echo '<br>';
+                            echo '記入例 : https://www.youtube.com/channel/<span class="example">UCRstW1gxiR0tHJ7dSJJWv4Q</span>';
+                        }?>
+                    </p>
+                </form>
+            </div>
+        <!-- </div> -->
+        <p class="<?php if(isset($category) && $category == 'website'){echo 'class="reveal"';}else{echo 'hidden';}?>">
+            <button id="collapse_btn_ws">
+                リンクを追加する
+            </button>
+        </p>
+        <div class="collapse" id="ws_form">
+            <div class="card card-body">
+                <form action="" method="post" id="ws_form">
+                    <input type="hidden" name="category" value="website">
+                    <span class="fieldlabel">サイト名</span> 
+                    <input type="text" name="site_name"><br>
+                    <span class="fieldlabel">サイトURL</span> 
+                    <input type="text" name="site_url"><br>
+                    <span class="fieldlabel">タイトル</span> 
+                    <input type="text" name="title">※画面に表示されるタイトルです<br>
+                    <span class="fieldlabel">内容</span> 
+                    <input type="text" name="note">※キーワード検索対象です。サイトから内容をコピペしてください。<br>
+                    <button type="submit" name="submit" value="登録する">登録する</button>
+                </form>
+            </div>
+        </div>
         <?php
             // $xmlTree = simplexml_load_file('https://h2o-space.com/feed/');
             // FeedのURLをセット
@@ -260,24 +357,60 @@ if(!empty($_POST)){
         }
 
         websiteLinkMark();
+        //リアルタイム検索
+        let input_kw = document.getElementById('site_kw');
+        var s;
+        input_kw.addEventListener('keyup',function(){
+            console.log('before s : ' + s);
+            if(s != input_kw.value){
+                s = input_kw.value;
+                console.log('after s : ' + s);
+                console.log('websiteLinkMark() is called with parameter : ' + s);
+                websiteLinkMark(s);
+    
+            }
+            // removeElm();
+            
+        },false);
+        </script>
 
-            let input_kw = document.getElementById('site_kw');
-            var s;
-            input_kw.addEventListener('keyup',function(){
-                console.log('before s : ' + s);
-                if(s != input_kw.value){
-                    s = input_kw.value;
-                    console.log('after s : ' + s);
-                    console.log('websiteLinkMark() is called with parameter : ' + s);
-                    websiteLinkMark(s);
-
+        <script>    
+            //Collapse Menu
+            document.getElementById('collapse_btn_yt').addEventListener('click',function(){
+                console.log('clicked');
+                var disp_status = document.defaultView.getComputedStyle(document.getElementById('yt_form'),null).display;
+                console.log('status : ' + disp_status);
+                if(disp_status != 'none'){
+                    document.getElementById('yt_form').style.display = 'none';
+                }else{
+                    document.getElementById('yt_form').style.display = 'flex';                    
                 }
-                // removeElm();
-                
-            },false);
+            
+                // document.getElementById('ws_form').style.display = 'none';
+            })
+
+            document.getElementById('collapse_btn_ws').addEventListener('click',function(){
+                console.log('clicked');
+                var disp_status = document.defaultView.getComputedStyle(document.getElementById('ws_form'),null).display;
+                console.log('status : ' + disp_status);
+                if(disp_status != 'none'){
+                    document.getElementById('ws_form').style.display = 'none';
+                }else{
+                    document.getElementById('ws_form').style.display = 'flex';                    
+                }
+            
+                // document.getElementById('ws_form').style.display = 'none';
+            })
+
+
+
 
 
         </script>
+
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </body>
 </html>
