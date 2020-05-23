@@ -135,13 +135,26 @@ div.cb {
     margin: 10px;
     float: left;
 }
-form span{
+span.example {
     font-weight: bold;
     color:blue;
+}
+
+
+span.fieldlabel {
+    width: 100px;
+    color: black;
+    display: inline-block;
+    margin-bottom: 10px;
 }
 #yt_form input{
     width: 300px;
 }
+
+#ws_form input {
+    width: 300px;
+}
+
 
 .hidden {
     display: none;

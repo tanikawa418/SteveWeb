@@ -37,10 +37,24 @@ if(!empty($_POST)){
                 $channel_id='';
                 $is_prev_mode = '0';
                 header('Location:links.php');
+                exit();
             }
 
 
         }elseif($category == 'website'){
+            if($_POST['submit']=='登録する'){
+                $sql = 'INSERT INTO `websites`(`site_name`, `site_url`, `title`, `note`, `display_order`, `load_default`) VALUES (?,?,?,?,1,1)';
+                $stmt = $db->prepare($sql);
+                $stmt->execute(array(
+                    $_POST['site_name'],
+                    $_POST['site_url'],
+                    $_POST['title'],
+                    $_POST['note']
+                ));
+                header('Location:links.php');
+                exit();
+
+            }
             $stmt = $db->query('SELECT * FROM websites WHERE load_default<>0 ORDER BY display_order');
             $arr_weblink = $stmt->fetchAll(PDO::FETCH_ASSOC);
             // print_r($arr_weblink);
@@ -65,7 +79,7 @@ if(!empty($_POST)){
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../common/css/reset.css">
-    <link rel="stylesheet" href="style.css?d">
+    <link rel="stylesheet" href="style.css?dd">
     <!-- font awesome -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
@@ -106,7 +120,7 @@ if(!empty($_POST)){
         <? echo $is_prev_mode;?>
         <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#add_youtube" aria-expanded="false" id="collapse_btn_yt" aria-controls="add_youtube"> -->
             <button id="collapse_btn_yt">
-                Add Youtube RSS
+                Youtube RSSを追加する
             </button>
         <!-- </button> -->
         </p>
@@ -129,21 +143,31 @@ if(!empty($_POST)){
                             echo '<br>';
                             echo 'YoutubeのチャンネルページのURLの最後の部分(「channel/」の後の部分)をコピペして、チェックするを押してください';
                             echo '<br>';
-                            echo '記入例 : https://www.youtube.com/channel/<span>UCRstW1gxiR0tHJ7dSJJWv4Q</span>';
+                            echo '記入例 : https://www.youtube.com/channel/<span class="example">UCRstW1gxiR0tHJ7dSJJWv4Q</span>';
                         }?>
                     </p>
                 </form>
             </div>
         <!-- </div> -->
         <p class="<?php if(isset($category) && $category == 'website'){echo 'class="reveal"';}else{echo 'hidden';}?>">
-
-        <button class="btn btn-primary" id="collapse_btn_ws" type="button" data-toggle="collapse" data-target="#add_Website" aria-expanded="false" aria-controls="add_Website">
-            Add Website Link
-        </button>
+            <button id="collapse_btn_ws">
+                リンクを追加する
+            </button>
         </p>
-        <div class="collapse" id="add_Website">
+        <div class="collapse" id="ws_form">
             <div class="card card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                <form action="" method="post" id="ws_form">
+                    <input type="hidden" name="category" value="website">
+                    <span class="fieldlabel">サイト名</span> 
+                    <input type="text" name="site_name"><br>
+                    <span class="fieldlabel">サイトURL</span> 
+                    <input type="text" name="site_url"><br>
+                    <span class="fieldlabel">タイトル</span> 
+                    <input type="text" name="title">※画面に表示されるタイトルです<br>
+                    <span class="fieldlabel">内容</span> 
+                    <input type="text" name="note">※キーワード検索対象です。サイトから内容をコピペしてください。<br>
+                    <button type="submit" name="submit" value="登録する">登録する</button>
+                </form>
             </div>
         </div>
         <?php
@@ -364,6 +388,24 @@ if(!empty($_POST)){
             
                 // document.getElementById('ws_form').style.display = 'none';
             })
+
+            document.getElementById('collapse_btn_ws').addEventListener('click',function(){
+                console.log('clicked');
+                var disp_status = document.defaultView.getComputedStyle(document.getElementById('ws_form'),null).display;
+                console.log('status : ' + disp_status);
+                if(disp_status != 'none'){
+                    document.getElementById('ws_form').style.display = 'none';
+                }else{
+                    document.getElementById('ws_form').style.display = 'flex';                    
+                }
+            
+                // document.getElementById('ws_form').style.display = 'none';
+            })
+
+
+
+
+
         </script>
 
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
