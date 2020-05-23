@@ -32,7 +32,7 @@ if(!empty($_POST)){
 }
 
 
-$sql = 'SELECT * FROM mesurement ms INNER JOIN pets pt ON pt.pet_id = ms.pet_id ORDER BY ms.date DESC';
+$sql = 'SELECT * FROM mesurement ms INNER JOIN pets pt ON pt.pet_id = ms.pet_id ORDER BY ms.created DESC';
 
 $response = $db->query($sql,PDO::FETCH_ASSOC);
 $arr_health = $response->fetchAll(PDO::FETCH_ASSOC);
@@ -82,7 +82,7 @@ $jsonData = json_encode($arr_health);
         <div class="card cf">
             <div class="cardleft">
                 <!-- <img src="images/DSC_0707.JPG" alt=""> -->
-                <a href="images/DSC_0707.JPG" data-lightbox = "lb"><img class="thumbnails" src="images/DSC_0707.JPG" alt=""></a>
+                <a href="images/mesurement_pics/20200522174522PC040677.jpg" data-lightbox = "lb"><img class="thumbnails" src="images/mesurement_pics/20200522174522PC040677.jpg" alt=""></a>
             </div>
             <div class="cardright">
                 <div class="cardheader cf">
@@ -158,7 +158,7 @@ $jsonData = json_encode($arr_health);
                 var myCardLeft = document.createElement('div');
                 myCardLeft.className = 'cardleft';
                 var fileName = healthData[i]['pic_filename'];
-                myCardLeft.innerHTML ='<a href="images/' + fileName + '" data-lightbox = "lb"><img class="thumbnails" src="images/' + fileName + '" alt=""></a>';
+                myCardLeft.innerHTML ='<a href="images/mesurement_pics/' + fileName + '" data-lightbox = "lb"><img class="thumbnails" src="images/mesurement_pics/' + fileName + '" alt=""></a>';
                 
                 var myCardRight = document.createElement('div');
                 myCardRight.className = 'cardright';
