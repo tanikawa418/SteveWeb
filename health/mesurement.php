@@ -124,7 +124,7 @@ $jsonData = json_encode($arr_health);
                             <!-- <a href="input/mesurement_input.php?mode=edit"><i class="fas fa-edit"></i></a> -->
                             <form action="input/mesurement_input.php" method="post">
                                 <input type="hidden" name="mode" value="edit">
-                                <input type="hidden" name="mesurement_id" value="16">
+                                <input type="hidden" name="mesurement_id" value="23">
                                 <label>
                                     <button type="submit" class="hidden_btn">隠しボタン</button>
                                     <i class="fas fa-edit"></i>
@@ -253,8 +253,33 @@ $jsonData = json_encode($arr_health);
                             myCardnotes.className = 'cardnotes';
                         myCardnotes.innerHTML = healthData[i]['note'];
 
+                        var myAction = document.createElement('div');
+                            myAction.className = 'action';
+                                var myiconwrap1 = document.createElement('div');
+                                    myiconwrap1.className = 'iconwrap';
+
+                                    var formStr = "";
+                                    formStr += '<form action="input/mesurement_input.php" method="post">';
+                                    formStr += '<input type="hidden" name="mode" value="edit">';
+                                    formStr += '<input type="hidden" name="mesurement_id" value="';
+                                    formStr += healthData[i]['mesurement_id'];
+                                    formStr += '">';
+                                    formStr += '<label>';
+                                    formStr += '<button type="submit" class="hidden_btn">隠しボタン</button>';
+                                    formStr += '<i class="fas fa-edit"></i>';
+                                    formStr += '</label>';
+                                    formStr += '</form>';
+                                myiconwrap1.innerHTML = formStr;
+
+                                var myiconwrap2 = document.createElement('div');
+                                    myiconwrap2.className = 'iconwrap';
+                                myiconwrap2.innerHTML = '<i class="far fa-trash-alt"></i>';
+                            myAction.appendChild(myiconwrap1);
+                            myAction.appendChild(myiconwrap2);
+
                     myCardContents.appendChild(myCardData);
                     myCardContents.appendChild(myCardnotes);
+                    myCardContents.appendChild(myAction);
 
                 myCardRight.appendChild(myCardHeader);
                 myCardRight.appendChild(myCardContents);
