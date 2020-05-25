@@ -54,12 +54,12 @@ $jsonData = json_encode($arr_health);
     <!-- bootstrap -->
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
     <!-- lightbox -->
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.css">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js" type="text/javascript" ></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?d">
     <!-- font awesome -->
-    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
     
 
@@ -118,6 +118,24 @@ $jsonData = json_encode($arr_health);
                     </div>
                     <div class="cardnotes">
                         静的生成のカードです
+                    </div>
+                    <div class="action">
+                        <div class="iconwrap">
+                            <!-- <a href="input/mesurement_input.php?mode=edit"><i class="fas fa-edit"></i></a> -->
+                            <form action="input/mesurement_input.php" method="post">
+                                <input type="hidden" name="mode" value="edit">
+                                <input type="hidden" name="mesurement_id" value="16">
+                                <label>
+                                    <button type="submit" class="hidden_btn">隠しボタン</button>
+                                    <i class="fas fa-edit"></i>
+                                </label>
+                                
+                            </form>
+                        </div>
+
+                        <div class="iconwrap">
+                            <i class="far fa-trash-alt"></i>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -106,10 +106,18 @@ div.cardleft {
 }
 
 img.thumbnails {
-    max-width: 100%;
+    width: 100%;
     height: 100%;
     object-fit: cover;
-    
+}
+
+img.thumbnails:hover {
+
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+    transform: translateY(-10px);
+    transition-duration: 1s;
+    /* transform: scale(1.1);
+    transition-duration: 500ms; */
 }
 
 div.cardright {
@@ -161,6 +169,8 @@ div.profile_pic_frame {
 div.cardcontents {
     width: 240px;
     height: 104px;
+    position: relative;
+    overflow: hidden;
 }
 
 div.carddata {
@@ -178,6 +188,39 @@ div.carddata tr{
 div.carddata th {
     font-weight: bold;
     width: 3em;
+}
+div.action {
+    width: 100%;
+    height: 50px;
+    background-color: gray;
+    opacity: 0.8;
+    color: white;
+    font-size: 2em;
+    transform: translateY(100%);
+    transition-duration: 1s;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+button.hidden_btn {
+    display: none;
+}
+
+div.cardcontents:hover div.action{
+    transform: translateY(0);
+    transition-duration: .5s;
+    
+}
+
+div.iconwrap {
+    display: inline-block;
+    width: 120px;
+}
+
+div.iconwrap a i{
+    text-decoration: none;
+    color: white;
 }
 
 td.tdData {

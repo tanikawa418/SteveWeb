@@ -4,6 +4,28 @@
 
 
     if(!empty($_POST)){
+
+        if($_POST['cancel']!=''){
+            header('Location: ../mesurement.php');
+            exit();
+        }
+
+        if($_POST['mode']=='edit'){
+            echo 'Editモードで開きます';
+
+            $sql = 'SELECT * FROM mesurement WHERE mesurement_id = ?';
+            $stmt = $db->prepare($sql);
+            $stmt->execute(array($_POST['mesurement_id']));
+            $response = $stmt->fetch();
+            echo '<br>';
+            echo $response['mesurement_id'];
+            echo '<br>';
+            echo $response['height'];
+            echo '<br>';
+
+
+        }
+
         var_dump($_POST);
 
         function numConvert($txt){
