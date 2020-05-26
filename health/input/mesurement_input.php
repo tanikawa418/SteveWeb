@@ -78,9 +78,21 @@
 
                 //エラーなしの場合、DB更新する
                 if(empty($error)){
-
+                    //ファイルを所定ディレクトリに格納
                     move_uploaded_file($_FILES['image']['tmp_name'], '../images/mesurement_pics/' . $_POST['image']);
+                    //
+                    echo '<br>$_SESSION[filename]' . $_SESSION['filename'];
+                    echo '<br>$_FILES[image][name]' . $_FILES['image']['name'] !='';
+                    //画像がuploadされている場合、元の画像ファイルをディレクトリから削除
+                    if(!($_FILES['image']['name']=='')){
+                        if(unlink('../images/mesurement_pics/' . $_SESSION['filename'])){
+                            echo '<br>ファイル削除に成功しました<br>';
+                        }else{
+                            echo '<br>ファイル削除に失敗しました<br>';
+                        }
+                    }
                     echo '<br>#81 $_post[image] : '.$_POST['image'];
+
 
                     $sql = 'UPDATE `mesurement` SET `date`=cast(:date as date),`pet_id`=:pet_id,`weight`=:weight,`vertical`=:vertical,`horizontal`=:horizontal,`height`=:height,`note`=:note,`pic_filename`=:pic_filename WHERE mesurement_id=:mesurement_id';
 
@@ -107,8 +119,8 @@
                     }
                     session_destroy();
 
-                    header('Location: ../mesurement.php');
-                    exit();
+                    // header('Location: ../mesurement.php');
+                    // exit();
                 }
             }
 
