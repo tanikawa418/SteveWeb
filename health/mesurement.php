@@ -58,7 +58,7 @@ $jsonData = json_encode($arr_health);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.css">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js" type="text/javascript" ></script>
-    <link rel="stylesheet" href="style.css?d">
+    <link rel="stylesheet" href="style.css?dummy">
     <!-- font awesome -->
 
     
@@ -141,12 +141,11 @@ $jsonData = json_encode($arr_health);
             </div>
         </div>
  
+        <div class="addmark">
+            <a href="input/mesurement_input.php"><i class="fas fa-plus"></i></a>    
+        </div>
         
     </div> <!--mycontainer -->
-    <div class="addmark">
-        <a href="input/mesurement_input.php"><i class="fas fa-plus"></i></a>    
-    
-    </div>
 
     
     <script type="text/javascript">

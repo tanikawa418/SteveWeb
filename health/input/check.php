@@ -28,6 +28,7 @@
     }
 
     //全角数値入力された値を半角に置き換え
+    //バリデーションエラーで再描画したときにきれいに表示させたいのでこのタイミングで行う
     $_POST['weight'] = numConvert($_POST['weight']);
     $_POST['vertical'] = numConvert($_POST['vertical']);
     $_POST['horizontal'] = numConvert($_POST['horizontal']);
