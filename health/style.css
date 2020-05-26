@@ -78,6 +78,7 @@ div.mycontainer {
     margin: 0 auto;
     /* background-color: cadetblue; */
     padding-top: 20px;
+    position: relative;
 }
 
 /* **************************
@@ -103,13 +104,23 @@ div.cardleft {
     width: 100px;
     height: 142px;
     float: left;
+    overflow: hidden;
 }
 
 img.thumbnails {
-    max-width: 100%;
+    width: 100%;
     height: 100%;
     object-fit: cover;
-    
+}
+
+img.thumbnails:hover {
+
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+    /* transform: translateY(-10px); */
+    transform: scale(1.2);
+    transition-duration: .5s;
+    /* transform: scale(1.1);
+    transition-duration: 500ms; */
 }
 
 div.cardright {
@@ -161,6 +172,8 @@ div.profile_pic_frame {
 div.cardcontents {
     width: 240px;
     height: 104px;
+    position: relative;
+    overflow: hidden;
 }
 
 div.carddata {
@@ -178,6 +191,49 @@ div.carddata tr{
 div.carddata th {
     font-weight: bold;
     width: 3em;
+}
+div.action {
+    width: 100%;
+    height: 50px;
+    background-color: gray;
+    opacity: 0.8;
+    color: white;
+    font-size: 2em;
+    transform: translateY(100%);
+    transition-duration: .2s;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+button.hidden_btn {
+    display: none;
+}
+
+div.cardcontents:hover div.action{
+    transform: translateY(0);
+    transition-duration: .5s;
+    
+}
+
+div.iconwrap {
+    display: inline-block;
+    width: 120px;
+}
+
+div.iconwrap:hover {
+    cursor: pointer;
+}
+
+div.iconwrap form label {
+    display: inline-block;
+    width: 120px;
+}
+
+div.iconwrap form label:hover{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
 }
 
 td.tdData {
@@ -210,12 +266,14 @@ div.addmark {
     height: 40px;
     border-radius: 50%;
     background-color: orange;
+    opacity: .7;
     font-size: 1.5em;
     text-align: center;
     line-height: 40px;
-    position: absolute;
-    bottom: 0;
-    right: 20px;
+    position: fixed;
+    bottom: 10px;
+    right: 10%;
+    z-index: 2;
 }
 
 div.addmark a {
@@ -363,5 +421,23 @@ div.addmark a {
 
 }
 
+/* **************************
+    Add
+   ************************** */
 
+@media screen and (min-width:500px){
+
+   div.addmark {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: orange;
+    font-size: 1.5em;
+    text-align: center;
+    line-height: 70px;
+    position: fixed;
+    bottom: 10px;
+    right: 15%;
+    }
+}
 

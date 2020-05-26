@@ -157,7 +157,7 @@ p.field_label {
 }
 
 #file_change_guide {
-  display: none;
+  visibility: hidden;
   font-size: 0.8em;
   color: blueviolet;
 }
