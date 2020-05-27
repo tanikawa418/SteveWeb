@@ -2,44 +2,60 @@
 
 require('../common/php/dbconnect.php');
 
-if(!empty($_POST)){
-    if($_POST['category'] !== ''){ //カテゴリを選ばせるまではDBへの問い合わせをしない
-        $category = $_POST['category'];
 
-        if($category == 'youtube'){
-            $stmt = $db->query('SELECT * FROM youtube_rss WHERE load_default<>0 ORDER BY display_order');
-            
-            $arr_feed = array(); //空配列の定義
-
-            foreach($stmt as $value){
-                //urlを配列に格納
-                array_push($arr_feed,$value['rss_url']);
-            }
-            unset($stmt);
-            unset($value);
-        }elseif($category == 'website'){
-            $stmt = $db->query('SELECT * FROM websites WHERE load_default<>0 ORDER BY display_order');
-            $arr_weblink = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            // print_r($arr_weblink);
-            $jsonData = json_encode($arr_weblink);
-            unset($stmt);
-            unset($value);
+//削除ボタン押下時処理
+if(!empty($_POST) && $_POST['mode']='delete'){
+    
+    //pic_filenameの取得
+    $sql = 'SELECT * FROM mesurement WHERE mesurement_id=?';
+    $stmt=$db->prepare($sql);
+    $stmt->execute(array($_POST['mesurement_id']));
+    $response = $stmt->fetch();
+    $delete_filename = $response['pic_filename'];
+    
+    // DB Delete
+    $sql = 'DELETE FROM mesurement WHERE mesurement_id=?';
+    $stmt=$db->prepare($sql);
+    $stmt->execute(array($_POST['mesurement_id']));
+    $result_db_delete = $stmt->rowCount();
+    
+    //File Delete
+    if(unlink('images/mesurement_pics/' . $delete_filename)){
+        $result_file_delete = 1;
+    }else{
+        $result_file_delete = 0;
+    }
+    
+    //トーストメッセージの作成
+    if(isset($result_db_delete)){
+        if($result_db_delete==1){
+            $toast_message_db = 'データを削除しました';
+            $toast_type_db = 'success';
+        }else{
+            $toast_message_db = 'データ削除に失敗しました';
+            $toast_type_db = 'error';
+        }
+        if($result_file_delete==1){
+            $toast_message_file = '画像を削除しました';
+            $toast_type_file = 'success';
+        }else{
+            $toast_message_file = '画像削除に失敗しました';
+            $toast_type_file = 'error';
         }
 
+
+
+
     }
-}else{
-    // print '$_POSTがカラです';
+    
 }
 
-
+//データ取得処理
 $sql = 'SELECT * FROM mesurement ms INNER JOIN pets pt ON pt.pet_id = ms.pet_id ORDER BY ms.created DESC';
-
 $response = $db->query($sql,PDO::FETCH_ASSOC);
 $arr_health = $response->fetchAll(PDO::FETCH_ASSOC);
-// print_r($arr_health);
+// JSに配列渡し
 $jsonData = json_encode($arr_health);
-
-
 
 
 ?>
@@ -51,15 +67,23 @@ $jsonData = json_encode($arr_health);
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../common/css/reset.css">
-    <!-- bootstrap -->
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
-    <!-- lightbox -->
+    <!-- Font Awesome -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <!-- lightbox -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.css">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js" type="text/javascript" ></script>
     <link rel="stylesheet" href="style.css?dummy">
-    <!-- font awesome -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    <!-- toastr.js -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
 
     
 
@@ -78,7 +102,6 @@ $jsonData = json_encode($arr_health);
 
     </header>
     <div class="mycontainer cf" id="mycontainer">
-
         <div class="card cf">
             <div class="cardleft">
                 <!-- <img src="images/DSC_0707.JPG" alt=""> -->
@@ -134,7 +157,15 @@ $jsonData = json_encode($arr_health);
                         </div>
 
                         <div class="iconwrap">
-                            <i class="far fa-trash-alt"></i>
+                            <form action="" onsubmit="return deleteConfirm()" method="post">
+                                <input type="hidden" name="mesurement_id" value="57">
+                                <input type="hidden" name="mode" value="delete">
+                                <label>
+                                    <button type="submit" class="hidden_btn">隠しボタン</button>
+                                    <i class="far fa-trash-alt"></i>
+                                </label>
+
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -149,20 +180,6 @@ $jsonData = json_encode($arr_health);
 
     
     <script type="text/javascript">
-        // function removeElm(){
-        //     var target = document.getElementsByClassName('sitewrapper');
-        //     console.log('target.length : ' + target.length);
-        //     // for(var i = 0; i < target.length; i++){
-        //     while(target.length){
-        //         target[0].remove();
-        //         // console.log(i + 'removed');
-        //     }
-        // }
-
-        // function removeElm(){
-        //     var target = document.getElementById('card');
-        //     target.removeChild();
-        // }
 
         function healthDataMark(){
             var healthData = <?php echo $jsonData; ?>;
@@ -197,10 +214,6 @@ $jsonData = json_encode($arr_health);
                             myProfilePicFrame.style.backgroundSize = 'cover';
 
                         myCardProfile.appendChild(myProfilePicFrame);
-
-
-
-                        // myCardProfile.innerHTML = healthData[i]['nickname'];
 
                     myCardHeader.appendChild(myCardDate);
                     myCardHeader.appendChild(myCardProfile);
@@ -286,7 +299,6 @@ $jsonData = json_encode($arr_health);
                 myCard.appendChild(myCardLeft);
                 myCard.appendChild(myCardRight);
 
-
                 var myContainer = document.getElementById('mycontainer');
                 myContainer.appendChild(myCard);
             }
@@ -294,10 +306,31 @@ $jsonData = json_encode($arr_health);
 
         healthDataMark();
 
+        function deleteConfirm(){
+            if(window.confirm("本当に削除しますか？アップロードした画像も削除されます。")){
+                return true;
+            }else{
+                window.alert('キャンセルしました');
+                return false;
+            }
+        }
 
+        <?php 
 
-
+        echo 'window.onload = function(){';
+            if(isset($result_db_delete)){
+                echo 'toastr.' . $toast_type_db . '("' . $toast_message_db . '");'."\n";
+            }
+            if(isset($result_file_delete)){
+                echo 'toastr.' . $toast_type_file . '("' . $toast_message_file . '");'."\n";
+            }
+            echo '}';
+        
+        ?>
         </script>
+        
+
+        
 
 </body>
 </html>
