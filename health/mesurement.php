@@ -12,6 +12,11 @@ if(!empty($_POST) && $_POST['mode']='delete'){
     $stmt->execute(array($_POST['mesurement_id']));
     $response = $stmt->fetch();
     $delete_filename = $response['pic_filename'];
+    if($delete_filename){
+        $is_attached = true;
+    }else{
+        $is_attached = false;
+    }
     
     // DB Delete
     $sql = 'DELETE FROM mesurement WHERE mesurement_id=?';
@@ -20,10 +25,16 @@ if(!empty($_POST) && $_POST['mode']='delete'){
     $result_db_delete = $stmt->rowCount();
     
     //File Delete
-    if(unlink('images/mesurement_pics/' . $delete_filename)){
-        $result_file_delete = 1;
+    if($is_attached){
+        if(unlink('images/mesurement_pics/' . $delete_filename)){
+            //元画像があり、正常に削除された場合
+            $result_file_delete = 1;
+        }else{
+            //元画像があり、削除されなかった場合
+            $result_file_delete = 0;
+        }
     }else{
-        $result_file_delete = 0;
+        $result_file_delete = -1;
     }
     
     //トーストメッセージの作成
@@ -35,17 +46,17 @@ if(!empty($_POST) && $_POST['mode']='delete'){
             $toast_message_db = 'データ削除に失敗しました';
             $toast_type_db = 'error';
         }
-        if($result_file_delete==1){
-            $toast_message_file = '画像を削除しました';
-            $toast_type_file = 'success';
-        }else{
-            $toast_message_file = '画像削除に失敗しました';
-            $toast_type_file = 'error';
-        }
+    }
 
-
-
-
+    if($result_file_delete==1){
+        $toast_message_file = '画像を削除しました';
+        $toast_type_file = 'success';
+    }elseif($result_file_delete==0){
+        $toast_message_file = '画像削除に失敗しました';
+        $toast_type_file = 'error';
+    }else{
+        $toast_message_file = '画像データがなかったので削除処理をスキップしました';
+        $toast_type_file = 'info';
     }
     
 }
@@ -298,7 +309,7 @@ $jsonData = json_encode($arr_health);
                                     formStr2 += '</label>';
                                     formStr2 += '</form>';
                                 myiconwrap2.innerHTML = formStr2;
-                                
+
                             myAction.appendChild(myiconwrap1);
                             myAction.appendChild(myiconwrap2);
 

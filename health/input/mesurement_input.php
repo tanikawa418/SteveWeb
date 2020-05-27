@@ -129,9 +129,11 @@
 
             if (empty($error)) {
                 //画像ファイルの処理
-                $image = date('YmdHis') . $_FILES['image']['name'];
-                move_uploaded_file($_FILES['image']['tmp_name'], '../images/mesurement_pics/' . $image);
-                $_POST['image'] = $image;
+                if(!empty($_FILES['image']['name'])){
+                    $image = date('YmdHis') . $_FILES['image']['name'];
+                    move_uploaded_file($_FILES['image']['tmp_name'], '../images/mesurement_pics/' . $image);
+                    $_POST['image'] = $image;
+                }
 
                 //SQL実行
                 $sql = 'INSERT INTO `mesurement`(`date`, `pet_id`, `weight`, `vertical`, `horizontal`, `height`, `note`, `pic_filename`, `delete_flag`, `created`) VALUES (cast(:date as date),:pet_id,:weight,:vertical,:horizontal,:height,:note,:pic_filename,0,now())';

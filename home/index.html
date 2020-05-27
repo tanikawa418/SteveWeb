@@ -13,9 +13,9 @@
         <div class="wrapper">
             <div class="title">
                 <p id="steve">Steve</p>
-                <p>t<span class="hero">he</span> to<span class="hero">r</span>t<span class="hero">o</span>ise</p>
+                <p id="subtitle">t<span class="hero">he</span> to<span class="hero">r</span>t<span class="hero">o</span>ise</p>
             </div>
-            <div class="menu">
+            <div class="menu" id="menu">
                 <ul>
                     <li>
                         <span class="menuicon">-</span>
@@ -42,6 +42,41 @@
             <div class="cf"></div>
         </div>
     </div> <!--container-->
-    
+    <script>
+        var i = 0;
+        var y=0;
+        var str = 'Steve';
+        function typeWriter(){
+            document.getElementById('steve').innerHTML = str.substr(0,i++);
+            if(i <= str.length){
+                setTimeout("typeWriter()",600);
+            }else{
+                setTimeout("subtitleShow()",500);
+            }
+        }
+
+        function subtitleShow(){
+            document.getElementById('subtitle').style.display='block';
+            setTimeout("showHero()",1000);
+        }
+
+        function showHero(){
+            var elm = document.getElementsByClassName('hero');
+            for(var x = 0; x<elm.length;x++){
+                elm[x].style.color = "rgb(0,120,0)";
+            }
+            setTimeout("showMenu()",300);
+        }
+        function showMenu(){
+            var elm = document.getElementById('menu');
+                y = y + 0.01;
+                if(y<1){
+                elm.style.opacity=y;
+                setTimeout("showMenu()",30);
+                }
+        }
+
+        typeWriter();
+    </script>
 </body>
 </html>
