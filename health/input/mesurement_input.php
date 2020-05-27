@@ -74,15 +74,12 @@
                     $image = date('YmdHis') . $_FILES['image']['name'];
                     $_POST['image'] = $image;
                 }
-                    echo '<br>#76 $image : '.$image;
 
                 //エラーなしの場合、DB更新する
                 if(empty($error)){
                     //ファイルを所定ディレクトリに格納
                     move_uploaded_file($_FILES['image']['tmp_name'], '../images/mesurement_pics/' . $_POST['image']);
-                    //
-                    echo '<br>$_SESSION[filename]' . $_SESSION['filename'];
-                    echo '<br>$_FILES[image][name]' . $_FILES['image']['name'] !='';
+
                     //画像がuploadされている場合、元の画像ファイルをディレクトリから削除
                     if(!($_FILES['image']['name']=='')){
                         if(unlink('../images/mesurement_pics/' . $_SESSION['filename'])){
@@ -91,8 +88,6 @@
                             echo '<br>ファイル削除に失敗しました<br>';
                         }
                     }
-                    echo '<br>#81 $_post[image] : '.$_POST['image'];
-
 
                     $sql = 'UPDATE `mesurement` SET `date`=cast(:date as date),`pet_id`=:pet_id,`weight`=:weight,`vertical`=:vertical,`horizontal`=:horizontal,`height`=:height,`note`=:note,`pic_filename`=:pic_filename WHERE mesurement_id=:mesurement_id';
 
@@ -119,8 +114,8 @@
                     }
                     session_destroy();
 
-                    // header('Location: ../mesurement.php');
-                    // exit();
+                    header('Location: ../mesurement.php');
+                    exit();
                 }
             }
 
@@ -197,29 +192,29 @@
                 <p><i class="fas fa-weight"></i> Health Data Entry</p>
             </div>            
             <form action="" method="post" enctype="multipart/form-data" class="form-group">
-                <p class="field_label">日付<span class="error">　必須</span></p>
+                <p class="field_label">日付<span class="required">　(必須)</span></p>
                 <input type="date" name="date" class="form-control input_nm  <?php if($error['date']=='blank'){echo 'field_error';} ?>" value="<?php echo $def_date; ?>">
                 <?php if($error['date']=='blank'){echo '<p class="error">・入力必須です</p>';}?>
 
-                <p class="field_label">カメの名前<span class="error">　必須</span></p>
+                <p class="field_label">カメの名前<span class="required">　(必須)</span></p>
                 <select class="form-control input_nm" name="pet">
                     <option value="1">Steve1</option>
                     <option value="2" selected>Steve2</option>
                 </select>
                 
-                <p class="field_label">体重 (g)<span class="error">　必須</span></p>
+                <p class="field_label">体重 (g)<span class="required">　(必須)</span></p>
                 <input type="text" name="weight" class="form-control input_sm <?php if($error['weight']!=''){echo 'field_error';} ?>" placeholder="体重を入力"
                 value="<?php echo $def_weight; ?>">
                 <?php if($error['weight']=='blank'){echo '<p class="error">・入力必須です</p>';}?>
                 <?php if($error['weight']=='type'){echo '<p class="error">・数値で入力してください</p>';}?>
                 
-                <p class="field_label">縦 (cm)<span class="error">　必須</span></p>
+                <p class="field_label">縦 (cm)<span class="required">　(必須)</span></p>
                 <input type="text" name="vertical" class="form-control input_sm <?php if($error['vertical']!=''){echo 'field_error';} ?>" placeholder="縦の長さを入力" 
                 value="<?php echo $def_vertical; ?>">
                 <?php if($error['vertical']=='blank'){echo '<p class="error">・入力必須です</p>';}?>
                 <?php if($error['vertical']=='type'){echo '<p class="error">・数値で入力してください</p>';}?>
 
-                <p class="field_label">幅 (cm)<span class="error">　必須</span></p>
+                <p class="field_label">幅 (cm)<span class="required">　(必須)</span></p>
                 <input type="text" name="horizontal" class="form-control input_sm <?php if($error['horizontal']!=''){echo 'field_error';} ?>" placeholder="横幅を入力" 
                 value="<?php echo $def_horizontal; ?>">
                 <?php if($error['horizontal']=='blank'){echo '<p class="error">・入力必須です</p>';}?>

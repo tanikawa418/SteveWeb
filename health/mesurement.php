@@ -270,22 +270,35 @@ $jsonData = json_encode($arr_health);
                                 var myiconwrap1 = document.createElement('div');
                                     myiconwrap1.className = 'iconwrap';
 
-                                    var formStr = "";
-                                    formStr += '<form action="input/mesurement_input.php" method="post">';
-                                    formStr += '<input type="hidden" name="mode" value="edit">';
-                                    formStr += '<input type="hidden" name="mesurement_id" value="';
-                                    formStr += healthData[i]['mesurement_id'];
-                                    formStr += '">';
-                                    formStr += '<label>';
-                                    formStr += '<button type="submit" class="hidden_btn">隠しボタン</button>';
-                                    formStr += '<i class="fas fa-edit"></i>';
-                                    formStr += '</label>';
-                                    formStr += '</form>';
-                                myiconwrap1.innerHTML = formStr;
+                                    var formStr1 = "";
+                                    formStr1 += '<form action="input/mesurement_input.php" method="post">';
+                                    formStr1 += '<input type="hidden" name="mode" value="edit">';
+                                    formStr1 += '<input type="hidden" name="mesurement_id" value="';
+                                    formStr1 += healthData[i]['mesurement_id'];
+                                    formStr1 += '">';
+                                    formStr1 += '<label>';
+                                    formStr1 += '<button type="submit" class="hidden_btn">隠しボタン</button>';
+                                    formStr1 += '<i class="fas fa-edit"></i>';
+                                    formStr1 += '</label>';
+                                    formStr1 += '</form>';
+                                myiconwrap1.innerHTML = formStr1;
 
                                 var myiconwrap2 = document.createElement('div');
                                     myiconwrap2.className = 'iconwrap';
-                                myiconwrap2.innerHTML = '<i class="far fa-trash-alt"></i>';
+
+                                    var formStr2 = "";
+                                    formStr2 += '<form action="" onsubmit="return deleteConfirm()" method="post">';
+                                    formStr2 += '<input type="hidden" name="mesurement_id" value="';
+                                    formStr2 += healthData[i]['mesurement_id'];
+                                    formStr2 += '">';
+                                    formStr2 += '<input type="hidden" name="mode" value="delete">';
+                                    formStr2 += '<label>';
+                                    formStr2 += '<button type="submit" class="hidden_btn">隠しボタン</button>';
+                                    formStr2 += '<i class="far fa-trash-alt"></i>';
+                                    formStr2 += '</label>';
+                                    formStr2 += '</form>';
+                                myiconwrap2.innerHTML = formStr2;
+                                
                             myAction.appendChild(myiconwrap1);
                             myAction.appendChild(myiconwrap2);
 
