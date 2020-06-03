@@ -1,9 +1,9 @@
 <?php
 
 require('../common/php/dbconnect.php');
-echo 'prev : '.$is_prev_mode;
+// echo 'prev : '.$is_prev_mode;
 if(!empty($_POST)){
-    var_dump($_POST);
+    // var_dump($_POST);
     if($_POST['category'] !== ''){ //カテゴリを選ばせるまではDBへの問い合わせをしない
         $category = $_POST['category'];
         $refresh = $_POST['refresh'];
@@ -18,11 +18,11 @@ if(!empty($_POST)){
                     array_push($arr_feed,$value['rss_url']);
                 }
         
-                var_dump($arr_feed);
+                // var_dump($arr_feed);
                 unset($stmt);
                 unset($value);
-                echo 'preview : ' . $_POST['preview'];
-                echo 'channel_id : ' . $_POST['channel_id'];
+                // echo 'preview : ' . $_POST['preview'];
+                // echo 'channel_id : ' . $_POST['channel_id'];
 
             }elseif($_POST['preview']!=''){ //RSSプレビューの時
                 $arr_feed = array(); //空配列の定義
@@ -65,7 +65,7 @@ if(!empty($_POST)){
 
     }
 }else{
-    print '$_POSTがカラです';
+    // print '$_POSTがカラです';
 }
 ?>
 
@@ -88,7 +88,8 @@ if(!empty($_POST)){
 <body>
     <header>
         <div class="headercontainer">
-            Links
+            <p>Steve the tortoise</p>
+            <h1>Links</h1>
         </div>
         <a href="..\home\index.html">
             <span class="hometxt">Home</span>

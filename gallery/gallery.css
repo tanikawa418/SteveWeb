@@ -1,0 +1,376 @@
+@charset "UTF-8";
+
+/* ========================================
+    リセットcss
+========================================= */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-style:normal;
+	font-weight: normal;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+html{overflow-y: scroll;}
+blockquote, q {quotes: none;}
+blockquote:before, blockquote:after,q:before, q:after {content: ''; content: none;}
+input, textarea,{margin: 0; padding: 0;}
+ol, ul{list-style:none;}
+table{border-collapse: collapse; border-spacing:0;}
+caption, th{text-align: left;}
+a:focus {outline:none;}
+
+/* micro clearfix */
+.cf:before,
+.cf:after {
+    content: " ";
+    display: table;
+}
+.cf:after {clear: both;}
+.cf {*zoom: 1;}
+
+
+/* **************************
+    fonts
+   ************************** */
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+JP&display=swap');
+
+
+
+/* **************************
+    基本設定
+   ************************** */
+
+
+body {
+    width:100%;
+    height: 100%;
+    margin: 0;
+    font-family: "Noto Sans" ;
+    background: url(../common/images/design/what-the-hex.png);
+
+    /* hue.css */
+    
+  /* background-image: -webkit-radial-gradient(27% 185%, #F9F6F1 0%, #D7D0C5 100%);
+  background-image: radial-gradient(27% 185%, #F9F6F1 0%, #D7D0C5 100%); */
+
+}
+header {
+    width: 100%;
+    height: 80px;
+    text-align: center;
+}
+
+div.headercontainer {
+    width: 100%;
+    height: auto;
+    position: relative;
+    border-bottom: 1px solid darkgreen;
+
+}
+
+header h1 {
+    font-size: 35px;
+    height: 40px;
+    /* margin: 10px 0; */
+    /* line-height: 40px; */
+    /* background-color: blue; */
+}
+
+header a {
+    text-decoration: none;
+    color:black;
+    float: right;
+    margin-right: 30px;
+    margin-top: 20px;
+    position: absolute;
+    bottom: 0;
+    right: 3%;
+}
+
+header a:hover {
+    opacity: 0.8;
+}
+#homeicon {
+    font-size: 30px;
+}
+
+span.tooltoggle {
+    position: absolute;
+    line-height: 30px;
+    right: 30%;
+    bottom: -25px;
+
+}
+
+span.tooltoggle img{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+}
+#toolclose {
+    display: none;
+}
+
+div.toolwrapper {
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+    /* background-color: cadetblue; */
+    display: none;
+    /* position: absolute; */
+}
+
+div.toolbar {
+    width: 50%;
+    height: 100%;
+    background-color: white;
+    border-bottom: 1px solid gray;
+    /* background-color: burlywood; */
+    margin: 0 auto;
+    position: relative;
+    /* transform: translateY(-100%); */
+    transition-duration: 1s;
+}
+
+div.toolwrapper:hover div.toolbar{
+    transform: translateY(0);
+    transition-duration: 1s;
+}
+/* **************************
+    mycontainer
+   ************************** */
+
+
+div.mycontainer {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    /* background-color:gray; */
+}
+
+div.photoarea {
+    /* background-color: rosybrown; */
+}
+
+div.photoframe {
+    /* background-color:ivory; */
+    position: relative;
+}
+
+div.picnote {
+    position: absolute;
+    bottom: 0;
+    left: 1em;
+    word-break: break-all;
+}
+/* **************************
+    tools
+   ************************** */
+
+div#tools {
+    margin-top: 20px;
+    width: 90%;
+    height: 25px;
+    margin: 0 auto;
+    background-color: black;
+    /* padding-top: 15px; */
+}
+
+#picsize {
+    float: right;
+}
+
+div#tools .searchbtn {
+    float: right;
+    border-radius: 10%;
+    background-color: green;
+    color: #fff;
+    margin: 0 20px 0 5px;
+}
+
+div#tools input {
+    width: 200px;
+    border-radius: 10%;
+    float: right;
+}
+
+
+/* **************************
+    main
+   ************************** */
+
+div.category {
+    /* background-color: cadetblue; */
+    /* font-size: 20px; */
+    width: 100%;
+    height: 30px;
+    /* border-left: 10px solid indigo;
+    border-bottom: 3px solid indigo; */
+    clear: both;
+    margin: 30px 0 30px 0;
+    padding-left: 10px;
+    /* padding-top: 10px; */
+}
+
+div.clearf {
+    clear: both;
+}
+div.category  h2{
+    font-size: 24px;
+    float: left;
+}
+
+div.collapseicon {
+    display: none;
+    font-size: 15px;
+    color: gray;
+    float: left;
+    width: 200px;
+    height: 30px;
+    margin-left: 50px;
+    margin-top: 5px;
+}
+
+
+div.category:hover {
+    background-color:rgba(150,150,150,0.4);
+    cursor: pointer;
+}
+
+div.category:hover  .collapseicon {
+    display: block;
+}
+
+
+div.photoarea {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    background-color: blueviolet;
+    /* transition-duration: 300ms; */
+}
+
+ul {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+li {
+    display: list-item;
+    box-sizing: border-box;
+    width: 25%;
+    /* height: auto; */
+    object-fit: cover;
+    position: relative;
+}
+
+li::before{
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+li i.favorite {
+    position: absolute;
+    font-size: 30px;
+    top: 5px;
+    right: 5%;
+    z-index: 2;
+    color:yellow;
+    
+}
+
+li i.mesurement {
+    position: absolute;
+    font-size: 30px;
+    top: 5px;
+    right: 20%;
+    z-index: 2;
+    color: white;
+}
+
+
+li a {
+    /* display: block; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+li a img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+div.photoframe {
+    position: relative;
+    
+    /* float: left; */
+    /* border-bottom: 1px solid black;
+    border-right: 1px solid black; */
+    /* margin-bottom: 20px; */
+    /* object-fit: fill; */
+
+}
+
+div.size-nrm {
+    /* width: 223px;
+    height:223px; */
+}
+
+div.size-sm {
+    width: 149px;
+    height:149px;
+}
+
+div.size-lg {
+    width: 297px;
+    height:297px;
+}
+
+div.photoframe img {
+    /* width:223px; */
+    height:223px;
+    max-width:100%;
+    max-height:100%;
+    object-fit: cover;
+    /* position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto; */
+}
+
+
+/* **************************
+    基本設定
+   ************************** */
+
+
+

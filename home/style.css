@@ -243,11 +243,11 @@ Title
     }
 
     #subtitle{
-        display: none;
+        /* display: none; */
     }
-    /* span.hero {
-        color: rgb(0, 100, 0);
-    } */
+    span.hero {
+        color: rgb(0, 170, 0);
+    }
 
 }
         

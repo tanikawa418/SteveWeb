@@ -103,8 +103,9 @@ $jsonData = json_encode($arr_health);
 </head>
 <body>
     <header>
-        <div class="headercontainer">
-            Health Data
+        <div class="headercontainer cf">
+        <p>Steve the tortoise</p>
+            <h1>Health Data</h1>
         </div>
         <a href="..\home\index.html">
             <span class="hometxt">Home</span>
