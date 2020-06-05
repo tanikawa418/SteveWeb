@@ -28,55 +28,10 @@
        vertical-align: baseline;
    }
 
-/* **************************
-    ローディングアニメーション
-   ************************** */
-
-   .loader-wrap {
-	position: fixed;
-	display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    background: #fff;
-    z-index: 2;
-}
-
-
-/* https://projects.lukehaas.me/css-loaders/ */
-.spinner {
-    width: 40px;
-    height: 40px;
-    background-color: #333;
-  
-    margin: 100px auto;
-    -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
-    animation: sk-rotateplane 1.2s infinite ease-in-out;
-  }
-  
-  @-webkit-keyframes sk-rotateplane {
-    0% { -webkit-transform: perspective(120px) }
-    50% { -webkit-transform: perspective(120px) rotateY(180deg) }
-    100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
-  }
-  
-  @keyframes sk-rotateplane {
-    0% { 
-      transform: perspective(120px) rotateX(0deg) rotateY(0deg);
-      -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) 
-    } 50% { 
-      transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-      -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg) 
-    } 100% { 
-      transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-      -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-    }
-  }
   
 /* **************************
     Contents
-   ************************** */
+************************** */
 
 
 
@@ -93,20 +48,19 @@ div.mycontainer {
     padding: 0;
     margin: 0;
     /* background: url(img/home.jpg) no-repeat; */
-    background-image: url(img/home.jpg);
+    background-image: url(../opening/img/home.jpg);
     background-position: center;
     background-size: cover;
-    /* margin: 0 auto; */
-    /* position: relative; */
 }
 
-div.wrapper {
-    width: 250px;
+div.mywrapper {
+    width: 274px;
     height: 100vh;
     padding: 12px;
     background-color: rgba(0, 0, 0, 0.4);
     margin: 0 auto;
-    overflow: hidden;
+    padding-top: 60px;
+    /* overflow: hidden; */
     /* 上下中央にするための設定ここから */
     /* position: absolute;
     top: 0;
@@ -119,72 +73,218 @@ div.wrapper {
 }
 
 
+
+
+
 /* **************************
-    Title
+      card
+************************** */
+  
+div.mycard {
+    width: 250px;
+    height: auto;
+    padding-bottom: 20px;
+    margin: 0 auto;
+    /* margin-top: 30px; */
+    background-color: white;
+    box-shadow: 0 1.9px 2.5px rgba(0, 0, 0, 0.057),
+    0 5px 6.1px rgba(0, 0, 0, 0.076), 0 10.1px 11.4px rgba(0, 0, 0, 0.086),
+      0 19.2px 19.8px rgba(0, 0, 0, 0.092), 0 38.4px 34.8px rgba(0, 0, 0, 0.1),
+      0 101px 74px rgba(0, 0, 0, 0.13);
+}
+  
+div.mycardheader {
+    width: 250px;
+    height: 60px;
+    margin-bottom: 20px;
+    background-color: #004d40;
+    color: lightgray;
+    text-align: center;
+    font-family: "Noto Sans", "Noto Sans JP";
+}
+
+div.mycardheader p {
+    height: 100%;
+    line-height: 60px;
+}
+
+.form-group {
+    width: 240px;
+    margin: 0 auto;
+}
+
+.field_label {
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+  
+.required {
+    font-size: 0.8em;
+    color: blueviolet;
+}
+
+.field_error {
+    background-color: pink;
+}
+  
+.error {
+    font-size: 0.8em;
+    color: red;
+    margin-top: 0;
+}
+  /* .input_nm {
+    width: 300px;
+    margin: 0 auto;
+  } */
+  
+.input_sm {
+    width: 220px;
+    margin: 0 auto;
+}
+  
+.form-control {
+    margin-bottom: 10px;
+}
+  
+#btn_submit {
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+  
+#btn_cancel {
+    width: 100%;
+    height: 30px;
+    background-color: lightgray;
+    /* margin-bottom: 20px; */
+}
+  
+  
+
+
+
+/* **************************
+    PC用設定
    ************************** */
 
 
+/* **************************
+    基本設定
+   ************************** */
+@media screen and (min-width: 900px) {
+    html, body,p, div,ul,li {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-style:normal;
+        font-weight: normal;
+        font-size: 100%;
+        vertical-align: baseline;
+    }
+} 
 
-div.title {
-    width: 222px;
-    height: 100vh;
-    margin: 0 auto;
-    /* float: left; */
-    /* margin: 0 auto; */
-    font-family: "Noto Sans", "Noto Sans JP";
-    /* padding-top: 15px; */
-    /* padding-left: 2px; */
+/* **************************
+ Contents
+************************** */
+
+@media screen and (min-width: 900px) {
+    body {
+     margin: 0;
+     padding: 0;
+     max-width: 100%;
+     height: 100%;
+    }
+        
+    div.mywrapper {
+     width: 860px;
+     padding: 12px;
+     padding-top: 60px;
+    }
 }
 
 
-div.title p {
-    color: #fff;
-    font-size: 35px;
-    text-align: center;
-    margin: 0;
+/* **************************
+   card
+************************** */
+@media screen and (min-width: 900px) {
+    div.mycard {
+        width: 400px;
+        padding-bottom: 20px;
+    }
+    
+    div.mycardheader {
+        width: 400px;
+        height: 60px;
+        margin-bottom: 20px;
+    }
+    
+    div.mycardheader p {
+        line-height: 60px;
+    }
+    
+    .form-group {
+        width: 400px;
+    }
+    
+    .field_label {
+        text-align: left;
+        margin-top: 15px;
+        margin-bottom: 5px;
+        margin-left: 20px;
+    }
+    
+    
+    .input_sm {
+        width: 300px;
+        margin: 0 auto;
+    }
+    
+    .form-control {
+        margin-bottom: 10px;
+    }
+    
+    #btn_submit {
+        display: block;
+        width: 280px;
+        height: 40px;
+        margin: 0 auto;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+    
+    #btn_cancel {
+        display: block;
+        width: 70%;
+        height: 30px;
+        margin: 0 auto;
+        background-color: lightgray;
+     /* margin-bottom: 20px; */
+    }
+
 }
 
-#steve {
-    color:rgb(182, 181, 150); 
-    font-size: 60px;
-    width: 222px;
-    text-align: center;
-    margin: 0 auto;
-    /* margin: 5px 0; */
-}
-
-div.title p.crawl {
-    font-size: 30px;
-    margin-top: 120px;
-    margin-bottom: 20px;
-    visibility: hidden;
-}
-
-div.title p.links {
-    font-size: 25px;
-    text-decoration: none;
-    visibility: hidden;
-    margin-top: 15px;
-}
-
-div.title p.links:hover {
-    transform: scale(1.1);
-    transition-duration: 500ms;
-}
-a {
-    text-decoration: none;
-    color: rgb(182, 181, 150);
-}
 
 
-#subtitle{
-    display: none;
-}
 
 
-span.hero {
-    /* color:lightgray; */
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
