@@ -225,22 +225,28 @@ Title
         float: left;
         font-family: "Noto Sans", "Noto Sans JP";
         padding-top: 140px;
-        padding-left: 10px;
+        /* padding-left: 10px; */
     }
     
     
     div.title p {
         color: #fff;
         font-size: 55px;
+        text-align: center;
     }
     
     #steve {
+        width: 490px;
         color:rgb(182, 181, 150); 
         font-size: 100px;
         /* font-weight: 600; */
     }
+
+    #subtitle{
+        /* display: none; */
+    }
     span.hero {
-        color: darkgreen;
+        color: rgb(0, 170, 0);
     }
 
 }
@@ -256,6 +262,7 @@ Title
         padding-left: 50px;
         float: left;
         padding-top: 130px;
+        opacity: 0;
     }
     
     div.menu ul li a{

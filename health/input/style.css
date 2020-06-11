@@ -118,6 +118,10 @@ p.field_label {
   margin-bottom: 0px;
 }
 
+.required {
+  font-size: 0.8em;
+  color: blueviolet;
+}
 .field_error {
   background-color: pink;
 }

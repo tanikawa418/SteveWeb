@@ -1,0 +1,526 @@
+@charset "utf-8";
+
+
+/* **************************
+    fonts
+   ************************** */
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+JP&display=swap');
+
+
+
+/* **************************
+    モバイル用設定
+   ************************** */
+
+
+/* **************************
+    基本設定
+   ************************** */
+
+
+/* **************************
+    Header
+************************** */
+body {
+    background: url(../common/images/design/light_honeycomb_@2X.png);
+    /* background-color: lightgray; */
+}
+header {
+    width: 100%;
+    height: 60px;
+    font-family: "Noto Sans", "Noto Sans JP";
+    /* background-color: #29632d; */
+    /* line-height: 40px; */
+    position: fixed;
+    top: 0;
+    position: relative;
+    clear: both;
+    /* color: rgb(200,200,200); */
+}
+
+div.headercontainer {
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    margin: 0 auto;
+    /* font-size: 18px; */
+    border-bottom: 1px solid darkgreen;
+
+}
+
+header h1 {
+    font-size: 25px;
+    height: 40px;
+    /* margin: 10px 0; */
+    /* line-height: 40px; */
+    /* background-color: blue; */
+}
+
+
+
+span.hometxt {
+    display: none;
+}
+
+/* header a {
+    text-decoration: none;
+    color:black;
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+} */
+header a {
+    text-decoration: none;
+    color:black;
+    float: right;
+    margin-right: 30px;
+    margin-top: 20px;
+    position: absolute;
+    bottom: 0;
+    right: 3%;
+}
+
+
+header a:hover {
+    opacity: 0.8;
+}
+#homeicon {
+    font-size: 20px;
+    float: right;
+}
+
+/* **************************
+    mycontainer
+   ************************** */
+div.mycontainer {
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    /* background-color: cadetblue; */
+    padding-top: 20px;
+    position: relative;
+}
+
+/* **************************
+    card
+   ************************** */
+
+div.card {
+    width: 340px;
+    height: 142px;
+    margin: 0 auto;
+    margin-top: 20px;
+
+    box-shadow:
+    0 1.9px 2.5px rgba(0, 0, 0, 0.057),
+    0 5px 6.1px rgba(0, 0, 0, 0.076),
+    0 10.1px 11.4px rgba(0, 0, 0, 0.086),
+    0 19.2px 19.8px rgba(0, 0, 0, 0.092),
+    0 38.4px 34.8px rgba(0, 0, 0, 0.1),
+    0 101px 74px rgba(0, 0, 0, 0.13);
+}
+
+div.cardleft {
+    width: 100px;
+    height: 142px;
+    float: left;
+    overflow: hidden;
+}
+
+img.thumbnails {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+img.thumbnails:hover {
+
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+    /* transform: translateY(-10px); */
+    transform: scale(1.2);
+    transition-duration: .5s;
+    /* transform: scale(1.1);
+    transition-duration: 500ms; */
+}
+
+div.cardright {
+    width: 240px;
+    height: 142px;
+    float: right;
+}
+
+div.cardheader {
+    width: 240px;
+    height: 38px;
+}
+
+div.carddate {
+    background-color: white;
+    width: 136px;
+    height: 38px;
+    font-size: 1.3em;
+    padding-left: 10px;
+    line-height: 38px;
+    float: left;
+}
+
+div.cardprofile {
+    background-color: white;
+    width: 94px;
+    height: 38px;
+    text-align: right;
+    float: right;
+}
+
+div.cardprofile span{
+    display: none; /*モバイルでは非表示*/
+}
+
+
+
+div.profile_pic_frame {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid gray;
+    /* background: url("../common/images/profile/steve1.jpg")no-repeat; */
+    /* background-position: center;
+    background-size: cover; */
+    display: inline-block;
+}
+
+div.cardcontents {
+    width: 240px;
+    height: 104px;
+    position: relative;
+    overflow: hidden;
+}
+
+div.carddata {
+    width: 120px;
+    height: 100px;
+    padding-left: 5px;
+    padding-top: 4px;
+    background-color: white;
+    float: left;
+}
+
+div.carddata tr{
+    line-height: 1.5;
+}
+div.carddata th {
+    font-weight: bold;
+    width: 3em;
+}
+div.action {
+    width: 100%;
+    height: 50px;
+    background-color: gray;
+    opacity: 0.8;
+    color: white;
+    font-size: 2em;
+    transform: translateY(100%);
+    transition-duration: .2s;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+button.hidden_btn {
+    display: none;
+}
+
+div.cardcontents:hover div.action{
+    transform: translateY(0);
+    transition-duration: .5s;
+    
+}
+
+div.iconwrap {
+    display: inline-block;
+    width: 120px;
+}
+
+div.iconwrap:hover {
+    cursor: pointer;
+}
+
+div.iconwrap form label {
+    display: inline-block;
+    width: 120px;
+}
+
+div.iconwrap form label:hover{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+td.tdData {
+    /* margin-left: 5px; */
+    text-align: right;
+    width: 2em;
+}
+
+td.tdUnit {
+    width: 1em;
+    text-align: right;
+}
+
+div.cardnotes {
+    width: 115px;
+    height: 96px;
+    padding-top: 8px;
+    font-size: 0.9em;
+    overflow: hidden;
+    background-color: white;
+    text-align: left;
+    float: right;
+}
+
+/* **************************
+    Add
+   ************************** */
+div.addmark {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: orange;
+    opacity: .7;
+    font-size: 1.5em;
+    text-align: center;
+    line-height: 40px;
+    position: fixed;
+    bottom: 10px;
+    right: 10%;
+    z-index: 2;
+}
+
+div.addmark a {
+    text-decoration: none;
+}
+
+/* ***************************************
+    Settings for PC
+   ************************************ */
+
+
+@media screen and (min-width:500px){
+
+    header {
+     width: 100%;
+     height: 80px;
+     /* text-align: center; */
+     /* line-height: 60px; */
+    }
+ 
+    div.headercontainer {
+        /* width: 960px; */
+        height: 80px;
+        /* font-size: 40px; */
+        width: 100%;
+        /* height: auto; */
+        position: relative;
+        border-bottom: 1px solid darkgreen;
+    
+    }   
+    header h1 {
+        font-size: 35px;
+        height: 40px;
+        /* float: left; */
+        /* margin: 10px 0; */
+        /* line-height: 40px; */
+        /* background-color: blue; */
+    }
+    
+    header a {
+        text-decoration: none;
+        color:black;
+        float: right;
+        margin-right: 30px;
+        margin-top: 10px;
+        position: absolute;
+        bottom: 0;
+        right: 3%;    
+    }
+    
+    header a:hover {
+        opacity: 0.8;
+    }
+    #homeicon {
+        font-size: 30px;
+    }
+    span.hometxt {
+        display: inline;
+    }
+    
+    
+}
+
+
+/* **************************
+    mycontainer
+   ************************** */
+
+@media screen and (min-width:500px){
+
+    div.mycontainer {
+        width: 80%;
+        height: 100vh;
+        padding-top: 20px;
+        background-color:rgba(240,240,240,0.5);
+        text-align: center;
+    }
+}
+/* **************************
+    graph
+   ************************** */
+
+@media screen and (min-width:500px){
+
+    div.graph_wrapper {
+        width: 80%;
+        height: 80%;
+        /* width: 1200px; */
+        /* height: 500px; */
+
+        /* max-height: 1000px; */
+        padding: 20px;
+        margin: 0 auto;
+        background-color: white;
+        overflow-x: scroll;
+
+        box-shadow:
+        0 1.9px 2.5px rgba(0, 0, 0, 0.057),
+        0 5px 6.1px rgba(0, 0, 0, 0.076),
+        0 10.1px 11.4px rgba(0, 0, 0, 0.086),
+        0 19.2px 19.8px rgba(0, 0, 0, 0.092),
+        0 38.4px 34.8px rgba(0, 0, 0, 0.1),
+        0 101px 74px rgba(0, 0, 0, 0.13);
+    
+    }
+
+    /* #temp_d {
+        width: 1200px;
+        height: 400px;
+    }
+    #temp_h {
+        width: 1200px;
+        height: 400px;
+    } */
+    div.card {
+        width: 450px;
+        height: 198px;
+        margin-top: 40px;
+        margin-left: 10px;
+        margin-right: 10px;
+        display: inline-block;
+    }
+
+    div.cardleft {
+        width: 140px;
+        height: 200px;
+    }
+
+
+    div.cardright {
+        width: 309px;
+        height: 146px;
+    }
+
+    div.cardheader {
+        width: 309px;
+        height: 53px;
+    }
+
+    div.carddate {
+        width: 181px;
+        height: 53px;
+        font-size: 1.3em;
+        padding-left: 10px;
+        line-height: 38px;
+    }
+
+    div.cardprofile {
+        width: 118px;
+        height: 53px;
+    }
+
+    div.cardprofile span{
+        display: initial; /*モバイルでは非表示*/
+        font-size: 0.8em;
+        float: right;
+    }
+    
+
+    div.profile_pic_frame {
+        width: 50px;
+        height: 50px;
+        float: right;
+    }
+
+    div.cardcontents {
+        width: 309px;
+        height: 146px;
+    }
+
+    div.carddata {
+        width: 160px;
+        height: 142px;
+        padding-left: 5px;
+        padding-top: 4px;
+    }
+
+    div.carddata tr{
+        line-height: 2;
+    }
+
+    div.carddata th {
+        font-weight: bold;
+        width: 3em;
+    }
+    
+    td.tdData {
+        /* margin-left: 5px; */
+        text-align: right;
+        width: 3em;
+        font-weight: bold;
+    }
+    
+    td.tdUnit {
+        width: 2.5em;
+        text-align: right;
+    }
+    
+    div.cardnotes {
+        width: 139px;
+        height: 138px;
+        padding-top: 8px;
+        padding-right: 5px;
+        font-size: 0.9em;
+    }
+
+
+}
+
+/* **************************
+    Add
+   ************************** */
+
+@media screen and (min-width:500px){
+
+   div.addmark {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: orange;
+    font-size: 1.5em;
+    text-align: center;
+    line-height: 70px;
+    position: fixed;
+    bottom: 10px;
+    right: 15%;
+    }
+}
+
