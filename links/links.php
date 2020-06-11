@@ -1,4 +1,5 @@
 <?php
+require("../common/php/login_check.php");
 
 require('../common/php/dbconnect.php');
 // echo 'prev : '.$is_prev_mode;
@@ -91,7 +92,7 @@ if(!empty($_POST)){
             <p>Steve the tortoise</p>
             <h1>Links</h1>
         </div>
-        <a href="..\home\index.html">
+        <a href="..\home\index.php">
             <span class="hometxt">Home</span>
             <i class="fas fa-igloo" id="homeicon"></i>
         </a>

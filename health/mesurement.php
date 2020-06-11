@@ -1,4 +1,5 @@
 <?php
+require("../common/php/login_check.php");
 
 require('../common/php/dbconnect.php');
 
@@ -107,7 +108,7 @@ $jsonData = json_encode($arr_health);
         <p>Steve the tortoise</p>
             <h1>Health Data</h1>
         </div>
-        <a href="..\home\index.html">
+        <a href="..\home\index.php">
             <span class="hometxt">Home</span>
             <i class="fas fa-igloo" id="homeicon"></i>
         </a>

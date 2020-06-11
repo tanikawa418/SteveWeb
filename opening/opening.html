@@ -20,16 +20,13 @@
                 <p id="steve"></p>
                 <p id="subtitle">t<span class="hero">he</span> to<span class="hero">r</span>t<span class="hero">o</span>ise</p>
                 <p class="crawl" id="crawl"> - Crawl in - </p>
-                <p class="links" id="members"><a href="../login/login.php">Members</a></p>
-                <p class="links" id="guests"><a href="../home/index.html">Guests</a></p>
+                <p class="links" id="members"><a href="../login/login.php">Click Here</a></p>
+                <!-- <p class="links" id="guests"><a href="../home/index.php">Guests</a></p> -->
             </div>
             <!-- <div class="cf"></div> -->
         </div>
     </div> <!--container-->
     <script>
-
-
-
         var i = 0;
         var y=0;
         var str = 'Steve';
@@ -37,7 +34,7 @@
         function typeWriter(){
             document.getElementById('steve').innerHTML = str.substr(0,i++);
             if(i <= str.length){
-                setTimeout("typeWriter()",600);
+                setTimeout("typeWriter()",300);
             }else{
                 setTimeout("subtitleShow()",500);
             }
@@ -64,10 +61,10 @@
         }
         // typeWriter();
 
-        var backImage = document.getElementById('backimage').style.backgroundImage;
+        // var backImage = document.getElementById('backimage').style.backgroundImage;
 
         window.addEventListener('load',function(){
-            setTimeout("endLoad()",2000);
+            setTimeout("endLoad()",1000);
         })
         
         function endLoad(){

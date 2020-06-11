@@ -9,11 +9,6 @@ if($_COOKIE['user_id']!==''){
 
 if(!empty($_POST)){
     if($_POST['submit'] != ""){
-        echo 'submit';
-        echo '<br>';
-        print_r($_POST);
-        echo '<br>';
-        
         echo md5(md5($salt) . $_POST['password']);
         echo '<br>';
         $user_id = $_POST['user_id'];
@@ -26,7 +21,6 @@ if(!empty($_POST)){
         }
 
         if(empty($error)){
-            echo 'no errors';
             $sql = 'SELECT password FROM USERS WHERE user_id=? AND password=?';
             $login = $db->prepare($sql);
             $login->execute(array($_POST['user_id'],md5(md5($salt) . $_POST['password'])));
@@ -38,13 +32,13 @@ if(!empty($_POST)){
                 if($_POST['remember_me']==='on'){
                     setcookie('user_id',$_POST['user_id'],time()+60*60*24*7);
                 }
-                header('Location:../home/index.html');
+                header('Location:../home/index.php');
                 exit();
             }else{
                 $error['login'] = 'unmatched';
             }
         }else{
-            echo 'error occured';
+            // echo 'error occured';
         }
 
     }

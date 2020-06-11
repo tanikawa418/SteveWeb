@@ -1,3 +1,7 @@
+<?php
+    require("../common/php/login_check.php");
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -9,6 +13,7 @@
 
     <link rel="stylesheet" href="../common/css/reset.css" media="screen and (min-width: 1025px)">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../common/images/favicon/favicon.ico">
     <title>Steve Home</title>
 </head>
 <body>
@@ -30,7 +35,7 @@
                     </li>
                     <li>
                         <span class="menuicon"><i class="fas fa-info-circle"></i></span>
-                        <span class="menuname"><a href="#">About Tortoise</a></span>
+                        <span class="menuname"><a href="../conditions/conditions.php">Cage Conditions</a></span>
                     </li>
                     <li>
                         <span class="menuicon"><i class="fas fa-external-link-alt"></i></span>
