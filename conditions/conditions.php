@@ -104,6 +104,7 @@ $jsonData = json_encode($arr_conditions);
     <script type="text/javascript">
     //各グラフ領域の高さ設定
     var graphHeight = 350;
+    var graphWidth = 3000;
  
     //PHPからのデータ授受
     var conditionData = <?php echo $jsonData; ?>;
@@ -153,14 +154,19 @@ $jsonData = json_encode($arr_conditions);
     function tglZoom(){
         if(isResponsive){
             isResponsive = false;
-            document.getElementById('temp_d').setAttribute('width','3000');
-            document.getElementById('hmd_d').setAttribute('width','3000');
+            // document.getElementById('temp_d').setAttribute('width','3000');
+            // document.getElementById('hmd_d').setAttribute('width','3000');
         }else{
             isResponsive = true;
-            var wrapper_w = document.getElementById('graph_wrapper').clientWidth;
-            document.getElementById('temp_d').setAttribute('width',wrapper_w * 0.9);
-            document.getElementById('hmd_d').setAttribute('width',wrapper_w * 0.9);
+            // var wrapper_w = document.getElementById('graph_wrapper').clientWidth;
+            // document.getElementById('temp_d').setAttribute('width',wrapper_w * 0.9);
+            // document.getElementById('hmd_d').setAttribute('width',wrapper_w * 0.9);
         }
+        // if (myChart_t) {
+        //             console.log('destroy');
+        //             myChart_t.destroy();
+        //         }
+
             drawTmpGraph();
             drawHmdGraph();
     }
@@ -168,15 +174,13 @@ $jsonData = json_encode($arr_conditions);
     //ウィンドウのリサイズによるグラフ幅の切り替え処理（Responsive時のみ再描画）
     var resizeTimer; 
     window.addEventListener('resize', function (event) {
+        //タイマー設定中に呼び出された場合はタイマーを振り出しに戻す
         if (resizeTimer !== false) {
             clearTimeout(resizeTimer);
         }
-    
+        //タイムアウトした時の処理
         resizeTimer = setTimeout(function () {
             if(isResponsive){
-                var wrapper_w = document.getElementById('graph_wrapper').clientWidth;
-                document.getElementById('temp_d').setAttribute('width',wrapper_w * 0.9);
-                document.getElementById('hmd_d').setAttribute('width',wrapper_w * 0.9);
                 drawTmpGraph();
                 drawHmdGraph();
             }
@@ -197,22 +201,34 @@ $jsonData = json_encode($arr_conditions);
     };
 
     function drawTmpGraph(){
-        // var wrapper_w = document.getElementById('graph_wrapper').getAttribute('width');
-        // var wrapper_h = document.getElementById('graph_wrapper').getAttribute('height');
-        // console.log(wrapper_h);
-        // console.log(wrapper_w);
-        var ctx_t = document.getElementById('temp_d').getContext('2d');
+        //同一のCanvasに再描画した時に前のインスタンスが残存してるので要素ごと再作成する
+        //   https://stackoverflow.com/questions/40056555/destroy-chart-js-bar-graph-to-redraw-other-graph-in-same-canvas
+        document.getElementById('temp_d').remove();
+        document.getElementById('hmd_d').remove();
+        document.getElementById('graph_wrapper').innerHTML = '<canvas id="temp_d" height="400" width="2200"></canvas><canvas id="hmd_d" height="400" width="2200"></canvas>';
 
-        // document.getElementById('temp_d').setAttribute('width',wrapper_w);
-        // document.getElementById('temp_d').setAttribute('height',wrapper_h);
+
+        if(isResponsive){
+            var wrapper_w = document.getElementById('graph_wrapper').clientWidth;
+            document.getElementById('temp_d').setAttribute('width',wrapper_w * 0.9);
+            document.getElementById('hmd_d').setAttribute('width',wrapper_w * 0.9);
+        }else{
+            document.getElementById('temp_d').setAttribute('width',3000);
+            document.getElementById('hmd_d').setAttribute('width',3000);
+        }
+
+
+        var ctx_t = document.getElementById('temp_d').getContext('2d');
         ctx_t.canvas.height = graphHeight;
 
         window.myLine = Chart.Line(ctx_t, {
+        // window.myChart_t = new Chart.Line(ctx_t,{
             data: lineChartData_temp,
             options: {
                 responsive: false,
                 maintainAspectRatio: false,
                 hoverMode: 'index',
+                // showTooltips: false,
                 stacked: false,
                 title: {
                     display: true,
@@ -262,10 +278,10 @@ $jsonData = json_encode($arr_conditions);
 
 
     // var xAxisWidthUnit = 20;
-    // var graphWidth = xAxisWidthUnit * hmd_graph_data.length;
-    // console.log(graphWidth);
+    // var graphWidth = 3000; = xAxisWidthUnit * hmd_graph_data.length;
+    // console.log(graphWidth = 3000;);
 
-    // document.getElementById('temp_d').style.width = graphWidth + 'px';
+    // document.getElementById('temp_d').style.width = graphWidth = 3000; + 'px';
     // document.getElementById('temp_d').style.width = '1500px';
     // document.getElementById('temp_d').style.height = '800px';
 
