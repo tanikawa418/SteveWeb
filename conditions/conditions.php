@@ -83,10 +83,8 @@ $jsonData = json_encode($arr_conditions);
                     <button onclick="tglZoom()">Zoom Change</button>
                 </div>
                 <div class="graph_wrapper" id="graph_wrapper">
-                    <canvas id="temp_d" height="400" width="2200"></canvas>
-                <!-- </div> -->
-                <!-- <div class="graph_wrapper"> -->
-                    <canvas id="hmd_d" height="400" width="2200"></canvas>
+                    <canvas id="temp_d" height="400" width="3000"></canvas>
+                    <canvas id="hmd_d" height="400" width="3000"></canvas>
                 </div>
                 <button id="randomizeData">Randomize Data</button>
 
@@ -94,21 +92,19 @@ $jsonData = json_encode($arr_conditions);
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">This is profile pain.</div>
             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">This is cantact pain.</div>
         </div>
-
-
-
         
     </div> <!--mycontainer -->
 
     
     <script type="text/javascript">
-    //各グラフ領域の高さ設定
-    var graphHeight = 350;
-    var graphWidth = 3000;
+    //各グラフ領域のサイズ設定
+    var graphHeight = 350; //共通
+    var graphWidth = 3000; //非レスポンシブの時の横幅
+    //Responsiveモードの既定値
+    var isResponsive = false;
  
     //PHPからのデータ授受
     var conditionData = <?php echo $jsonData; ?>;
-    // console.log(conditionData);
 
     //htmlから基準日を取得
     var mydate = new Date(document.getElementById('date_d').innerHTML);
@@ -140,35 +136,22 @@ $jsonData = json_encode($arr_conditions);
     var hmd_graph_data = [];
     for(var x = 0; x<mylabels.length; x++){
         var lab_time = mylabels[x];
-        tmp_graph_data[x] = null; //データ欠損に備えて、要素を作っておき、Nullを入れておく
+        tmp_graph_data[x] = null; //データ欠損に備えて、Nullで要素を作っておく
         if(tmp_data[lab_time]){
             tmp_graph_data[x] = tmp_data[lab_time];
             hmd_graph_data[x] = hmd_data[lab_time];
         }
     }
 
-    //Responsiveモードの既定値
-    var isResponsive = false;
 
     //Zoomボタンによるグラフ幅の切り替え処理
     function tglZoom(){
         if(isResponsive){
             isResponsive = false;
-            // document.getElementById('temp_d').setAttribute('width','3000');
-            // document.getElementById('hmd_d').setAttribute('width','3000');
         }else{
             isResponsive = true;
-            // var wrapper_w = document.getElementById('graph_wrapper').clientWidth;
-            // document.getElementById('temp_d').setAttribute('width',wrapper_w * 0.9);
-            // document.getElementById('hmd_d').setAttribute('width',wrapper_w * 0.9);
         }
-        // if (myChart_t) {
-        //             console.log('destroy');
-        //             myChart_t.destroy();
-        //         }
-
-            drawTmpGraph();
-            drawHmdGraph();
+            drawGraph();
     }
 
     //ウィンドウのリサイズによるグラフ幅の切り替え処理（Responsive時のみ再描画）
@@ -181,13 +164,12 @@ $jsonData = json_encode($arr_conditions);
         //タイムアウトした時の処理
         resizeTimer = setTimeout(function () {
             if(isResponsive){
-                drawTmpGraph();
-                drawHmdGraph();
+                drawGraph();
             }
         }, 500);
     });
     
-    //Temperature graphの描画
+    //Temperature graphの描画設定
     var lineChartData_temp = {
         labels: mylabels,
         datasets: [{
@@ -200,14 +182,28 @@ $jsonData = json_encode($arr_conditions);
         }]
     };
 
-    function drawTmpGraph(){
+    //Humidity graphの描画設定
+    var lineChartData_hmd = {
+        labels: mylabels,
+        datasets: [{
+            label: '湿度',
+            fill: false,
+            data: hmd_graph_data,
+            yAxisID: 'y-axis-1',
+            spanGaps:true, //欠損データ対応
+            // lineTension:0.8
+        }]
+    };
+
+    //グラフ描画処理
+    function drawGraph(){
         //同一のCanvasに再描画した時に前のインスタンスが残存してるので要素ごと再作成する
         //   https://stackoverflow.com/questions/40056555/destroy-chart-js-bar-graph-to-redraw-other-graph-in-same-canvas
         document.getElementById('temp_d').remove();
         document.getElementById('hmd_d').remove();
         document.getElementById('graph_wrapper').innerHTML = '<canvas id="temp_d" height="400" width="2200"></canvas><canvas id="hmd_d" height="400" width="2200"></canvas>';
 
-
+        //レスポンシブモードに合わせて要素サイズを変更
         if(isResponsive){
             var wrapper_w = document.getElementById('graph_wrapper').clientWidth;
             document.getElementById('temp_d').setAttribute('width',wrapper_w * 0.9);
@@ -217,12 +213,11 @@ $jsonData = json_encode($arr_conditions);
             document.getElementById('hmd_d').setAttribute('width',3000);
         }
 
-
+        //TemperatureGraphの描画処理
         var ctx_t = document.getElementById('temp_d').getContext('2d');
         ctx_t.canvas.height = graphHeight;
 
         window.myLine = Chart.Line(ctx_t, {
-        // window.myChart_t = new Chart.Line(ctx_t,{
             data: lineChartData_temp,
             options: {
                 responsive: false,
@@ -251,45 +246,8 @@ $jsonData = json_encode($arr_conditions);
                 }
             }
         });
-    }
 
-    // window.onload = function() {
-        window.addEventListener("load",function(){
-            drawTmpGraph();
-            drawHmdGraph();
-    },false)
-    
-
-    //Humidity graphの描画
-    var lineChartData_hmd = {
-        labels: mylabels,
-        datasets: [{
-            label: '湿度',
-            fill: false,
-            data: hmd_graph_data,
-            yAxisID: 'y-axis-1',
-            spanGaps:true, //欠損データ対応
-            // lineTension:0.8
-        }]
-    };
-
-    // lineChartData_hmd['datasets'][0]['data'] = hmd_graph_data;
-    // lineChartData_hmd['labels'] = mylabels;
-
-
-    // var xAxisWidthUnit = 20;
-    // var graphWidth = 3000; = xAxisWidthUnit * hmd_graph_data.length;
-    // console.log(graphWidth = 3000;);
-
-    // document.getElementById('temp_d').style.width = graphWidth = 3000; + 'px';
-    // document.getElementById('temp_d').style.width = '1500px';
-    // document.getElementById('temp_d').style.height = '800px';
-
-    // window.onload = function() {
-
-    function drawHmdGraph(){
-        // window.addEventListener("load",function(){
-
+        //HumidityGraphの描画処理
         var ctx_h = document.getElementById('hmd_d').getContext('2d');
         ctx_h.canvas.height = graphHeight;
         window.myLine = Chart.Line(ctx_h, {
@@ -320,9 +278,15 @@ $jsonData = json_encode($arr_conditions);
                 }
             }
         });
+
+
     }
 
- 
+    //初期表示
+    window.addEventListener("load",function(){
+        drawGraph();
+    },false)
+
     </script>
         
         
