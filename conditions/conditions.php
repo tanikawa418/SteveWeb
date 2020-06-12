@@ -76,10 +76,11 @@ $jsonData = json_encode($arr_conditions);
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                 <h2>Daily Data</h2>
                 <div class="summary graph_wrapper">
-                <p id="date_d">2020/06/09</p> <!--phpで最大日を設定する -->
+                <p id="date_d">2020/06/07</p> <!--phpで最大日を設定する -->
                     Ave : 29.8 <br>
                     Max : 32.3 <br>
                     Min : 27.4 <br>
+                    <button onclick="fwDate()">Next</button>
                     <button onclick="tglZoom()">Zoom Change</button>
                 </div>
                 <div class="graph_wrapper" id="graph_wrapper">
@@ -106,43 +107,71 @@ $jsonData = json_encode($arr_conditions);
     //PHPからのデータ授受
     var conditionData = <?php echo $jsonData; ?>;
 
-    //htmlから基準日を取得
-    var mydate = new Date(document.getElementById('date_d').innerHTML);
-
-    //指定日付のデータをtmp_dataに格納する
-    var tmp_data={};
-    var hmd_data={};
-    for(var i = 0; i<conditionData.length; i++){
-        var cond_date = new Date(conditionData[i]['date']);
-        if(mydate.getDate() - cond_date.getDate() == 0){
-            var mytime = ('0' + cond_date.getHours()).slice(-2)+':'+('0' + cond_date.getMinutes()).slice(-2);
-            //日付=>温度 の連想配列として格納
-            tmp_data[mytime] = conditionData[i]['temperature'];
-            //日付=>湿度 の連想配列として格納
-            hmd_data[mytime] = conditionData[i]['humidity'];
-        }
-    }
-
-    //X軸ラベル用の配列を生成（00:00,...,23:50)
-    var mylabels = [];
+    //時刻のパターン文字列配列を生成（00:00,...,23:50)
+    var timePattern = [];
     for(var h = 0; h<24; h++){
         for(var m = 0; m<60; m +=10){
-            mylabels.push(('0' + h).slice(-2) + ':' + ('0' + m).slice(-2));
-        }
-    }
-    
-    //X軸ラベルと等しいデータを連想配列tmp_dataから取得し新しい配列に格納する
-    var tmp_graph_data = [];
-    var hmd_graph_data = [];
-    for(var x = 0; x<mylabels.length; x++){
-        var lab_time = mylabels[x];
-        tmp_graph_data[x] = null; //データ欠損に備えて、Nullで要素を作っておく
-        if(tmp_data[lab_time]){
-            tmp_graph_data[x] = tmp_data[lab_time];
-            hmd_graph_data[x] = hmd_data[lab_time];
+            timePattern.push(('0' + h).slice(-2) + ':' + ('0' + m).slice(-2));
         }
     }
 
+
+    //基準日のデータを格納する配列の定義
+    var tmp_data={};
+    var hmd_data={};
+
+    //欠損データ対応済みのグラフ基礎データ配列
+    var tmp_graph_data = [];
+    var hmd_graph_data = [];
+
+    function createData(){
+        //htmlから基準日を取得
+        var mydate = new Date(document.getElementById('date_d').innerHTML);
+        
+        //初期化
+        tmp_data={};
+        hmd_data={};
+
+        //指定日付のデータをtmp_dataに格納する
+        for(var i = 0; i<conditionData.length; i++){
+            var cond_date = new Date(conditionData[i]['date']);
+            if(mydate.getDate() - cond_date.getDate() == 0){
+                var mytime = ('0' + cond_date.getHours()).slice(-2)+':'+('0' + cond_date.getMinutes()).slice(-2);
+                //日付=>温度 の連想配列として格納
+                tmp_data[mytime] = conditionData[i]['temperature'];
+                //日付=>湿度 の連想配列として格納
+                hmd_data[mytime] = conditionData[i]['humidity'];
+            }
+        }
+
+        //初期化
+        tmp_graph_data = [];
+        hmd_graph_data = [];
+
+        
+        //時刻パターンと等しいデータを連想配列tmp_dataから取得し新しい配列に格納する
+        for(var x = 0; x<timePattern.length; x++){
+            var lab_time = timePattern[x];
+            tmp_graph_data[x] = null; //データ欠損に備えて、Nullで要素を作っておく
+            if(tmp_data[lab_time]){
+                tmp_graph_data[x] = tmp_data[lab_time];
+                hmd_graph_data[x] = hmd_data[lab_time];
+            }
+        }
+    }
+
+
+    //X軸ラベル用の配列を生成
+    Xlabels = [];
+    for(var h = 0; h<24; h++){
+        for(var m = 0; m<60; m += 10){
+            if(m == 0){
+                Xlabels.push(h + ':00');
+            }else{
+                Xlabels.push('');
+            }
+        }
+    }
 
     //Zoomボタンによるグラフ幅の切り替え処理
     function tglZoom(){
@@ -169,31 +198,6 @@ $jsonData = json_encode($arr_conditions);
         }, 500);
     });
     
-    //Temperature graphの描画設定
-    var lineChartData_temp = {
-        labels: mylabels,
-        datasets: [{
-            label: '温度',
-            fill: false,
-            data: tmp_graph_data,
-            yAxisID: 'y-axis-1',
-            spanGaps:true, //欠損データ対応
-            // lineTension:0.8
-        }]
-    };
-
-    //Humidity graphの描画設定
-    var lineChartData_hmd = {
-        labels: mylabels,
-        datasets: [{
-            label: '湿度',
-            fill: false,
-            data: hmd_graph_data,
-            yAxisID: 'y-axis-1',
-            spanGaps:true, //欠損データ対応
-            // lineTension:0.8
-        }]
-    };
 
     //グラフ描画処理
     function drawGraph(){
@@ -212,6 +216,32 @@ $jsonData = json_encode($arr_conditions);
             document.getElementById('temp_d').setAttribute('width',3000);
             document.getElementById('hmd_d').setAttribute('width',3000);
         }
+
+        //Temperature graphの描画設定
+        var lineChartData_temp = {
+            labels: Xlabels,
+            datasets: [{
+                label: '温度',
+                fill: false,
+                data: tmp_graph_data,
+                yAxisID: 'y-axis-1',
+                spanGaps:true, //欠損データ対応
+                // lineTension:0.8
+            }]
+        };
+
+        //Humidity graphの描画設定
+        var lineChartData_hmd = {
+            labels: Xlabels,
+            datasets: [{
+                label: '湿度',
+                fill: false,
+                data: hmd_graph_data,
+                yAxisID: 'y-axis-1',
+                spanGaps:true, //欠損データ対応
+                // lineTension:0.8
+            }]
+        };
 
         //TemperatureGraphの描画処理
         var ctx_t = document.getElementById('temp_d').getContext('2d');
@@ -284,9 +314,38 @@ $jsonData = json_encode($arr_conditions);
 
     //初期表示
     window.addEventListener("load",function(){
+        createData();
         drawGraph();
     },false)
 
+    function fwDate(){
+        var target_date = new Date(document.getElementById('date_d').innerHTML);
+        target_date.setDate(target_date.getDate()+1);
+
+        var newDateStr = createDateStr(target_date);
+        document.getElementById('date_d').innerHTML = newDateStr;
+
+        createData();
+        drawGraph();
+
+
+    }
+
+    function createDateStr(date){
+        var year_str = date.getFullYear();
+        var month_str = 1 + date.getMonth();
+        var day_str = date.getDate();
+
+        month_str = ('0' + month_str).slice(-2);
+        day_str = ('0' + day_str).slice(-2);
+        
+        format_str = 'YYYY/MM/DD';
+        format_str = format_str.replace(/YYYY/g, year_str);
+        format_str = format_str.replace(/MM/g, month_str);
+        format_str = format_str.replace(/DD/g, day_str);
+    
+        return format_str;
+    }
     </script>
         
         
