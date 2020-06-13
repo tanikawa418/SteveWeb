@@ -8,6 +8,10 @@ $sql = 'SELECT * FROM cage_conditions';
 $response = $db->query($sql,PDO::FETCH_ASSOC);
 $arr_conditions = $response->fetchAll(PDO::FETCH_ASSOC);
 
+// print_r(str_replace('-','/',substr(end($arr_conditions)['date'],0,10)));
+
+$max_date_str = str_replace('-','/',substr(end($arr_conditions)['date'],0,10));
+
 // JSに配列渡し
 $jsonData = json_encode($arr_conditions);
 // print_r($jsonData);
@@ -41,6 +45,8 @@ $jsonData = json_encode($arr_conditions);
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- font awesome -->
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
     
 
@@ -57,39 +63,41 @@ $jsonData = json_encode($arr_conditions);
             <span class="hometxt">Home</span>
             <i class="fas fa-igloo" id="homeicon"></i>
         </a>
-
+        
     </header>
     <div class="mycontainer cf" id="mycontainer">
-
+        <span id="async_msg"></span>
+        <button id="reload_btn" onclick="location.reload(true)">Reload</button>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Daily</a>
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Daily</a>
             </li>
             <li class="nav-item" role="presentation">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Weekly</a>
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Weekly</a>
             </li>
             <li class="nav-item" role="presentation">
-            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <h2>Daily Data</h2>
+                <!-- <h2>Daily Data</h2> -->
                 <div class="summary graph_wrapper">
-                <p id="date_d">2020/06/07</p> <!--phpで最大日を設定する -->
-                    Ave : 29.8 <br>
-                    Max : 32.3 <br>
-                    Min : 27.4 <br>
-                    <button onclick="fwDate()">Next</button>
-                    <button onclick="tglZoom()">Zoom Change</button>
-                </div>
-                <div class="graph_wrapper" id="graph_wrapper">
-                    <canvas id="temp_d" height="400" width="3000"></canvas>
-                    <canvas id="hmd_d" height="400" width="3000"></canvas>
-                </div>
-                <button id="randomizeData">Randomize Data</button>
-
+                    <button onclick="changeDate(-1)">Prev</button>
+                    <span id="date_d"><?php echo $max_date_str ?></span> <!--phpで最大日を設定する -->
+                    <button onclick="changeDate(1)">Next</button>
+                    <br>
+                    <i class="fas fa-thermometer-half"></i>  Ave : <span class="summary_d" id="tmp_ave"></span>
+                ℃ (<span class="summary_d" id="tmp_min"></span>
+                -><span class="summary_d" id="tmp_max"></span>)<br>
+                <i class="fas fa-tint"></i>  Ave : <span class="summary_d" id="hmd_ave"></span>
+                ％ (<span class="summary_d" id="hmd_min"></span>
+                -><span class="summary_d" id="hmd_max"></span>)<br>
+                <button onclick="tglZoom()">Change View</button>
             </div>
+            <div class="graph_wrapper" id="graph_wrapper">
+                <canvas id="temp_d" height="400" width="3000"></canvas>
+                <canvas id="hmd_d" height="400" width="3000"></canvas>
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">This is profile pain.</div>
             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">This is cantact pain.</div>
         </div>
@@ -102,7 +110,7 @@ $jsonData = json_encode($arr_conditions);
     var graphHeight = 350; //共通
     var graphWidth = 3000; //非レスポンシブの時の横幅
     //Responsiveモードの既定値
-    var isResponsive = false;
+    var isResponsive = true;
  
     //PHPからのデータ授受
     var conditionData = <?php echo $jsonData; ?>;
@@ -127,7 +135,7 @@ $jsonData = json_encode($arr_conditions);
     function createData(){
         //htmlから基準日を取得
         var mydate = new Date(document.getElementById('date_d').innerHTML);
-        
+
         //初期化
         tmp_data={};
         hmd_data={};
@@ -147,7 +155,13 @@ $jsonData = json_encode($arr_conditions);
         //初期化
         tmp_graph_data = [];
         hmd_graph_data = [];
-
+        var tmp_sum = 0;
+        var hmd_sum = 0;
+        var counter = 0;
+        var tmp_max = 0;
+        var hmd_max = 0;
+        var tmp_min = 100;
+        var hmd_min = 100;
         
         //時刻パターンと等しいデータを連想配列tmp_dataから取得し新しい配列に格納する
         for(var x = 0; x<timePattern.length; x++){
@@ -156,7 +170,33 @@ $jsonData = json_encode($arr_conditions);
             if(tmp_data[lab_time]){
                 tmp_graph_data[x] = tmp_data[lab_time];
                 hmd_graph_data[x] = hmd_data[lab_time];
+                console.log(tmp_data[lab_time]);
+                tmp_sum += Number(tmp_data[lab_time]);
+                hmd_sum += Number(hmd_data[lab_time]);
+                counter += 1;
+                tmp_max = Math.max(tmp_max,Number(tmp_data[lab_time]));
+                hmd_max = Math.max(hmd_max,Number(hmd_data[lab_time]));
+                tmp_min = Math.min(tmp_min,Number(tmp_data[lab_time]));
+                hmd_min = Math.min(hmd_min,Number(hmd_data[lab_time]));
             }
+        }
+        var myAve_tmp = Math.round(tmp_sum / counter * 100) / 100;
+        var myAve_hmd = Math.round(hmd_sum / counter * 100) / 100;
+        if(counter){
+            document.getElementById('tmp_ave').innerHTML = myAve_tmp.toFixed(2);
+            document.getElementById('tmp_max').innerHTML = tmp_max.toFixed(2);
+            document.getElementById('tmp_min').innerHTML = tmp_min.toFixed(2);
+            document.getElementById('hmd_ave').innerHTML = myAve_hmd.toFixed(2);
+            document.getElementById('hmd_max').innerHTML = hmd_max.toFixed(2);
+            document.getElementById('hmd_min').innerHTML = hmd_min.toFixed(2);
+        }else{
+            document.getElementById('tmp_ave').innerHTML = '-';
+            document.getElementById('tmp_max').innerHTML = '-';
+            document.getElementById('tmp_min').innerHTML = '-';
+            document.getElementById('hmd_ave').innerHTML = '-';
+            document.getElementById('hmd_max').innerHTML = '-';
+            document.getElementById('hmd_min').innerHTML = '-';
+
         }
     }
 
@@ -289,7 +329,7 @@ $jsonData = json_encode($arr_conditions);
                 stacked: false,
                 title: {
                     display: true,
-                    text: 'Cage Conditions  - Daily -'
+                    text: '湿度'
                 },
                 scales: {
                     yAxes: [{
@@ -314,21 +354,56 @@ $jsonData = json_encode($arr_conditions);
 
     //初期表示
     window.addEventListener("load",function(){
+
+        var req = new XMLHttpRequest();
+        req.onreadystatechange = function() {
+        var result = document.getElementById('async_msg');
+            // if (req.readyState == 4) { // 通信の完了時
+            //     if (req.status == 200) { // 通信の成功時
+            //     var myresult = JSON.parse(req.responseText);
+            //     result.innerHTML = req.response;
+            //     result.innerHTML = myresult['res_msg'];
+            //     }
+            // }else{
+            //     result.innerHTML = "Loading new data...";
+            // }
+
+            if(req.readyState != 4){
+                result.innerHTML = 'Checking new data...';
+            }else{
+                if(req.status == 200){
+                    var myresult = JSON.parse(req.responseText);
+                    result.innerHTML = req.response;
+                    result.innerHTML = myresult['res_msg'];
+                    var is_added = myresult['success'];
+                    if(is_added > 0){
+                        document.getElementById('reload_btn').style.display = 'inline-block';
+                    }else{
+                        // setTimeout(document.getElementById('async_msg').style.visibility = 'hidden',500);
+                        // setTimeout(document.getElementById('async_msg').innerHTML = 'hohoho',20010);
+                    }
+                }else{
+                    result.innerHTML = 'Bad request.';
+                }
+            }
+        }
+        req.open('POST', 'load_csv.php',true);
+        req.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+        req.send(1);
+
         createData();
         drawGraph();
     },false)
 
-    function fwDate(){
+    function changeDate(n){
         var target_date = new Date(document.getElementById('date_d').innerHTML);
-        target_date.setDate(target_date.getDate()+1);
-
+            target_date.setDate(target_date.getDate() + n);
+        
         var newDateStr = createDateStr(target_date);
         document.getElementById('date_d').innerHTML = newDateStr;
 
         createData();
         drawGraph();
-
-
     }
 
     function createDateStr(date){

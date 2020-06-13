@@ -373,6 +373,10 @@ div.addmark a {
         text-align: center;
     }
 }
+
+#reload_btn {
+    display: none;
+}
 /* **************************
     graph
    ************************** */
@@ -386,10 +390,10 @@ div.addmark a {
         /* height: 500px; */
 
         /* max-height: 1000px; */
-        padding: 20px;
+        padding: 10px;
         margin: 0 auto;
         background-color: white;
-        overflow-x: scroll;
+        overflow-x: auto;
 
         box-shadow:
         0 1.9px 2.5px rgba(0, 0, 0, 0.057),
@@ -409,6 +413,21 @@ div.addmark a {
         width: 1200px;
         height: 400px;
     } */
+
+    #date_d {
+        display: inline-block;
+        font-size: 1.5em;
+        margin: 5px 10px;
+    }
+
+    span.summary_d {
+        display: inline-block;
+        font-weight: 600;
+        font-size: 1.1em;
+        margin-left: 5px;
+        margin-bottom: 5px;
+    }
+
     div.card {
         width: 450px;
         height: 198px;
