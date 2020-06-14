@@ -1,5 +1,6 @@
 <?php
     session_start();
+    require("../../common/php/login_check.php");
     require('../../common/php/dbconnect.php');
 
     function numConvert($txt){ //全角入力対応
@@ -108,11 +109,11 @@
                     $stmt->execute();
 
                     //セッションの破棄
-                    $_SESSION = array();
-                    if (isset($_COOKIE["PHPSESSID"])) {
-                        setcookie("PHPSESSID", '', time() - 1800, '/');
-                    }
-                    session_destroy();
+                    // $_SESSION = array();
+                    // if (isset($_COOKIE["PHPSESSID"])) {
+                    //     setcookie("PHPSESSID", '', time() - 1800, '/');
+                    // }
+                    // session_destroy();
 
                     header('Location: ../mesurement.php');
                     exit();
@@ -153,11 +154,11 @@
                 $stmt->execute();
 
                 //セッションの破棄
-                $_SESSION = array();
-                if (isset($_COOKIE["PHPSESSID"])) {
-                    setcookie("PHPSESSID", '', time() - 1800, '/');
-                }
-                session_destroy();
+                // $_SESSION = array();
+                // if (isset($_COOKIE["PHPSESSID"])) {
+                //     setcookie("PHPSESSID", '', time() - 1800, '/');
+                // }
+                // session_destroy();
                 
                 header('Location: ../mesurement.php');
                 exit();

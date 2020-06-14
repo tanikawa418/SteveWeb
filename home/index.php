@@ -34,7 +34,7 @@
                         <span class="menuname"><a href="..\health\mesurement.php">Health Data</a></span>
                     </li>
                     <li>
-                        <span class="menuicon"><i class="fas fa-info-circle"></i></span>
+                        <span class="menuicon"><i class="fas fa-thermometer-half"></i></span>
                         <span class="menuname"><a href="../conditions/conditions.php">Cage Conditions</a></span>
                     </li>
                     <li>
