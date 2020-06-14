@@ -108,13 +108,6 @@
                     $stmt->bindValue(':mesurement_id',$_POST['mesurement_id'],PDO::PARAM_INT); 
                     $stmt->execute();
 
-                    //セッションの破棄
-                    // $_SESSION = array();
-                    // if (isset($_COOKIE["PHPSESSID"])) {
-                    //     setcookie("PHPSESSID", '', time() - 1800, '/');
-                    // }
-                    // session_destroy();
-
                     header('Location: ../mesurement.php');
                     exit();
                 }
@@ -152,13 +145,6 @@
                 $stmt->bindValue(':note',$_POST['note'],PDO::PARAM_STR);
                 $stmt->bindValue(':pic_filename',$_POST['image'],PDO::PARAM_STR);
                 $stmt->execute();
-
-                //セッションの破棄
-                // $_SESSION = array();
-                // if (isset($_COOKIE["PHPSESSID"])) {
-                //     setcookie("PHPSESSID", '', time() - 1800, '/');
-                // }
-                // session_destroy();
                 
                 header('Location: ../mesurement.php');
                 exit();
