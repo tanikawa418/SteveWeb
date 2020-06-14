@@ -230,7 +230,7 @@ div.sitewrapper {
     width: 100%;
     /* border: 1px solid black; */
     padding: 20px 0;
-    background-color:#004D40;
+    background-color:#f5f5f5;
     margin-top: 20px;
     box-shadow:
     0 1.9px 2.5px rgba(0, 0, 0, 0.057),
@@ -247,7 +247,7 @@ div.sitetitle {
     padding: 5px 10px;
     border: none;
     border-left: 10px solid rgb(67, 126, 70);
-    background-color: #C8E6C9;
+    background-color: #fff;
     margin: 0 auto;
     vertical-align: middle;
     font-size: 18px;
@@ -281,7 +281,7 @@ div.sitecontents {
     padding: 10px;
     border: none;
     border-left: 10px solid #66BB6A;
-    background-color: #C8E6C9;
+    background-color: #fff;
     margin: 0 auto;
     margin-top: 10px;
     vertical-align: middle;
@@ -542,7 +542,7 @@ dd.notecontents {
         width: 100%;
         /* border: 1px solid black; */
         padding: 20px 0;
-        background-color:#004D40;
+        background-color:#f5f5f5;
         margin-top: 20px;
         box-shadow:
         0 1.9px 2.5px rgba(0, 0, 0, 0.057),
@@ -559,7 +559,7 @@ dd.notecontents {
         padding: 5px 10px;
         border: none;
         border-left: 10px solid rgb(67, 126, 70);
-        background-color: #C8E6C9;
+        background-color: #fff;
         margin: 0 auto;
         vertical-align: middle;
         font-size: 18px;
@@ -593,7 +593,7 @@ dd.notecontents {
         padding: 10px;
         border: none;
         border-left: 10px solid #66BB6A;
-        background-color: #C8E6C9;
+        background-color: #fff;
         margin: 0 auto;
         margin-top: 10px;
         vertical-align: middle;

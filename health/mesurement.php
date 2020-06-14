@@ -63,7 +63,7 @@ if(!empty($_POST) && $_POST['mode']='delete'){
 }
 
 //データ取得処理
-$sql = 'SELECT * FROM mesurement ms INNER JOIN pets pt ON pt.pet_id = ms.pet_id ORDER BY ms.created DESC';
+$sql = 'SELECT * FROM mesurement ms INNER JOIN pets pt ON pt.pet_id = ms.pet_id ORDER BY ms.date DESC';
 $response = $db->query($sql,PDO::FETCH_ASSOC);
 $arr_health = $response->fetchAll(PDO::FETCH_ASSOC);
 // JSに配列渡し
