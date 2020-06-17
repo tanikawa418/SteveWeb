@@ -9,8 +9,8 @@ if($_COOKIE['user_id']!==''){
 
 if(!empty($_POST)){
     if($_POST['submit'] != ""){
-        echo md5(md5($salt) . $_POST['password']);
-        echo '<br>';
+        // echo md5(md5($salt) . $_POST['password']);
+        // echo '<br>';
         $user_id = $_POST['user_id'];
         //エラーチェック
         if(!$_POST['user_id']){
@@ -40,7 +40,6 @@ if(!empty($_POST)){
         }else{
             // echo 'error occured';
         }
-
     }
 
     if($_POST['cancel'] != ""){
@@ -66,14 +65,14 @@ if(!empty($_POST)){
     <!-- font awesome -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style.css">
     <title>Crawl in</title>
 </head>
 <body>
     <div class="mycontainer">
         <div class="mywrapper">
-            <div class="mycard">
-                <div class="mycardheader">
+            <div class="mydialog">
+                <div class="mydialog_header">
                     <p><i class="fas fa-sign-in-alt"></i> Crawl In</p>
                 </div>
                 <form action="" method="post" class="form-group">
