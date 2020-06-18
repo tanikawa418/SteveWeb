@@ -1,0 +1,284 @@
+@charset "UTF-8";
+/******************************************************************
+
+Utility Style : base
+
+******************************************************************/
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+JP&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+JP&display=swap");
+html, body, p, div, ul, li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+body {
+  font-family: "Noto Sans", "Noto Sans JP";
+}
+
+.mycard, .mydialog {
+  background-color: white;
+  -webkit-box-shadow: 0 1.9px 2.5px rgba(0, 0, 0, 0.057), 0 5px 6.1px rgba(0, 0, 0, 0.076), 0 10.1px 11.4px rgba(0, 0, 0, 0.086), 0 19.2px 19.8px rgba(0, 0, 0, 0.092), 0 38.4px 34.8px rgba(0, 0, 0, 0.1), 0 101px 74px rgba(0, 0, 0, 0.13);
+          box-shadow: 0 1.9px 2.5px rgba(0, 0, 0, 0.057), 0 5px 6.1px rgba(0, 0, 0, 0.076), 0 10.1px 11.4px rgba(0, 0, 0, 0.086), 0 19.2px 19.8px rgba(0, 0, 0, 0.092), 0 38.4px 34.8px rgba(0, 0, 0, 0.1), 0 101px 74px rgba(0, 0, 0, 0.13);
+}
+
+#btn_submit {
+  display: block;
+  width: 70%;
+  height: 40px;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  background-color: #004d40;
+}
+
+#btn_cancel {
+  display: block;
+  width: 70%;
+  height: 40px;
+  margin: 0 auto;
+  background-color: lightgray;
+}
+
+/* **************************
+    Container
+************************** */
+body {
+  max-width: 100%;
+  height: 100%;
+}
+
+div.mycontainer {
+  max-width: 100%;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  background-image: url(../../opening/images/home.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+div.mywrapper {
+  width: 274px;
+  height: 100vh;
+  padding: 12px;
+  background-color: rgba(0, 0, 0, 0.4);
+  margin: 0 auto;
+  padding-top: 60px;
+}
+
+/* **************************
+    dialog
+************************** */
+div.mydialog {
+  width: 250px;
+  height: auto;
+  padding-bottom: 20px;
+  margin: 0 auto;
+}
+
+div.mydialog_header {
+  width: 100%;
+  height: 60px;
+  margin-bottom: 20px;
+  background-color: #004d40;
+  color: lightgray;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+div.mydialog_header p {
+  height: 100%;
+  line-height: 60px;
+}
+
+.form-group {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.form-group .field_label {
+  text-align: left;
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+
+.form-group .required {
+  font-size: 0.8em;
+  color: blueviolet;
+}
+
+.form-group .field_error {
+  background-color: pink;
+}
+
+.form-group .error {
+  font-size: 0.8em;
+  color: red;
+  margin-top: 0;
+}
+
+.form-control {
+  margin-bottom: 10px;
+}
+
+.input_sm {
+  width: 220px;
+  margin: 0 auto;
+}
+
+@media (min-width: 900px) {
+  /******************************************************************
+
+Utility Style : base
+
+******************************************************************/
+  body {
+    font-family: "Noto Sans", "Noto Sans JP";
+  }
+  /* **************************
+ Container
+************************** */
+  div.mywrapper {
+    width: 860px;
+  }
+  /* **************************
+   dialog
+************************** */
+  div.mydialog {
+    width: 400px;
+  }
+  div.mydialog_header {
+    height: 60px;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+  }
+  div.mycardheader p {
+    line-height: 60px;
+  }
+  .form-group {
+    width: 90%;
+  }
+  .field_label {
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    margin-left: 20px;
+  }
+  .input_sm {
+    width: 300px;
+  }
+  .form-control {
+    margin-bottom: 10px;
+  }
+  #btn_submit {
+    height: 40px;
+  }
+  #btn_cancel {
+    height: 40px;
+  }
+  /* **************************
+    PC用設定
+   ************************** */
+  /* **************************
+    基本設定
+   ************************** */
+}
+
+@media screen and (min-width: 900px) and (min-width: 900px) {
+  body {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+  }
+  body img {
+    width: 100%;
+    height: 100%;
+  }
+  div.filter {
+    width: 960px;
+    height: 1000px;
+    margin: auto auto;
+    background-color: lightgray;
+  }
+  div.mycontainer {
+    margin: 0 auto;
+    position: relative;
+  }
+  div.wrapper {
+    width: 860px;
+    padding: 50px;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: relative;
+  }
+}
+
+@media (min-width: 900px) {
+  /* **************************
+Title
+************************** */
+}
+
+@media screen and (min-width: 900px) and (min-width: 900px) {
+  div.title {
+    width: 600px;
+    height: 70%;
+    font-family: "Noto Sans", "Noto Sans JP";
+    /* padding-top: 140px; */
+    margin: 0 auto;
+    /* padding-left: 10px; */
+    /* 上下中央にするための設定ここから */
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    /* 上下中央にするための設定ここまで*/
+  }
+  div.title p {
+    color: #fff;
+    font-size: 70px;
+    text-align: center;
+  }
+  div.title p.crawl {
+    font-size: 40px;
+    margin-top: 120px;
+    margin-bottom: 20px;
+    visibility: hidden;
+  }
+  div.title p.links {
+    font-size: 30px;
+    text-decoration: none;
+    visibility: hidden;
+    margin-top: 15px;
+  }
+  div.title p.links:hover {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    -webkit-transition-duration: 500ms;
+            transition-duration: 500ms;
+  }
+  a {
+    text-decoration: none;
+    color: #b6b596;
+  }
+  #steve {
+    width: 490px;
+    color: #b6b596;
+    font-size: 130px;
+    /* font-weight: 600; */
+  }
+  #subtitle {
+    display: none;
+  }
+  /* span.hero {
+        color: rgb(0, 100, 0);
+    } */
+}
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,93 @@
+@charset "UTF-8";
+body {
+  background: url(/steveweb/home/images/home.jpeg) no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+div.mycontainer {
+  max-width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0 auto;
+}
+
+div.mywrapper {
+  width: 250px;
+  height: 600px;
+  padding: 12px;
+  background-color: rgba(0, 0, 0, 0.4);
+  margin: 0 auto;
+}
+
+/* **************************
+    Title
+   ************************** */
+div.title {
+  width: 222px;
+  height: 150px;
+  margin: 0 auto;
+
+  & p{
+      color:$cGray;
+      font-size: 35px;
+      text-align: center;
+      margin: 0;
+  }
+  & #steve {
+      color: $cSiteTitle;
+      font-size: 60px;
+      width: 222px;
+      text-align: center;
+      margin: 0 auto;
+  }
+  & span.hero{
+      color: $cHero;
+  }
+}
+
+
+
+/* **************************
+    Menu
+   ************************** */
+
+
+div.menu {
+  width: 350px;
+  height: 87px;
+  padding-left: 12px;
+  margin: 0 auto;
+  padding-top: 32px;
+  
+  & ul li {
+    margin-bottom: 10px;
+    list-style: none;
+    color: $cGray;
+    line-height: 1.5;
+    font-size: 22px;
+    
+    & .menuicon{
+        display: inline-block;
+        width: 40px;
+        text-align: center;
+        margin-left: 5px;
+    }
+
+    & .menuname a {
+        display: inline-block;
+        margin-left: 6px;
+        text-decoration: none;        
+        color: $cGray;
+
+        &:hover {
+            transform: scale(1.1);
+            color: $cSiteTitle;
+            transition:all 300ms;        
+        }
+    }
+  }
+  
+}
+
+

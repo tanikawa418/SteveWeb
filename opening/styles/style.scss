@@ -1,0 +1,12 @@
+
+//変数定義
+@import "../../common/styles/variables"; 
+//mixin
+@import "modules/mixin";
+
+//breakpoints
+@import "breakpoints/base"; 
+
+@media (min-width: 900px) {
+    @import "breakpoints/900up";
+  }

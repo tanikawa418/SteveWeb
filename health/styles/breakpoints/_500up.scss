@@ -1,0 +1,143 @@
+
+ 
+header {
+    height: 80px;
+    padding-top: 5px;
+
+    & .headercontainer {
+        height: 75px;
+
+        & h1 {
+            font-size: 35px;
+        }
+    }
+
+    & a {
+        margin-top: 10px;
+
+        & span.hometxt {
+        display: inline-block;
+        margin-right: 3px;
+        }
+        
+        & #homeicon {
+        font-size: 30px;
+        }
+    }
+}
+  
+  
+  /* **************************
+      mycontainer
+     ************************** */
+
+  div.mycontainer {
+      max-width: 990px;
+      height: 100vh;
+      margin: 0 auto;
+      padding-top: 20px;
+      position: relative;
+  }
+  
+  /* **************************
+      card
+     ************************** */
+  
+ div.card {
+    width: 450px;
+    height: 198px;
+    margin-top: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: inline-block; 
+ }
+ 
+ div.cardleft {
+   width: 140px;
+   height: 200px;
+ }
+ 
+ 
+ div.cardright {
+    width: 309px;
+    height: 146px;
+    float: right;
+ }
+ 
+ div.cardheader {
+    width: 309px;
+    height: 53px;
+
+   & div.carddate {
+    width: 181px;
+    height: 53px;
+    font-size: 1.3em;
+    padding-left: 10px;
+    line-height: 38px;
+   }
+   
+   & div.cardprofile {
+    width: 118px;
+    height: 53px;
+     
+     & div.profile_pic_frame {
+        width: 50px;
+        height: 50px;
+     }
+   }
+ }
+ 
+ 
+ div.cardcontents {
+    width: 309px;
+    height: 146px; 
+ }
+ 
+ div.carddata {
+    width: 160px;
+    height: 142px;
+ 
+   & tr{
+     line-height: 2;
+   }
+ } 
+ 
+ div.iconwrap {
+     display: inline-block;
+     width: 154px;
+
+     & form label {
+         text-align: center; 
+    }
+
+   &:hover {
+     cursor: pointer;
+   }
+ }
+ 
+ td.tdData {
+     text-align: right;
+     width: 3em;
+     font-weight: 600;
+ }
+ 
+ td.tdUnit {
+     width: 2.5em;
+ }
+ 
+ div.cardnotes {
+    width: 139px;
+    height: 138px;
+    padding-right: 5px;
+ }
+ 
+ /* **************************
+     Add
+    ************************** */
+ div.addmark {
+     width: 70px;
+     height: 70px;
+     line-height: 70px;
+ }
+ 
+ 

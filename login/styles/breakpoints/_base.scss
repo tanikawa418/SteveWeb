@@ -1,0 +1,97 @@
+@charset "utf-8";
+
+
+/* **************************
+    Container
+************************** */
+   body {
+    max-width: 100%;
+    height: 100%;
+}
+
+div.mycontainer {
+    max-width: 100%;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    background-image: url(../../opening/images/home.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+div.mywrapper {
+    width: 274px;
+    height: 100vh;
+    padding: 12px;
+    background-color: rgba(0, 0, 0, 0.4);
+    margin: 0 auto;
+    padding-top: 60px;
+}
+
+
+/* **************************
+    dialog
+************************** */
+  
+div.mydialog {
+    width: 250px;
+    height: auto;
+    padding-bottom: 20px;
+    margin: 0 auto;
+}
+  
+div.mydialog_header {
+    // width: 250px;
+    width: 100%;
+    height: 60px;
+    margin-bottom: 20px;
+    background-color: $cBG_dialog_header;
+    color: $cGray;
+    text-align: center;
+    font-size: 1.2em;
+
+    & p {
+        height: 100%;
+        line-height: 60px;
+    }
+}
+
+
+.form-group {
+    width: 90%;
+    margin: 0 auto;
+
+    & .field_label {
+        text-align: left;
+        margin-top: 5px;
+        margin-bottom: 0px;
+    }
+    
+    & .required {
+        font-size: 0.8em;
+        color: $cRequired;
+    }
+
+    & .field_error {
+        background-color:$cBG_ErrField;
+    }
+
+    & .error {
+        font-size: 0.8em;
+        color: $cErrMessage;
+        margin-top: 0;
+    }
+}
+
+.form-control {
+    margin-bottom: 10px;
+}
+
+.input_sm {
+    width: 220px;
+    margin: 0 auto;
+}
+  
+  
+  
+

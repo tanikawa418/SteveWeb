@@ -1,5 +1,14 @@
 <?php
     require("../common/php/login_check.php");
+    require('../common/php/dbconnect.php');
+
+    $dir = 'images/';
+    $files = glob($dir . '*');
+
+    // var_dump($files);
+
+    
+
 
 
 ?>
@@ -65,12 +74,10 @@
         <div class="photarea">
             <ul>
                 <li>
-                    <!-- <i class="fas fa-star favorite"></i>
-                    <i class="fas fa-weight mesurement"></i> -->
-                    <a href="images/2019-08-25 17.17.20_preview.jpeg" data-lightbox = "lb"><img class="thumbnails size-nrm" src="images/2019-08-25 17.17.20_preview.jpeg" alt=""></a>
+                    <a href="images/2019-08-25 20.21.00_preview.jpeg" data-lightbox = "lb"><img class="thumbnails size-nrm" src="thumbnail.php" alt=""></a>
                 </li>
                 <li>
-                    <a href="images/2019-08-25 20.21.00_preview.jpeg" data-lightbox = "lb" ><img class="thumbnails size-nrm" src="images/2019-08-25 20.21.00_preview.jpeg" alt=""></a>
+                    <a href="images/2019-08-25 20.21.00_preview.jpeg" data-lightbox = "lb" ><img class="thumbnails size-nrm" src="thumbnail.php" alt=""></a>
                 </li>
                 <li>
                     <a href="images/2019-08-25 17.18.27_preview.jpeg" data-lightbox="lb"><img class="thumbnails size-nrm" src="images/2019-08-25 17.18.27_preview.jpeg" alt=""></a>
