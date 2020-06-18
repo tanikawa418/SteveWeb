@@ -1,0 +1,173 @@
+@charset "utf-8";
+
+/* **************************
+    fonts
+   ************************** */
+
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+JP&display=swap");
+
+/* **************************
+    モバイル用設定
+   ************************** */
+
+/* **************************
+    基本設定
+   ************************** */
+
+body {
+  background: url(../../../common/images/design/light_honeycomb_@2X.png);
+}
+
+/* **************************
+    mycontainer
+   ************************** */
+div.mycontainer {
+  max-width: 400px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+
+/* **************************
+    card
+   ************************** */
+   
+div.mydialog {
+  width: 340px;
+  height: auto;
+  padding-bottom: 20px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.form-group {
+  width: 90%;
+  margin: 0 auto;
+  
+  & p.field_label {
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    
+    & .required {
+      font-size: 0.8em;
+      color: $cRequired;
+    }
+  }
+
+  & .field_error {
+    background-color:$cBG_ErrField;
+  }
+
+  & .error {
+    font-size: 0.8em;
+    color: red;
+    margin-top: 0;
+  }
+
+  & .input_nm {
+    width: 200px;
+  }
+  
+  & .input_sm {
+    width: 150px;
+  }
+
+  & .form-control {
+    margin-bottom: 10px;
+  }
+    
+  & #myPreview {
+    max-width: 200px;
+    background-size: cover;
+  }
+  
+  & #file_change_guide {
+    visibility: hidden;
+    font-size: 0.8em;
+    color: $cRequired;
+  }
+}
+    
+
+
+
+/* ***************************************
+    Settings for PC
+   ************************************ */
+
+@media screen and (min-width: 500px) {
+  header {
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+  }
+
+  div.headercontainer {
+    width: 300px;
+    height: 40px;
+    font-size: 40px;
+  }
+
+  #homeicon {
+    font-size: 30px;
+  }
+}
+
+/* **************************
+    mycontainer
+   ************************** */
+
+@media screen and (min-width: 500px) {
+  div.mycontainer {
+    max-width: 990px;
+    margin: 0 auto;
+    height: 100vh;
+    padding-top: 20px;
+    background-color: rgba(240, 240, 240, 0.5);
+    /* text-align: center; */
+  }
+
+  .form-group {
+    width: 600px;
+    margin: 0 auto;
+  }
+}
+/* **************************
+    card
+   ************************** */
+
+@media screen and (min-width: 500px) {
+  div.mycard {
+    width: 700px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 40px;
+  }
+
+  div.mycardheader {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 30px;
+  }
+
+  div.mycardheader p {
+    height: 50px;
+    font-size: 2em;
+  }
+
+  form.select {
+    display: block;
+  }
+
+  #btn_submit {
+    width: 100%;
+    height: 50px;
+    margin: 20px 0;
+  }
+  #btn_cancel {
+    width: 100%;
+    height: 40px;
+    /* margin-bottom: 20px; */
+  }
+}

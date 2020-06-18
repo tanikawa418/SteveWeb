@@ -128,12 +128,12 @@ $jsonData = json_encode($arr_conditions);
     var tmp_data={};
     var hmd_data={};
 
-    //欠損データ対応済みのグラフ基礎データ配列
+    //欠損データ対応済みのグラフ基礎データ配列の定義
     var tmp_graph_data = [];
     var hmd_graph_data = [];
 
     function createData(){
-        //htmlから基準日を取得
+        //DOMから基準日を取得
         var mydate = new Date(document.getElementById('date_d').innerHTML);
 
         //初期化
@@ -201,7 +201,7 @@ $jsonData = json_encode($arr_conditions);
     }
 
 
-    //X軸ラベル用の配列を生成
+    //X軸ラベル用の配列を生成（10分単位では細かすぎるのでラベルは1hごとにする
     Xlabels = [];
     for(var h = 0; h<24; h++){
         for(var m = 0; m<60; m += 10){
@@ -354,7 +354,7 @@ $jsonData = json_encode($arr_conditions);
 
     //初期表示
     window.addEventListener("load",function(){
-
+        //asyncによるNewData更新処理
         var req = new XMLHttpRequest();
         req.onreadystatechange = function() {
         var result = document.getElementById('async_msg');

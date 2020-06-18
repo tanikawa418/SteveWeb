@@ -169,14 +169,14 @@
     <!-- font awesome -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css?<?php echo date('Ymd-Hi'); ?>">
+    <link rel="stylesheet" href="styles/style.css">
 
     <title>Document</title>
 </head>
 <body>
     <div class="mycontainer">
-        <div class="mycard">
-            <div class="mycardheader">
+        <div class="mydialog">
+            <div class="mydialog_header">
                 <a href=""></a>
                 <p><i class="fas fa-weight"></i> Health Data Entry</p>
             </div>            

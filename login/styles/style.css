@@ -26,6 +26,21 @@ body {
           box-shadow: 0 1.9px 2.5px rgba(0, 0, 0, 0.057), 0 5px 6.1px rgba(0, 0, 0, 0.076), 0 10.1px 11.4px rgba(0, 0, 0, 0.086), 0 19.2px 19.8px rgba(0, 0, 0, 0.092), 0 38.4px 34.8px rgba(0, 0, 0, 0.1), 0 101px 74px rgba(0, 0, 0, 0.13);
 }
 
+div.mydialog_header {
+  width: 100%;
+  height: 60px;
+  margin-bottom: 20px;
+  background-color: #004d40;
+  color: lightgray;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+div.mydialog_header p {
+  height: 100%;
+  line-height: 60px;
+}
+
 #btn_submit {
   display: block;
   width: 70%;
@@ -81,21 +96,6 @@ div.mydialog {
   margin: 0 auto;
 }
 
-div.mydialog_header {
-  width: 100%;
-  height: 60px;
-  margin-bottom: 20px;
-  background-color: #004d40;
-  color: lightgray;
-  text-align: center;
-  font-size: 1.2em;
-}
-
-div.mydialog_header p {
-  height: 100%;
-  line-height: 60px;
-}
-
 .form-group {
   width: 90%;
   margin: 0 auto;
@@ -140,6 +140,14 @@ Utility Style : base
   body {
     font-family: "Noto Sans", "Noto Sans JP";
   }
+  div.mydialog_header {
+    height: 60px;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+  }
+  div.mydialog_header p {
+    line-height: 60px;
+  }
   /* **************************
  Container
 ************************** */
@@ -151,14 +159,6 @@ Utility Style : base
 ************************** */
   div.mydialog {
     width: 400px;
-  }
-  div.mydialog_header {
-    height: 60px;
-    margin-bottom: 20px;
-    font-size: 1.5em;
-  }
-  div.mycardheader p {
-    line-height: 60px;
   }
   .form-group {
     width: 90%;
