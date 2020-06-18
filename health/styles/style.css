@@ -322,6 +322,7 @@ div.addmark a {
     margin: 0 auto;
     padding-top: 20px;
     position: relative;
+    text-align: center;
   }
   /* **************************
       card
@@ -403,6 +404,7 @@ div.addmark a {
     width: 70px;
     height: 70px;
     line-height: 70px;
+    right: 15%;
   }
 }
 
