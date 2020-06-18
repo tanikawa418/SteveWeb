@@ -8,3 +8,13 @@ body {
     font-family: "Noto Sans", "Noto Sans JP";
 }
 
+div.mydialog_header {
+    height: 60px;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+
+    & p{
+        line-height: 60px;
+    }
+}
+

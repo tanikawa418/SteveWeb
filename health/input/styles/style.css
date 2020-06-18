@@ -1,0 +1,258 @@
+@charset "UTF-8";
+/******************************************************************
+
+Utility Style : base
+
+******************************************************************/
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+JP&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+JP&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+JP&display=swap");
+html, body, p, div, ul, li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+body {
+  font-family: "Noto Sans", "Noto Sans JP";
+}
+
+.mycard, .mydialog {
+  background-color: white;
+  -webkit-box-shadow: 0 1.9px 2.5px rgba(0, 0, 0, 0.057), 0 5px 6.1px rgba(0, 0, 0, 0.076), 0 10.1px 11.4px rgba(0, 0, 0, 0.086), 0 19.2px 19.8px rgba(0, 0, 0, 0.092), 0 38.4px 34.8px rgba(0, 0, 0, 0.1), 0 101px 74px rgba(0, 0, 0, 0.13);
+          box-shadow: 0 1.9px 2.5px rgba(0, 0, 0, 0.057), 0 5px 6.1px rgba(0, 0, 0, 0.076), 0 10.1px 11.4px rgba(0, 0, 0, 0.086), 0 19.2px 19.8px rgba(0, 0, 0, 0.092), 0 38.4px 34.8px rgba(0, 0, 0, 0.1), 0 101px 74px rgba(0, 0, 0, 0.13);
+}
+
+div.mydialog_header {
+  width: 100%;
+  height: 60px;
+  margin-bottom: 20px;
+  background-color: #004d40;
+  color: lightgray;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+div.mydialog_header p {
+  height: 100%;
+  line-height: 60px;
+}
+
+#btn_submit {
+  display: block;
+  width: 70%;
+  height: 40px;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  background-color: #004d40;
+}
+
+#btn_cancel {
+  display: block;
+  width: 70%;
+  height: 40px;
+  margin: 0 auto;
+  background-color: lightgray;
+}
+
+/* **************************
+    fonts
+   ************************** */
+/* **************************
+    モバイル用設定
+   ************************** */
+/* **************************
+    基本設定
+   ************************** */
+body {
+  background: url(../../../common/images/design/light_honeycomb_@2X.png);
+}
+
+/* **************************
+    mycontainer
+   ************************** */
+div.mycontainer {
+  max-width: 400px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+/* **************************
+    card
+   ************************** */
+div.mydialog {
+  width: 340px;
+  height: auto;
+  padding-bottom: 20px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.form-group {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.form-group p.field_label {
+  text-align: left;
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+
+.form-group p.field_label .required {
+  font-size: 0.8em;
+  color: blueviolet;
+}
+
+.form-group .field_error {
+  background-color: pink;
+}
+
+.form-group .error {
+  font-size: 0.8em;
+  color: red;
+  margin-top: 0;
+}
+
+.form-group .input_nm {
+  width: 200px;
+}
+
+.form-group .input_sm {
+  width: 150px;
+}
+
+.form-group .form-control {
+  margin-bottom: 10px;
+}
+
+.form-group #myPreview {
+  max-width: 200px;
+  background-size: cover;
+}
+
+.form-group #file_change_guide {
+  visibility: hidden;
+  font-size: 0.8em;
+  color: blueviolet;
+}
+
+/* ***************************************
+    Settings for PC
+   ************************************ */
+@media screen and (min-width: 500px) {
+  header {
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+  }
+  div.headercontainer {
+    width: 300px;
+    height: 40px;
+    font-size: 40px;
+  }
+  #homeicon {
+    font-size: 30px;
+  }
+}
+
+/* **************************
+    mycontainer
+   ************************** */
+@media screen and (min-width: 500px) {
+  div.mycontainer {
+    max-width: 990px;
+    margin: 0 auto;
+    height: 100vh;
+    padding-top: 20px;
+    background-color: rgba(240, 240, 240, 0.5);
+    /* text-align: center; */
+  }
+  .form-group {
+    width: 600px;
+    margin: 0 auto;
+  }
+}
+
+/* **************************
+    card
+   ************************** */
+@media screen and (min-width: 500px) {
+  div.mycard, div.mydialog {
+    width: 700px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 40px;
+  }
+  div.mycardheader {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 30px;
+  }
+  div.mycardheader p {
+    height: 50px;
+    font-size: 2em;
+  }
+  form.select {
+    display: block;
+  }
+  #btn_submit {
+    width: 100%;
+    height: 50px;
+    margin: 20px 0;
+  }
+  #btn_cancel {
+    width: 100%;
+    height: 40px;
+    /* margin-bottom: 20px; */
+  }
+}
+
+@media (min-width: 500px) {
+  /* **************************
+    mycontainer
+   ************************** */
+  div.mycontainer {
+    max-width: 990px;
+    height: 100vh;
+  }
+  .form-group {
+    width: 80%;
+    margin: 0 auto;
+  }
+  /* **************************
+    card
+   ************************** */
+  div.mydialog {
+    width: 700px;
+    margin-top: 40px;
+  }
+  form.select {
+    display: block;
+  }
+}
+
+@media (min-width: 900px) {
+  /******************************************************************
+
+Utility Style : base
+
+******************************************************************/
+  body {
+    font-family: "Noto Sans", "Noto Sans JP";
+  }
+  div.mydialog_header {
+    height: 60px;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+  }
+  div.mydialog_header p {
+    line-height: 60px;
+  }
+}
+/*# sourceMappingURL=style.css.map */
