@@ -28,10 +28,6 @@ require("php/_mesurement_main.php");
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
-
-    
-
-
     <title>Health Data</title>
 </head>
 <body>
@@ -50,7 +46,7 @@ require("php/_mesurement_main.php");
         <div class="card cf">
             <div class="cardleft">
                 <!-- <img src="images/DSC_0707.JPG" alt=""> -->
-                <a href="images/mesurement_pics/20200522174522PC040677.jpg" data-lightbox = "lb"><img class="thumbnails" src="images/mesurement_pics/20200522174522PC040677.jpg" alt=""></a>
+                <a href="#" data-lightbox = "lb"><img class="thumbnails" src="#" alt=""></a>
             </div>
             <div class="cardright">
                 <div class="cardheader cf">
@@ -123,173 +119,25 @@ require("php/_mesurement_main.php");
         
     </div> <!--mycontainer -->
 
-    
+    <script src="../common/js/delete_confirm.js"></script>
+    <script src="js/mesurement_main.js"></script>
     <script type="text/javascript">
+        //phpからJSON受け取ってループでマークアップ
+        var healthData = <?php echo $jsonData; ?>;
+        healthDataMark(healthData);
 
-        function healthDataMark(){
-            var healthData = <?php echo $jsonData; ?>;
-            console.log(healthData);
-
-            for(var i = 0; i<healthData.length; i++){
-                var myCard = document.createElement('div');
-                myCard.className = 'card cf';
-
-                var myCardLeft = document.createElement('div');
-                myCardLeft.className = 'cardleft';
-                var fileName = healthData[i]['pic_filename'];
-                myCardLeft.innerHTML ='<a href="images/mesurement_pics/' + fileName + '" data-lightbox = "lb"><img class="thumbnails" src="images/mesurement_pics/' + fileName + '" alt=""></a>';
-                
-                var myCardRight = document.createElement('div');
-                myCardRight.className = 'cardright';
-
-                    var myCardHeader = document.createElement('div');
-                    myCardHeader.className = 'cardheader cf';
-
-                        var myCardDate = document.createElement('div');
-                        myCardDate.className = 'carddate';
-                        myCardDate.innerHTML = healthData[i]['date'];
-
-                        var myCardProfile = document.createElement('div');
-                        myCardProfile.className = 'cardprofile';
-
-                            var myProfilePicFrame =document.createElement('div');
-                            myProfilePicFrame.className = 'profile_pic_frame';
-                            myProfilePicFrame.style.background = 'url(../common/images/profile/' + healthData[i]['profile_filename'] + ') no-repeat';
-                            myProfilePicFrame.style.backgroundPosition = 'center';
-                            myProfilePicFrame.style.backgroundSize = 'cover';
-
-                        myCardProfile.appendChild(myProfilePicFrame);
-
-                    myCardHeader.appendChild(myCardDate);
-                    myCardHeader.appendChild(myCardProfile);
-
-                    var myCardContents = document.createElement('div');
-                    myCardContents.className = 'cardcontents';
-
-                        var myCardData = document.createElement('div');
-                            myCardData.className = 'carddata';
-                            var myTable = document.createElement('table');
-                                var tableStr = "";
-                                tableStr += '<tr>';
-                                tableStr += '<th>体重</>';
-                                tableStr += '<td class="tdData">';
-                                tableStr += healthData[i]['weight'];
-                                tableStr += '</td>';
-                                tableStr += '<td class="tdUnit">g</td>';
-                                tableStr += '</tr>'
-
-                                tableStr += '<tr>';
-                                tableStr += '<th>長さ</>';
-                                tableStr += '<td class="tdData">';
-                                tableStr += healthData[i]['vertical'];
-                                tableStr += '</td>';
-                                tableStr += '<td class="tdUnit">cm</td>';
-                                tableStr += '</tr>'
-
-                                tableStr += '<tr>';
-                                tableStr += '<th>幅</>';
-                                tableStr += '<td class="tdData">';
-                                tableStr += healthData[i]['horizontal'];
-                                tableStr += '</td>';
-                                tableStr += '<td class="tdUnit">cm</td>';
-                                tableStr += '</tr>'
-
-                                tableStr += '<tr>';
-                                tableStr += '<th>高さ</>';
-                                tableStr += '<td class="tdData">';
-                                tableStr += healthData[i]['height'];
-                                tableStr += '</td>';
-                                tableStr += '<td class="tdUnit">cm</td>';
-                                tableStr += '</tr>'
-
-                            myTable.innerHTML = tableStr;
-
-                        myCardData.appendChild(myTable);
-
-                        var myCardnotes = document.createElement('div');
-                            myCardnotes.className = 'cardnotes';
-                        myCardnotes.innerHTML = healthData[i]['note'];
-
-                        var myAction = document.createElement('div');
-                            myAction.className = 'action';
-                                var myiconwrap1 = document.createElement('div');
-                                    myiconwrap1.className = 'iconwrap';
-
-                                    var formStr1 = "";
-                                    formStr1 += '<form action="input/mesurement_input.php" method="post">';
-                                    formStr1 += '<input type="hidden" name="mode" value="edit">';
-                                    formStr1 += '<input type="hidden" name="mesurement_id" value="';
-                                    formStr1 += healthData[i]['mesurement_id'];
-                                    formStr1 += '">';
-                                    formStr1 += '<label>';
-                                    formStr1 += '<button type="submit" class="hidden_btn">隠しボタン</button>';
-                                    formStr1 += '<i class="fas fa-edit"></i>';
-                                    formStr1 += '</label>';
-                                    formStr1 += '</form>';
-                                myiconwrap1.innerHTML = formStr1;
-
-                                var myiconwrap2 = document.createElement('div');
-                                    myiconwrap2.className = 'iconwrap';
-
-                                    var formStr2 = "";
-                                    formStr2 += '<form action="" onsubmit="return deleteConfirm()" method="post">';
-                                    formStr2 += '<input type="hidden" name="mesurement_id" value="';
-                                    formStr2 += healthData[i]['mesurement_id'];
-                                    formStr2 += '">';
-                                    formStr2 += '<input type="hidden" name="mode" value="delete">';
-                                    formStr2 += '<label>';
-                                    formStr2 += '<button type="submit" class="hidden_btn">隠しボタン</button>';
-                                    formStr2 += '<i class="far fa-trash-alt"></i>';
-                                    formStr2 += '</label>';
-                                    formStr2 += '</form>';
-                                myiconwrap2.innerHTML = formStr2;
-
-                            myAction.appendChild(myiconwrap1);
-                            myAction.appendChild(myiconwrap2);
-
-                    myCardContents.appendChild(myCardData);
-                    myCardContents.appendChild(myCardnotes);
-                    myCardContents.appendChild(myAction);
-
-                myCardRight.appendChild(myCardHeader);
-                myCardRight.appendChild(myCardContents);
-
-                myCard.appendChild(myCardLeft);
-                myCard.appendChild(myCardRight);
-
-                var myContainer = document.getElementById('mycontainer');
-                myContainer.appendChild(myCard);
-            }
-        }
-
-        healthDataMark();
-
-        function deleteConfirm(){
-            if(window.confirm("本当に削除しますか？アップロードした画像も削除されます。")){
-                return true;
-            }else{
-                window.alert('キャンセルしました');
-                return false;
-            }
-        }
-
+        //データ削除処理からこの画面に戻った場合に処理結果をトースト表示する
         <?php 
-
-        echo 'window.onload = function(){';
-            if(isset($result_db_delete)){
-                echo 'toastr.' . $toast_type_db . '("' . $toast_message_db . '");'."\n";
-            }
-            if(isset($result_file_delete)){
-                echo 'toastr.' . $toast_type_file . '("' . $toast_message_file . '");'."\n";
-            }
+            echo 'window.onload = function(){';
+                if(isset($result_db_delete)){
+                    echo 'toastr.' . $toast_type_db . '("' . $toast_message_db . '");'."\n";
+                }
+                if(isset($result_file_delete)){
+                    echo 'toastr.' . $toast_type_file . '("' . $toast_message_file . '");'."\n";
+                }
             echo '}';
-        
         ?>
-        </script>
-        
-
-        
-
+    </script>
 </body>
 </html>
 
