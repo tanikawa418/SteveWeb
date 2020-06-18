@@ -104,10 +104,10 @@ header {
  
  div.iconwrap {
      display: inline-block;
-     width: 120px;
+     width: 154px;
 
      & form label {
-         text-align: center; //FIXME:効かない！
+         text-align: center; 
     }
 
    &:hover {
@@ -136,7 +136,8 @@ header {
     ************************** */
  div.addmark {
      width: 70px;
-     height: 70px;//FIXME:センタリングされてない
+     height: 70px;
+     line-height: 70px;
  }
  
  

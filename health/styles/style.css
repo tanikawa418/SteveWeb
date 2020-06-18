@@ -375,7 +375,7 @@ div.addmark a {
   }
   div.iconwrap {
     display: inline-block;
-    width: 120px;
+    width: 154px;
   }
   div.iconwrap form label {
     text-align: center;
@@ -402,6 +402,7 @@ div.addmark a {
   div.addmark {
     width: 70px;
     height: 70px;
+    line-height: 70px;
   }
 }
 
