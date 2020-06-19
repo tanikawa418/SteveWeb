@@ -4,7 +4,6 @@ Utility Style : base
 
 ******************************************************************/
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+JP&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+JP&display=swap");
 html, body, p, div, ul, li {
   margin: 0;
   padding: 0;
@@ -429,9 +428,6 @@ div.addmark a {
 Utility Style : base
 
 ******************************************************************/
-  body {
-    font-family: "Noto Sans", "Noto Sans JP";
-  }
   div.mydialog_header {
     height: 60px;
     margin-bottom: 20px;
