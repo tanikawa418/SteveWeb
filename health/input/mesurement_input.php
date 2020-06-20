@@ -30,6 +30,7 @@
                 <p><i class="fas fa-weight"></i> Health Data Entry</p>
             </div>            
             <form action="" method="post" enctype="multipart/form-data" class="form-group">
+                
                 <p class="field_label">日付<span class="required">　(必須)</span></p>
                 <input type="date" name="date" class="form-control input_nm  <?php if($error['date']=='blank'){echo 'field_error';} ?>" value="<?php echo $def_date; ?>">
                 <?php if($error['date']=='blank'){echo '<p class="error">・入力必須です</p>';}?>
@@ -40,29 +41,36 @@
                     <option value="2" selected>Steve2</option>
                 </select>
                 
-                <p class="field_label">体重 (g)<span class="required">　(必須)</span></p>
-                <input type="text" name="weight" class="form-control input_sm <?php if($error['weight']!=''){echo 'field_error';} ?>" placeholder="体重を入力"
-                value="<?php echo $def_weight; ?>">
-                <?php if($error['weight']=='blank'){echo '<p class="error">・入力必須です</p>';}?>
-                <?php if($error['weight']=='type'){echo '<p class="error">・数値で入力してください</p>';}?>
-                
-                <p class="field_label">縦 (cm)<span class="required">　(必須)</span></p>
-                <input type="text" name="vertical" class="form-control input_sm <?php if($error['vertical']!=''){echo 'field_error';} ?>" placeholder="縦の長さを入力" 
-                value="<?php echo $def_vertical; ?>">
-                <?php if($error['vertical']=='blank'){echo '<p class="error">・入力必須です</p>';}?>
-                <?php if($error['vertical']=='type'){echo '<p class="error">・数値で入力してください</p>';}?>
+                <div id="field_wrp_weight">
+                    <p class="field_label">体重 (g)<span class="required">　(必須)</span></p>
+                    <input type="text" name="weight" data-req="1" data-type="num" class="form-control validation input_sm <?php if($error['weight']!=''){echo 'field_error';} ?>" placeholder="体重を入力"
+                    value="<?php echo $def_weight; ?>">
+                    <?php if($error['weight']=='blank'){echo '<p class="error">・入力必須です</p>';}?>
+                    <?php if($error['weight']=='type'){echo '<p class="error">・数値で入力してください</p>';}?>
+                </div>
 
-                <p class="field_label">幅 (cm)<span class="required">　(必須)</span></p>
-                <input type="text" name="horizontal" class="form-control input_sm <?php if($error['horizontal']!=''){echo 'field_error';} ?>" placeholder="横幅を入力" 
-                value="<?php echo $def_horizontal; ?>">
-                <?php if($error['horizontal']=='blank'){echo '<p class="error">・入力必須です</p>';}?>
-                <?php if($error['horizontal']=='type'){echo '<p class="error">・数値で入力してください</p>';}?>
+                <div>
+                    <p class="field_label">縦 (cm)<span class="required">　(必須)</span></p>
+                    <input type="text" name="vertical" data-req="1" data-type="num" class="form-control validation input_sm <?php if($error['vertical']!=''){echo 'field_error';} ?>" placeholder="縦の長さを入力" 
+                    value="<?php echo $def_vertical; ?>">
+                    <?php if($error['vertical']=='blank'){echo '<p class="error">・入力必須です</p>';}?>
+                    <?php if($error['vertical']=='type'){echo '<p class="error">・数値で入力してください</p>';}?>
+                </div>    
 
-                <p class="field_label">高さ (cm)</p>
-                <input type="text" name="height" class="form-control input_sm <?php if($error['height']!=''){echo 'field_error';} ?>" placeholder="高さを入力" 
-                value="<?php echo $def_height;?>">
-                <?php if($error['height']=='type'){echo '<p class="error">・数値で入力してください</p>';}?>
+                <div>
+                    <p class="field_label">幅 (cm)<span class="required">　(必須)</span></p>
+                    <input type="text" name="horizontal" data-req="1" data-type="num" class="form-control validation input_sm <?php if($error['horizontal']!=''){echo 'field_error';} ?>" placeholder="横幅を入力" 
+                    value="<?php echo $def_horizontal; ?>">
+                    <?php if($error['horizontal']=='blank'){echo '<p class="error">・入力必須です</p>';}?>
+                    <?php if($error['horizontal']=='type'){echo '<p class="error">・数値で入力してください</p>';}?>
+                </div>    
 
+                <div>
+                    <p class="field_label">高さ (cm)</p>
+                    <input type="text" name="height" data-req="0" data-type="num" class="form-control validation input_sm <?php if($error['height']!=''){echo 'field_error';} ?>" placeholder="高さを入力" 
+                    value="<?php echo $def_height;?>">
+                    <?php if($error['height']=='type'){echo '<p class="error">・数値で入力してください</p>';}?>
+                </div>    
                 
                 <p class="field_label">コメント</p>
                 <textarea name="note" cols="30" rows="4" class="form-control" placeholder="コメントを入力"><?php echo $def_note;?></textarea>
@@ -89,6 +97,72 @@
             var img = document.getElementById('myPreview');
             img.src = blobUrl;
         })
+        
+        document.addEventListener('DOMContentLoaded',function(){
+            const els = document.querySelectorAll('.validation');
+            const iptObv = new InputObserver(els);
+        })
+
+
+        class ErrorMsg{
+            constructor(target, type, level){
+                this.parent = target instanceof HTMLElement ? target : document.querySelector(target);
+                this.type = type;
+                this.level = level;
+                this.msg = this._getMessage(type);
+            }
+            _getMessage(type){
+                if(type == 'num'){return '数値で入力してください'};
+                if(type == 'blank'){return '入力必須だよ'};
+            }
+            viewMessage(){
+                let msg_el = document.createElement('span');
+                msg_el.className = this.level;
+                msg_el.dataset.err_type = this.type;
+                msg_el.innerHTML = this.msg;
+                this.parent.appendChild(msg_el);
+                let field_el = msg_el.previousElementSibling;
+                field_el.classList.add('field_error');
+            }
+        }
+        
+        class InputObserver{
+        constructor(els){
+            this.DOM = {};
+            this.DOM.els = els;
+            this._init();
+        }
+        
+        _init() {
+            const cb = function(){
+                let parent_node = this.parentNode;
+                let err_span = parent_node.querySelectorAll('span.error');
+                err_span.forEach(element => {
+                    parent_node.removeChild(element);
+                });
+                this.classList.remove('field_error');
+                let err_arr = [];
+                if(this.dataset.type == 'num' && isNaN(this.value)){
+                    err_arr.push([parent_node,this.dataset.type,'error']);
+                }
+                if(this.dataset.req == 1 && !this.value){
+                    err_arr.push([parent_node,'blank','error']);
+                }
+                err_arr.forEach(element => {
+                    let em = new ErrorMsg(element[0],element[1],element[2]);
+                    em.viewMessage();
+                });
+                
+                };
+            
+            this.DOM.els.forEach(element => {
+                element.addEventListener('keyup',cb);
+
+            });
+                
+            };
+        
+    }
         
     </script>
 </body>

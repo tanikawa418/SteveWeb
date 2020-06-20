@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="field_wrp_weight" class="validation_wr">
+        <p class="field_label">体重 (g)</p>
+        <input type="text" name="weight" class="form-control input_sm validation" placeholder="体重を入力" data-req="1" data-type="num"
+        value="">
+    </div>
+    <div id="field_wrp_height" class="validation_wr">
+        <p class="field_label">高さ (cm)</p>
+        <input type="text" name="weight" class="form-control input_sm validation" placeholder="体重を入力" data-type="num"
+        value="">
+    </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded',function(){
+        const els = document.querySelectorAll('.validation');
+        const iptObv = new InputObserver(els);
+    })
+
+    // let test = document.querySelectorAll('.validation');
+    // test.forEach(element => {
+    //     console.log('aaa' + element.type);
+    //     console.log(element instanceof HTMLElement);
+
+    // });
+
+    // let aaa = document.querySelector('#field_wrp_weight');
+    // console.log(aaa.parentElement);
+    class ErrorMsg{
+        constructor(target, type, level){
+            this.parent = target instanceof HTMLElement ? target : document.querySelector(target);
+            this.type = type;
+            this.level = level;
+            this.msg = this._getMessage(type);
+        }
+        _getMessage(type){
+            if(type == 'num'){return '数値で入力してください'};
+            if(type == 'blank'){return '入力必須だよ'};
+        }
+        viewMessage(){
+            let msg_el = document.createElement('span');
+            msg_el.className = this.level;
+            msg_el.dataset.err_type = this.type;
+            msg_el.innerHTML = this.msg;
+            this.parent.appendChild(msg_el);
+            let field_el = msg_el.previousElementSibling;
+            field_el.classList.add('field_error');
+        }
+    }
+
+
+    class InputObserver{
+        constructor(els){
+            this.DOM = {};
+            this.DOM.els = els;
+            this._init();
+        }
+        
+        _init() {
+            const cb = function(){
+                // console.log('入力値 :「' + this.value + '」をつかってバリデーションチェックを実施します');
+                // console.log('テストなので固定エラーとします');
+                // console.log(this instanceof Node);
+                let parent_node = this.parentNode;
+                let err_span = parent_node.querySelectorAll('span.error');
+                err_span.forEach(element => {
+                    parent_node.removeChild(element);
+                });
+
+                // console.log('parent_node isNode : '); 
+                // console.log(parent_node instanceof Node);
+                // console.log(parent_node);
+                console.log('type :' + this.dataset.type);
+                console.log('req :' + this.dataset.req);
+                let err_arr = [];
+                if(this.dataset.type == 'num' && isNaN(this.value)){
+                    // err_type['num'] = 'error';
+                    err_arr.push([parent_node,this.dataset.type,'error']);
+                    console.log(err_arr);
+                }
+                if(this.dataset.req == 1 && !this.value){
+                    err_arr.push([parent_node,'blank','error']);
+                    console.log(err_arr);
+                }
+                // console.log(_minCheck());
+                err_arr.forEach(element => {
+                    console.log(element[0]);
+                    console.log(element[1]);
+                    console.log(element[2]);
+                    // let em = new ErrorMsg(parent_node,this.dataset.type,'error');
+                    let em = new ErrorMsg(element[0],element[1],element[2]);
+                    em.viewMessage();
+                });
+                
+                };
+                // let em = new ErrorMsg(parent_node,this.dataset.type,'error');
+            
+            this.DOM.els.forEach(element => {
+                console.log(element instanceof Node);
+                console.log(element.type);
+                element.addEventListener('keyup',cb);
+
+            });
+                
+            };
+        
+    }
+</script>
+</body>
+</html>
