@@ -127,42 +127,46 @@
         }
         
         class InputObserver{
-        constructor(els){
-            this.DOM = {};
-            this.DOM.els = els;
-            this._init();
-        }
-        
-        _init() {
-            const cb = function(){
-                let parent_node = this.parentNode;
-                let err_span = parent_node.querySelectorAll('span.error');
-                err_span.forEach(element => {
-                    parent_node.removeChild(element);
-                });
-                this.classList.remove('field_error');
-                let err_arr = [];
-                if(this.dataset.type == 'num' && isNaN(this.value)){
-                    err_arr.push([parent_node,this.dataset.type,'error']);
-                }
-                if(this.dataset.req == 1 && !this.value){
-                    err_arr.push([parent_node,'blank','error']);
-                }
-                err_arr.forEach(element => {
-                    let em = new ErrorMsg(element[0],element[1],element[2]);
-                    em.viewMessage();
-                });
-                
-                };
-            
-            this.DOM.els.forEach(element => {
-                element.addEventListener('keyup',cb);
+            constructor(els){
+                this.DOM = {};
+                this.DOM.els = els;
+                this._init();
+            }
+            //TODO:cbをinitにするのではなく、クラスメソッドにして、バックエンドからの処理でも使えるようにすべき
+            //TODO:keyupのEventListener設定もクラスメソッドにし、DOMContentLoadedからそれを呼ぶようにする
+            _init() {
+                const cb = function(){
+                    //親Nodeの取得
+                    let parent_node = this.parentNode;
+                    //既に表示されているエラーメッセージを削除
+                    let err_span = parent_node.querySelectorAll('span.error');
+                    err_span.forEach(element => {
+                        parent_node.removeChild(element);
+                    });
+                    this.classList.remove('field_error');
 
-            });
+                    //チェック処理（今後の拡張に備えて配列で保持する）
+                    let err_arr = [];
+                    if(this.dataset.type == 'num' && isNaN(this.value)){
+                        err_arr.push([parent_node,this.dataset.type,'error']);
+                    }
+                    if(this.dataset.req == 1 && !this.value){
+                        err_arr.push([parent_node,'blank','error']);
+                    }
+                    //TODO:この部分も独立したクラスメソッドにして、PHPから配列を渡してそれを呼ぶようにする
+                    err_arr.forEach(element => {
+                        //ErrorMsgをインスタンス化
+                        let em = new ErrorMsg(element[0],element[1],element[2]);
+                        em.viewMessage();
+                    });
+                };
                 
+                //渡ってきたすべてのelsに対してEventListener設定（コールバックでcbを指定）
+                this.DOM.els.forEach(element => {
+                    element.addEventListener('keyup',cb);
+                });
             };
-        
-    }
+        }
         
     </script>
 </body>
