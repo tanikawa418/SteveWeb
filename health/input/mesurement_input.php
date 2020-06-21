@@ -72,8 +72,10 @@
                     <?php if($error['height']=='type'){echo '<p class="error">・数値で入力してください</p>';}?>
                 </div>    
                 
-                <p class="field_label">コメント</p>
-                <textarea name="note" cols="30" rows="4" class="form-control" placeholder="コメントを入力"><?php echo $def_note;?></textarea>
+                <div>
+                    <p class="field_label">コメント</p>
+                    <textarea name="note" cols="30" rows="4" class="form-control validation" data-min="5" data-max="10" placeholder="コメントを入力"><?php echo $def_note;?></textarea>
+                </div>
                 
                 <p class="field_label">写真をアップロード</p>
                 <img id="myPreview" src="<?php echo $def_preview; ?>" alt="">
@@ -107,14 +109,20 @@
 
         class ErrorMsg{
             constructor(target, type, level){
-                this.parent = target instanceof HTMLElement ? target : document.querySelector(target);
+                //Nodeでもセレクタ文字列でも受け取れるようにしておく
+                this.el = target instanceof HTMLElement ? target : document.querySelector(target);
+                this.parent = this.el.parentNode;
                 this.type = type;
                 this.level = level;
+                this.min = this.el.dataset.min;
+                this.max = this.el.dataset.max;
                 this.msg = this._getMessage(type);
             }
             _getMessage(type){
                 if(type == 'num'){return '数値で入力してください'};
-                if(type == 'blank'){return '入力必須だよ'};
+                if(type == 'blank'){return '入力必須です'};
+                if(type == 'max'){return `長すぎです。${this.max}文字以内で入力してください。`};
+                if(type == 'min'){return `短すぎです。${this.min}文字以内で入力してください。`};
             }
             viewMessage(){
                 let msg_el = document.createElement('span');
@@ -131,7 +139,6 @@
             constructor(els){
                 this.DOM = {};
                 this.DOM.els = els;
-                // this._init();
             }
             setEventLinstener() {
                 const cb = function(e){
@@ -154,11 +161,16 @@
                         if(this.dataset.req == 1 && !this.value){
                             err_arr.push([parent_node,'blank','error']);
                         }
-                        console.log(this.value.length);
+                        if(this.dataset.max && this.value.length > this.dataset.max){
+                            err_arr.push([parent_node,'max','error']);
+                        }
+                        if(this.dataset.min && this.value.length < this.dataset.min){
+                            err_arr.push([parent_node,'min','error']);
+                        }
                         //TODO:この部分も独立したクラスメソッドにして、PHPから配列を渡してそれを呼ぶようにする
                         err_arr.forEach(element => {
                             //ErrorMsgをインスタンス化
-                            let em = new ErrorMsg(element[0],element[1],element[2]);
+                            let em = new ErrorMsg(this,element[1],element[2]);
                             em.viewMessage();
                         });
                     }
