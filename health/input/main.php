@@ -106,6 +106,8 @@
 
                     header('Location: ../mesurement.php');
                     exit();
+                }else{
+                    $jsondata = json_encode($error);
                 }
             }
 
@@ -144,6 +146,8 @@
                 
                 header('Location: ../mesurement.php');
                 exit();
+            }else{
+                $jsondata = json_encode($error);
             }
         }
     }else{

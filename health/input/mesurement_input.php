@@ -32,18 +32,18 @@
             <form action="" method="post" enctype="multipart/form-data" class="form-group">
                 
                 <p class="field_label">日付<span class="required">　(必須)</span></p>
-                <input type="date" name="date" class="form-control input_nm  <?php if($error['date']=='blank'){echo 'field_error';} ?>" value="<?php echo $def_date; ?>">
+                <input id="date" type="date" name="date" class="form-control input_nm  <?php if($error['date']=='blank'){echo 'field_error';} ?>" value="<?php echo $def_date; ?>">
                 <?php if($error['date']=='blank'){echo '<p class="error">・入力必須です</p>';}?>
 
                 <p class="field_label">カメの名前<span class="required">　(必須)</span></p>
-                <select class="form-control input_nm" name="pet">
+                <select  id="pet" class="form-control input_nm" name="pet">
                     <option value="1">Steve1</option>
                     <option value="2" selected>Steve2</option>
                 </select>
                 
                 <div id="field_wrp_weight">
                     <p class="field_label">体重 (g)<span class="required">　(必須)</span></p>
-                    <input type="text" name="weight" data-req="1" data-type="num" class="form-control validation input_sm <?php if($error['weight']!=''){echo 'field_error';} ?>" placeholder="体重を入力"
+                    <input id="weight" type="text" name="weight" data-req="1" data-type="num" class="form-control validation input_sm <?php if($error['weight']!=''){echo 'field_error';} ?>" placeholder="体重を入力"
                     value="<?php echo $def_weight; ?>">
                     <?php if($error['weight']=='blank'){echo '<p class="error">・入力必須です</p>';}?>
                     <?php if($error['weight']=='type'){echo '<p class="error">・数値で入力してください</p>';}?>
@@ -51,7 +51,7 @@
 
                 <div>
                     <p class="field_label">縦 (cm)<span class="required">　(必須)</span></p>
-                    <input type="text" name="vertical" data-req="1" data-type="num" class="form-control validation input_sm <?php if($error['vertical']!=''){echo 'field_error';} ?>" placeholder="縦の長さを入力" 
+                    <input id="vertical" type="text" name="vertical" data-req="1" data-type="num" class="form-control validation input_sm <?php if($error['vertical']!=''){echo 'field_error';} ?>" placeholder="縦の長さを入力" 
                     value="<?php echo $def_vertical; ?>">
                     <?php if($error['vertical']=='blank'){echo '<p class="error">・入力必須です</p>';}?>
                     <?php if($error['vertical']=='type'){echo '<p class="error">・数値で入力してください</p>';}?>
@@ -59,7 +59,7 @@
 
                 <div>
                     <p class="field_label">幅 (cm)<span class="required">　(必須)</span></p>
-                    <input type="text" name="horizontal" data-req="1" data-type="num" class="form-control validation input_sm <?php if($error['horizontal']!=''){echo 'field_error';} ?>" placeholder="横幅を入力" 
+                    <input id="horizontal" type="text" name="horizontal" data-req="1" data-type="num" class="form-control validation input_sm <?php if($error['horizontal']!=''){echo 'field_error';} ?>" placeholder="横幅を入力" 
                     value="<?php echo $def_horizontal; ?>">
                     <?php if($error['horizontal']=='blank'){echo '<p class="error">・入力必須です</p>';}?>
                     <?php if($error['horizontal']=='type'){echo '<p class="error">・数値で入力してください</p>';}?>
@@ -67,7 +67,7 @@
 
                 <div>
                     <p class="field_label">高さ (cm)</p>
-                    <input type="text" name="height" data-req="0" data-type="num" class="form-control validation input_sm <?php if($error['height']!=''){echo 'field_error';} ?>" placeholder="高さを入力" 
+                    <input id="height" type="text" name="height" data-req="0" data-type="num" class="form-control validation input_sm <?php if($error['height']!=''){echo 'field_error';} ?>" placeholder="高さを入力" 
                     value="<?php echo $def_height;?>">
                     <?php if($error['height']=='type'){echo '<p class="error">・数値で入力してください</p>';}?>
                 </div>    
@@ -89,8 +89,10 @@
             </form>
         </div>
     </div>
+    <script src="../../common/js/ErrorMsg.js"></script>
+    <script src="../../common/js/InputObserver.js"></script>
     <script>
-        //画像プレビュー
+        //画像プレビュー処理
         var myImage = document.getElementById('myImage');
         myImage.addEventListener('change',function(e){
             var file = e.target.files[0];
@@ -100,89 +102,27 @@
             img.src = blobUrl;
         })
         
+        //バリデーション入力監視を設定
         document.addEventListener('DOMContentLoaded',function(){
             const els = document.querySelectorAll('.validation');
             const iptObv = new InputObserver(els);
             iptObv.setEventLinstener();
+
+            //PHPからエラー配列を受け取る
+            // let submit_error = {};
+            const submit_error = <?php if(isset($jsondata)){echo $jsondata;}else{echo '{}';} ?>;
+            if(submit_error){
+                console.log(submit_error);
+                for (const key in submit_error) {
+                    if (submit_error.hasOwnProperty(key)) {
+                        const element = submit_error[key];
+                        er = new ErrorMsg(`#${key}`,element,'error');
+                        er.viewMessage();
+                    }
+                }
+            }
         })
 
-
-        class ErrorMsg{
-            constructor(target, type, level){
-                //Nodeでもセレクタ文字列でも受け取れるようにしておく
-                this.el = target instanceof HTMLElement ? target : document.querySelector(target);
-                this.parent = this.el.parentNode;
-                this.type = type;
-                this.level = level;
-                this.min = this.el.dataset.min;
-                this.max = this.el.dataset.max;
-                this.msg = this._getMessage(type);
-            }
-            _getMessage(type){
-                if(type == 'num'){return '数値で入力してください'};
-                if(type == 'blank'){return '入力必須です'};
-                if(type == 'max'){return `長すぎです。${this.max}文字以内で入力してください。`};
-                if(type == 'min'){return `短すぎです。${this.min}文字以内で入力してください。`};
-            }
-            viewMessage(){
-                let msg_el = document.createElement('span');
-                msg_el.className = this.level;
-                msg_el.dataset.err_type = this.type;
-                msg_el.innerHTML = this.msg;
-                this.parent.appendChild(msg_el);
-                let field_el = msg_el.previousElementSibling;
-                field_el.classList.add('field_error');
-            }
-        }
-        
-        class InputObserver{
-            constructor(els){
-                this.DOM = {};
-                this.DOM.els = els;
-            }
-            setEventLinstener() {
-                const cb = function(e){
-                    const keycd = e.keyCode;
-                    if(keycd != 9){ //Tabキー移動の際は除外
-                        //親Nodeの取得
-                        let parent_node = this.parentNode;
-                        //既に表示されているエラーメッセージを削除
-                        let err_span = parent_node.querySelectorAll('span.error');
-                        err_span.forEach(element => {
-                            parent_node.removeChild(element);
-                        });
-                        this.classList.remove('field_error');
-    
-                        //チェック処理（今後の拡張に備えて配列で保持する）
-                        let err_arr = [];
-                        if(this.dataset.type == 'num' && isNaN(this.value)){
-                            err_arr.push([parent_node,this.dataset.type,'error']);
-                        }
-                        if(this.dataset.req == 1 && !this.value){
-                            err_arr.push([parent_node,'blank','error']);
-                        }
-                        if(this.dataset.max && this.value.length > this.dataset.max){
-                            err_arr.push([parent_node,'max','error']);
-                        }
-                        if(this.dataset.min && this.value.length < this.dataset.min){
-                            err_arr.push([parent_node,'min','error']);
-                        }
-                        //TODO:この部分も独立したクラスメソッドにして、PHPから配列を渡してそれを呼ぶようにする
-                        err_arr.forEach(element => {
-                            //ErrorMsgをインスタンス化
-                            let em = new ErrorMsg(this,element[1],element[2]);
-                            em.viewMessage();
-                        });
-                    }
-                };
-                
-                //渡ってきたすべてのelsに対してEventListener設定（コールバックでcbを指定）
-                this.DOM.els.forEach(element => {
-                    element.addEventListener('keyup',cb);
-                });
-            };
-        }
-        
     </script>
 </body>
 </html>

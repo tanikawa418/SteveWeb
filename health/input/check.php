@@ -9,22 +9,22 @@
     if ($_POST['weight'] === '') {
         $error['weight'] = 'blank';
     } elseif (is_numeric(numConvert($_POST['weight'])) != 1) {
-        $error['weight'] = 'type';
+        $error['weight'] = 'num';
     }
     if ($_POST['vertical'] === '') {
         $error['vertical'] = 'blank';
     } elseif (is_numeric(numConvert($_POST['vertical'])) != 1) {
-        $error['vertical'] = 'type';
+        $error['vertical'] = 'num';
     }
     if ($_POST['horizontal'] === '') {
         $error['horizontal'] = 'blank';
     } elseif (is_numeric(numConvert($_POST['horizontal'])) != 1) {
-        $error['horizontal'] = 'type';
+        $error['horizontal'] = 'num';
     }
     if ($_POST['height'] === '') {
         // $error['height'] = 'blank';
     } elseif (is_numeric(numConvert($_POST['height'])) != 1) {
-        $error['height'] = 'type';
+        $error['height'] = 'num';
     }
 
     //全角数値入力された値を半角に置き換え
