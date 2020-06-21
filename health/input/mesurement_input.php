@@ -32,8 +32,7 @@
             <form action="" method="post" enctype="multipart/form-data" class="form-group">
                 
                 <p class="field_label">日付<span class="required">　(必須)</span></p>
-                <input id="date" type="date" name="date" class="form-control input_nm  <?php if($error['date']=='blank'){echo 'field_error';} ?>" value="<?php echo $def_date; ?>">
-                <?php if($error['date']=='blank'){echo '<p class="error">・入力必須です</p>';}?>
+                <input id="date" type="date" name="date" class="form-control input_nm" value="<?php echo $def_date; ?>">
 
                 <p class="field_label">カメの名前<span class="required">　(必須)</span></p>
                 <select  id="pet" class="form-control input_nm" name="pet">
@@ -43,33 +42,26 @@
                 
                 <div id="field_wrp_weight">
                     <p class="field_label">体重 (g)<span class="required">　(必須)</span></p>
-                    <input id="weight" type="text" name="weight" data-req="1" data-type="num" class="form-control validation input_sm <?php if($error['weight']!=''){echo 'field_error';} ?>" placeholder="体重を入力"
+                    <input id="weight" type="text" name="weight" data-req="1" data-type="num" class="form-control validation input_sm" placeholder="体重を入力"
                     value="<?php echo $def_weight; ?>">
-                    <?php if($error['weight']=='blank'){echo '<p class="error">・入力必須です</p>';}?>
-                    <?php if($error['weight']=='type'){echo '<p class="error">・数値で入力してください</p>';}?>
                 </div>
 
                 <div>
                     <p class="field_label">縦 (cm)<span class="required">　(必須)</span></p>
-                    <input id="vertical" type="text" name="vertical" data-req="1" data-type="num" class="form-control validation input_sm <?php if($error['vertical']!=''){echo 'field_error';} ?>" placeholder="縦の長さを入力" 
+                    <input id="vertical" type="text" name="vertical" data-req="1" data-type="num" class="form-control validation input_sm" placeholder="縦の長さを入力" 
                     value="<?php echo $def_vertical; ?>">
-                    <?php if($error['vertical']=='blank'){echo '<p class="error">・入力必須です</p>';}?>
-                    <?php if($error['vertical']=='type'){echo '<p class="error">・数値で入力してください</p>';}?>
                 </div>    
 
                 <div>
                     <p class="field_label">幅 (cm)<span class="required">　(必須)</span></p>
-                    <input id="horizontal" type="text" name="horizontal" data-req="1" data-type="num" class="form-control validation input_sm <?php if($error['horizontal']!=''){echo 'field_error';} ?>" placeholder="横幅を入力" 
+                    <input id="horizontal" type="text" name="horizontal" data-req="1" data-type="num" class="form-control validation input_sm" placeholder="横幅を入力" 
                     value="<?php echo $def_horizontal; ?>">
-                    <?php if($error['horizontal']=='blank'){echo '<p class="error">・入力必須です</p>';}?>
-                    <?php if($error['horizontal']=='type'){echo '<p class="error">・数値で入力してください</p>';}?>
                 </div>    
 
                 <div>
                     <p class="field_label">高さ (cm)</p>
-                    <input id="height" type="text" name="height" data-req="0" data-type="num" class="form-control validation input_sm <?php if($error['height']!=''){echo 'field_error';} ?>" placeholder="高さを入力" 
+                    <input id="height" type="text" name="height" data-req="0" data-type="num" class="form-control validation input_sm" placeholder="高さを入力" 
                     value="<?php echo $def_height;?>">
-                    <?php if($error['height']=='type'){echo '<p class="error">・数値で入力してください</p>';}?>
                 </div>    
                 
                 <div>
@@ -102,14 +94,13 @@
             img.src = blobUrl;
         })
         
-        //バリデーション入力監視を設定
         document.addEventListener('DOMContentLoaded',function(){
+            //バリデーション入力監視を起動
             const els = document.querySelectorAll('.validation');
             const iptObv = new InputObserver(els);
             iptObv.setEventLinstener();
 
-            //PHPからエラー配列を受け取る
-            // let submit_error = {};
+            //submit後にPHPからエラー配列を受け取った場合のエラーメッセージ表示
             const submit_error = <?php if(isset($jsondata)){echo $jsondata;}else{echo '{}';} ?>;
             if(submit_error){
                 console.log(submit_error);
