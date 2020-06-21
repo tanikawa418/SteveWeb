@@ -101,6 +101,7 @@
         document.addEventListener('DOMContentLoaded',function(){
             const els = document.querySelectorAll('.validation');
             const iptObv = new InputObserver(els);
+            iptObv.setEventLinstener();
         })
 
 
@@ -130,35 +131,37 @@
             constructor(els){
                 this.DOM = {};
                 this.DOM.els = els;
-                this._init();
+                // this._init();
             }
-            //TODO:cbをinitにするのではなく、クラスメソッドにして、バックエンドからの処理でも使えるようにすべき
-            //TODO:keyupのEventListener設定もクラスメソッドにし、DOMContentLoadedからそれを呼ぶようにする
-            _init() {
-                const cb = function(){
-                    //親Nodeの取得
-                    let parent_node = this.parentNode;
-                    //既に表示されているエラーメッセージを削除
-                    let err_span = parent_node.querySelectorAll('span.error');
-                    err_span.forEach(element => {
-                        parent_node.removeChild(element);
-                    });
-                    this.classList.remove('field_error');
-
-                    //チェック処理（今後の拡張に備えて配列で保持する）
-                    let err_arr = [];
-                    if(this.dataset.type == 'num' && isNaN(this.value)){
-                        err_arr.push([parent_node,this.dataset.type,'error']);
+            setEventLinstener() {
+                const cb = function(e){
+                    const keycd = e.keyCode;
+                    if(keycd != 9){ //Tabキー移動の際は除外
+                        //親Nodeの取得
+                        let parent_node = this.parentNode;
+                        //既に表示されているエラーメッセージを削除
+                        let err_span = parent_node.querySelectorAll('span.error');
+                        err_span.forEach(element => {
+                            parent_node.removeChild(element);
+                        });
+                        this.classList.remove('field_error');
+    
+                        //チェック処理（今後の拡張に備えて配列で保持する）
+                        let err_arr = [];
+                        if(this.dataset.type == 'num' && isNaN(this.value)){
+                            err_arr.push([parent_node,this.dataset.type,'error']);
+                        }
+                        if(this.dataset.req == 1 && !this.value){
+                            err_arr.push([parent_node,'blank','error']);
+                        }
+                        console.log(this.value.length);
+                        //TODO:この部分も独立したクラスメソッドにして、PHPから配列を渡してそれを呼ぶようにする
+                        err_arr.forEach(element => {
+                            //ErrorMsgをインスタンス化
+                            let em = new ErrorMsg(element[0],element[1],element[2]);
+                            em.viewMessage();
+                        });
                     }
-                    if(this.dataset.req == 1 && !this.value){
-                        err_arr.push([parent_node,'blank','error']);
-                    }
-                    //TODO:この部分も独立したクラスメソッドにして、PHPから配列を渡してそれを呼ぶようにする
-                    err_arr.forEach(element => {
-                        //ErrorMsgをインスタンス化
-                        let em = new ErrorMsg(element[0],element[1],element[2]);
-                        em.viewMessage();
-                    });
                 };
                 
                 //渡ってきたすべてのelsに対してEventListener設定（コールバックでcbを指定）
