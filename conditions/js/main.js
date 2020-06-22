@@ -24,7 +24,7 @@ window.addEventListener('resize', function (event) {
 });
 
 
-//非同期データ更新処理
+//初期表示処理
 window.addEventListener("load",function(){
     //asyncによるNewData更新処理
     var req = new XMLHttpRequest();
@@ -52,6 +52,21 @@ window.addEventListener("load",function(){
     req.open('POST', 'load_csv.php',true);
     req.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
     req.send(1);
+
+    //DB上の最新日を画面に反映
+    let db_max_date = new Date(conditionData[conditionData.length -1]['date']);
+    document.getElementById('date_d').innerHTML = createDateStr(db_max_date);
+
+    //各種ボタンのクリックイベントを設定
+    document.querySelector('#prev_btn').addEventListener('click',function(){
+        changeDate(-1);
+    });
+    document.querySelector('#next_btn').addEventListener('click',function(){
+        changeDate(1);
+    });
+    document.querySelector('#reload_btn').addEventListener('click', function(){
+        location.reload(true);
+    });
 
     createData();
     drawGraph();
@@ -85,3 +100,4 @@ function createDateStr(date){
 
     return format_str;
 }
+
