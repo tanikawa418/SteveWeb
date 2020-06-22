@@ -8,13 +8,10 @@ $sql = 'SELECT * FROM cage_conditions';
 $response = $db->query($sql,PDO::FETCH_ASSOC);
 $arr_conditions = $response->fetchAll(PDO::FETCH_ASSOC);
 
-// print_r(str_replace('-','/',substr(end($arr_conditions)['date'],0,10)));
-
 $max_date_str = str_replace('-','/',substr(end($arr_conditions)['date'],0,10));
 
 // JSに配列渡し
 $jsonData = json_encode($arr_conditions);
-// print_r($jsonData);
 
 ?>
 
@@ -31,7 +28,7 @@ $jsonData = json_encode($arr_conditions);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.css">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js" type="text/javascript" ></script>
-    <link rel="stylesheet" href="style.css?dummy">
+    <link rel="stylesheet" href="styles/style.css">
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -81,7 +78,6 @@ $jsonData = json_encode($arr_conditions);
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <!-- <h2>Daily Data</h2> -->
                 <div class="summary graph_wrapper">
                     <button onclick="changeDate(-1)">Prev</button>
                     <span id="date_d"><?php echo $max_date_str ?></span> <!--phpで最大日を設定する -->
@@ -124,7 +120,7 @@ $jsonData = json_encode($arr_conditions);
     }
 
 
-    //基準日のデータを格納する配列の定義
+    //基準日のデータを格納するobjectを定義
     var tmp_data={};
     var hmd_data={};
 
@@ -163,7 +159,7 @@ $jsonData = json_encode($arr_conditions);
         var tmp_min = 100;
         var hmd_min = 100;
         
-        //時刻パターンと等しいデータを連想配列tmp_dataから取得し新しい配列に格納する
+        //時刻パターンと等しいデータを連想配列tmp_dataから取得し、配列に格納する
         for(var x = 0; x<timePattern.length; x++){
             var lab_time = timePattern[x];
             tmp_graph_data[x] = null; //データ欠損に備えて、Nullで要素を作っておく
