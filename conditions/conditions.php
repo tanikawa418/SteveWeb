@@ -1,20 +1,17 @@
 <?php
-require("../common/php/login_check.php");
-require('../common/php/dbconnect.php');
+    require("../common/php/login_check.php");
+    require('../common/php/dbconnect.php');
 
 
-//データ取得処理
-$sql = 'SELECT * FROM cage_conditions';
-$response = $db->query($sql,PDO::FETCH_ASSOC);
-$arr_conditions = $response->fetchAll(PDO::FETCH_ASSOC);
+    //データ取得処理
+    $sql = 'SELECT * FROM cage_conditions';
+    $response = $db->query($sql,PDO::FETCH_ASSOC);
+    $arr_conditions = $response->fetchAll(PDO::FETCH_ASSOC);
 
-// print_r(str_replace('-','/',substr(end($arr_conditions)['date'],0,10)));
+    $max_date_str = str_replace('-','/',substr(end($arr_conditions)['date'],0,10));
 
-$max_date_str = str_replace('-','/',substr(end($arr_conditions)['date'],0,10));
-
-// JSに配列渡し
-$jsonData = json_encode($arr_conditions);
-// print_r($jsonData);
+    // JSに配列渡し
+    $jsonData = json_encode($arr_conditions);
 
 ?>
 
@@ -65,7 +62,7 @@ $jsonData = json_encode($arr_conditions);
     </header>
     <div class="mycontainer cf" id="mycontainer">
         <span id="async_msg"></span>
-        <button id="reload_btn" onclick="location.reload(true)">Reload</button>
+        <button id="reload_btn">Reload</button>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Daily</a>
@@ -81,9 +78,9 @@ $jsonData = json_encode($arr_conditions);
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                 <!-- <h2>Daily Data</h2> -->
                 <div class="summary graph_wrapper">
-                    <button onclick="changeDate(-1)">Prev</button>
-                    <span id="date_d"><?php echo $max_date_str ?></span> <!--phpで最大日を設定する -->
-                    <button onclick="changeDate(1)">Next</button>
+                    <button id="prev_btn">Prev</button>
+                    <span id="date_d"></span> <!--phpで最大日を設定する -->
+                    <button id="next_btn">Next</button>
                     <br>
                     <i class="fas fa-thermometer-half"></i>  Ave : <span class="summary_d" id="tmp_ave"></span>
                 ℃ (<span class="summary_d" id="tmp_min"></span>
@@ -105,6 +102,7 @@ $jsonData = json_encode($arr_conditions);
     <script>
     //PHPからのデータ授受
         const conditionData = <?php echo $jsonData; ?>;
+        console.log(conditionData[conditionData.length -1]['date']);
     </script>
     <script src="js/graph.js"></script>
     <script src="js/main.js"></script>
