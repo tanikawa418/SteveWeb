@@ -38,8 +38,6 @@ window.addEventListener("load",function(){
                 var myresult = JSON.parse(req.responseText);
                 result.innerHTML = req.response;
                 result.innerHTML = myresult['res_msg'];
-                console.log(req.responseText);
-                console.log('hoho');
                 var is_added = myresult['success'];
                 if(is_added > 0){
                     document.getElementById('reload_btn').style.display = 'inline-block';

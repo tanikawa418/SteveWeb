@@ -8,6 +8,8 @@ $dir = 'C:/Users/itani/Dropbox/Private/STEVE/CageCondition/';
 
 $files = glob($dir . '*.csv');
 
+$success = 0;
+$failed = 0;
 foreach($files as $file){
     $data = file_get_contents($file);
     
@@ -24,8 +26,6 @@ foreach($files as $file){
     }
     fclose($temp);
     
-    $success = 0;
-    $failed = 0;
     for ($i=1; $i < count($csv); $i++){
         $sql = 'INSERT INTO `cage_conditions`(`date`, `device_name`, `temperature`, `humidity`,`modified`) VALUES ("' . $csv[$i][0] . '","Steve01","' . $csv[$i][1] . '","' . $csv[$i][2] . '",now());';
         $stmt = $db->prepare($sql);
@@ -56,6 +56,6 @@ if(count($files)>0){
 }
 
     header('Content-Type: application/x-www-form-urlencoded;charset=UTF-8');
-    echo json_encode(compact('res_msg','success'));
+    echo json_encode(compact('res_msg','success','failed'));
 
 ?>
