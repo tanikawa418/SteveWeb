@@ -43,9 +43,10 @@ foreach($files as $file){
 if(count($files)>0){
     if($success + $failed > 0){
         if($success == 0){
-            $res_msg = 'No updates.'; //すべて処理済データだった場合
+            $res_msg = 'No updates.'.$success;
         }else{
-            $res_msg = count($files) . ' file(s) done, ' . $success . ' new records successfully added.'; //1件以上登録された場合
+            $res_msg = count($files) . ' file(s) done, ' . $success . ' new records successfully added.'; 
+            $res_msg = 'records successfully added.'; 
         }
     }else{
         // $error = 'Failed.';

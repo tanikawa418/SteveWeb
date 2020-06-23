@@ -33,7 +33,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     
-    <link rel="stylesheet" href="gallery.css">
+    <link rel="stylesheet" href="styles/style.css">
     <title>Gallery</title>
 </head>
 <body>
@@ -60,6 +60,9 @@
                 <i class="fas fa-star"></i>
                 身体測定画像
                 <i class="fas fa-weight"></i>
+                <button id="small_btn">small</button>
+                <button id="normal_btn">normal</button>
+                <button id="large_btn">large</button>
 
             </div>
             <div></div>
@@ -73,22 +76,22 @@
 
         <div class="photarea">
             <ul>
-                <li>
+                 <li class="size_normal">
                     <a href="images/2019-08-25 20.21.00_preview.jpeg" data-lightbox = "lb"><img class="thumbnails size-nrm" src="thumbnail.php" alt=""></a>
                 </li>
-                <li>
+                <li class="size_normal">
                     <a href="images/2019-08-25 20.21.00_preview.jpeg" data-lightbox = "lb" ><img class="thumbnails size-nrm" src="thumbnail.php" alt=""></a>
                 </li>
-                <li>
+                <li class="size_normal">
                     <a href="images/2019-08-25 17.18.27_preview.jpeg" data-lightbox="lb"><img class="thumbnails size-nrm" src="images/2019-08-25 17.18.27_preview.jpeg" alt=""></a>
                 </li>
-                <li>
+                <li class="size_normal">
                     <a href="images/2019-08-25 17.17.20_preview.jpeg" data-lightbox = "lb"><img class="thumbnails size-nrm" src="images/2019-08-25 17.17.20_preview.jpeg" alt=""></a>
                 </li>
-                <li>
+                <li class="size_normal">
                     <a href="images/2019-08-25 17.17.20_preview.jpeg" data-lightbox = "lb"><img class="thumbnails size-nrm" src="images/2019-08-25 17.17.20_preview.jpeg" alt=""></a>
                 </li>
-                <li>
+                <li class="size_normal">
                     <a href="images/2019-08-25 17.17.20_preview.jpeg" data-lightbox = "lb"><img class="thumbnails size-nrm" src="images/2019-08-25 17.17.20_preview.jpeg" alt=""></a>
                 </li>
             </ul>
@@ -100,22 +103,34 @@
             </div>
 
             <ul>
-                <li>
+                 <li class="size_normal">
                     <a href="images/2019-08-25 17.17.20_preview.jpeg" data-lightbox = "lb"><img class="thumbnails size-nrm" src="images/2019-08-25 17.17.20_preview.jpeg" alt=""></a>
                 </li>
-                <li>
+                 <li class="size_normal">
                     <a href="images/2019-08-25 20.21.00_preview.jpeg" data-lightbox = "lb" ><img class="thumbnails size-nrm" src="images/2019-08-25 20.21.00_preview.jpeg" alt=""></a>
                 </li>
-                <li>
+                 <li class="size_normal">
                     <a href="images/2019-08-25 17.18.27_preview.jpeg" data-lightbox="lb"><img class="thumbnails size-nrm" src="images/2019-08-25 17.18.27_preview.jpeg" alt=""></a>
                 </li>
-                <li>
+                 <li class="size_normal">
                     <a href="images/2019-08-25 17.17.20_preview.jpeg" data-lightbox = "lb"><img class="thumbnails size-nrm" src="images/2019-08-25 17.17.20_preview.jpeg" alt=""></a>
                 </li>
-                <li>
+                 <li class="size_normal">
                     <a href="images/2019-08-25 17.17.20_preview.jpeg" data-lightbox = "lb"><img class="thumbnails size-nrm" src="images/2019-08-25 17.17.20_preview.jpeg" alt=""></a>
                 </li>
-                <li>
+                 <li class="size_normal">
+                    <a href="images/2019-08-25 17.17.20_preview.jpeg" data-lightbox = "lb"><img class="thumbnails size-nrm" src="images/2019-08-25 17.17.20_preview.jpeg" alt=""></a>
+                </li>
+                <li class="size_normal">
+                    <a href="images/2019-08-25 17.17.20_preview.jpeg" data-lightbox = "lb"><img class="thumbnails size-nrm" src="images/2019-08-25 17.17.20_preview.jpeg" alt=""></a>
+                </li>
+                <li class="size_normal">
+                    <a href="images/2019-08-25 17.17.20_preview.jpeg" data-lightbox = "lb"><img class="thumbnails size-nrm" src="images/2019-08-25 17.17.20_preview.jpeg" alt=""></a>
+                </li>
+                <li class="size_normal">
+                    <a href="images/2019-08-25 17.17.20_preview.jpeg" data-lightbox = "lb"><img class="thumbnails size-nrm" src="images/2019-08-25 17.17.20_preview.jpeg" alt=""></a>
+                </li>
+                <li class="size_normal">
                     <a href="images/2019-08-25 17.17.20_preview.jpeg" data-lightbox = "lb"><img class="thumbnails size-nrm" src="images/2019-08-25 17.17.20_preview.jpeg" alt=""></a>
                 </li>
             </ul>
@@ -195,6 +210,24 @@
             target_op.style.display = 'block';
             target_cl.style.display = 'none';
         }
+
+        let li = document.querySelectorAll('li');
+        document.querySelector('#large_btn').addEventListener('click',function(){
+            li.forEach(element => {
+                element.className='size_large';
+            });
+        })
+        document.querySelector('#normal_btn').addEventListener('click',function(){
+            li.forEach(element => {
+                element.className='size_normal';
+            });
+        })
+        document.querySelector('#small_btn').addEventListener('click',function(){
+            li.forEach(element => {
+                element.className='size_small';
+            });
+        })
+        
     </script>
     <script src="main.js"></script>
 

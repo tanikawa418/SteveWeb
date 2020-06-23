@@ -102,7 +102,6 @@
     <script>
     //PHPからのデータ授受
         const conditionData = <?php echo $jsonData; ?>;
-        console.log(conditionData[conditionData.length -1]['date']);
     </script>
     <script src="js/graph.js"></script>
     <script src="js/main.js"></script>
