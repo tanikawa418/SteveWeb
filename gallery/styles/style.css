@@ -1,0 +1,483 @@
+@charset "UTF-8";
+/******************************************************************
+
+Utility Style : base
+
+******************************************************************/
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+JP&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+JP&display=swap");
+body {
+  background: url(/Steveweb/common/images/design/light_honeycomb_@2X.png);
+}
+
+html, body, p, div, ul, li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+body {
+  font-family: "Noto Sans", "Noto Sans JP";
+}
+
+header {
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  top: 0;
+  position: relative;
+  font-family: "Noto Sans", "Noto Sans JP";
+}
+
+header p {
+  margin: 0;
+}
+
+header .headercontainer {
+  width: 100%;
+  height: 60px;
+  text-align: center;
+  margin: 0 auto;
+  border-bottom: 1px solid black;
+}
+
+header .headercontainer h1 {
+  font-size: 25px;
+  height: 30px;
+}
+
+header a {
+  text-decoration: none;
+  color: black;
+  float: right;
+  margin-right: 30px;
+  margin-top: 20px;
+  position: absolute;
+  bottom: 0;
+  right: 3%;
+}
+
+header a span.hometxt {
+  display: none;
+}
+
+header a:hover {
+  opacity: 0.8;
+}
+
+header a #homeicon {
+  font-size: 20px;
+  float: right;
+}
+
+div.mycontainer {
+  max-width: 990px;
+  height: 100vh;
+  margin: 0 auto;
+  padding-top: 20px;
+  position: relative;
+}
+
+.mycard, .mydialog, .graph_wrapper {
+  background-color: white;
+  -webkit-box-shadow: 0 1.9px 2.5px rgba(0, 0, 0, 0.057), 0 5px 6.1px rgba(0, 0, 0, 0.076), 0 10.1px 11.4px rgba(0, 0, 0, 0.086), 0 19.2px 19.8px rgba(0, 0, 0, 0.092), 0 38.4px 34.8px rgba(0, 0, 0, 0.1), 0 101px 74px rgba(0, 0, 0, 0.13);
+          box-shadow: 0 1.9px 2.5px rgba(0, 0, 0, 0.057), 0 5px 6.1px rgba(0, 0, 0, 0.076), 0 10.1px 11.4px rgba(0, 0, 0, 0.086), 0 19.2px 19.8px rgba(0, 0, 0, 0.092), 0 38.4px 34.8px rgba(0, 0, 0, 0.1), 0 101px 74px rgba(0, 0, 0, 0.13);
+}
+
+div.mydialog_header {
+  width: 100%;
+  height: 60px;
+  margin-bottom: 20px;
+  background-color: #004d40;
+  color: lightgray;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+div.mydialog_header p {
+  height: 100%;
+  line-height: 60px;
+}
+
+#btn_submit {
+  display: block;
+  width: 70%;
+  height: 40px;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  background-color: #004d40;
+}
+
+#btn_cancel {
+  display: block;
+  width: 70%;
+  height: 40px;
+  margin: 0 auto;
+  background-color: lightgray;
+}
+
+/* micro clearfix */
+.cf:before,
+.cf:after {
+  content: " ";
+  display: table;
+}
+
+.cf:after {
+  clear: both;
+}
+
+.cf {
+  *zoom: 1;
+}
+
+/* **************************
+    fonts
+   ************************** */
+/* **************************
+    基本設定
+   ************************** */
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: "Noto Sans";
+  background: url(../../common/images/design/light_honeycomb_@2X.png);
+}
+
+span.tooltoggle {
+  position: absolute;
+  line-height: 30px;
+  right: 30%;
+  bottom: -25px;
+  z-index: 2;
+}
+
+span.tooltoggle img {
+  width: 30px;
+  height: 30px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: 2;
+}
+
+#toolclose {
+  display: none;
+}
+
+div.toolwrapper {
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+  /* background-color: cadetblue; */
+  display: none;
+  /* position: absolute; */
+}
+
+div.toolbar {
+  width: 50%;
+  height: 100%;
+  background-color: white;
+  border-bottom: 1px solid gray;
+  /* background-color: burlywood; */
+  margin: 0 auto;
+  position: relative;
+  /* transform: translateY(-100%); */
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+}
+
+div.toolwrapper:hover div.toolbar {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+}
+
+/* **************************
+    mycontainer
+   ************************** */
+.mycontainer {
+  max-width: unset !important;
+  padding-left: 0.5%;
+  padding-right: 0.5%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 80%;
+}
+
+div.photoarea {
+  /* background-color: rosybrown; */
+}
+
+div.photoframe {
+  /* background-color:ivory; */
+  position: relative;
+}
+
+div.picnote {
+  position: absolute;
+  bottom: 0;
+  left: 1em;
+  word-break: break-all;
+}
+
+/* **************************
+    tools
+   ************************** */
+div#tools {
+  margin-top: 20px;
+  width: 90%;
+  height: 25px;
+  margin: 0 auto;
+  background-color: black;
+  /* padding-top: 15px; */
+}
+
+#picsize {
+  float: right;
+}
+
+div#tools .searchbtn {
+  float: right;
+  border-radius: 10%;
+  background-color: green;
+  color: #fff;
+  margin: 0 20px 0 5px;
+}
+
+div#tools input {
+  width: 200px;
+  border-radius: 10%;
+  float: right;
+}
+
+/* **************************
+    main
+   ************************** */
+div.category {
+  /* background-color: cadetblue; */
+  /* font-size: 20px; */
+  width: 100%;
+  height: 30px;
+  /* border-left: 10px solid indigo;
+    border-bottom: 3px solid indigo; */
+  clear: both;
+  margin: 30px 0 30px 0;
+  padding-left: 10px;
+  /* padding-top: 10px; */
+}
+
+div.clearf {
+  clear: both;
+}
+
+div.category h2 {
+  font-size: 24px;
+  float: left;
+}
+
+div.collapseicon {
+  display: none;
+  font-size: 15px;
+  color: gray;
+  float: left;
+  width: 200px;
+  height: 30px;
+  margin-left: 50px;
+  margin-top: 5px;
+}
+
+div.category:hover {
+  background-color: rgba(150, 150, 150, 0.4);
+  cursor: pointer;
+}
+
+div.category:hover .collapseicon {
+  display: block;
+}
+
+div.photoarea {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  background-color: blueviolet;
+  /* transition-duration: 300ms; */
+}
+
+ul {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+li {
+  display: list-item;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  /* height: auto; */
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: relative;
+  list-style: none;
+}
+
+li.size_normal {
+  width: 24%;
+  margin: 0.5%;
+}
+
+li.size_large {
+  width: 49%;
+  margin: 0.5%;
+}
+
+li.size_small {
+  width: 12%;
+  margin: 0.25%;
+}
+
+li::after {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+li i.favorite {
+  position: absolute;
+  font-size: 30px;
+  top: 5px;
+  right: 5%;
+  z-index: 2;
+  color: yellow;
+}
+
+li i.mesurement {
+  position: absolute;
+  font-size: 30px;
+  top: 5px;
+  right: 20%;
+  z-index: 2;
+  color: white;
+}
+
+li a {
+  /* display: block; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+li a img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+div.photoframe {
+  position: relative;
+  /* float: left; */
+  /* border-bottom: 1px solid black;
+    border-right: 1px solid black; */
+  /* margin-bottom: 20px; */
+  /* object-fit: fill; */
+}
+
+div.size-nrm {
+  /* width: 223px;
+    height:223px; */
+}
+
+div.size-sm {
+  width: 149px;
+  height: 149px;
+}
+
+div.size-lg {
+  width: 297px;
+  height: 297px;
+}
+
+div.photoframe img {
+  /* width:223px; */
+  height: 223px;
+  max-width: 100%;
+  max-height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  /* position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto; */
+}
+
+/* **************************
+    基本設定
+   ************************** */
+@media (min-width: 500px) {
+  #date_d {
+    display: inline-block;
+    font-size: 1.5em;
+    margin: 5px 10px;
+  }
+  span.summary_d {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 1.1em;
+    margin-left: 5px;
+    margin-bottom: 5px;
+  }
+}
+
+@media (min-width: 900px) {
+  /******************************************************************
+
+Utility Style : base
+
+******************************************************************/
+  div.mydialog_header {
+    height: 60px;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+  }
+  div.mydialog_header p {
+    line-height: 60px;
+  }
+  header {
+    height: 80px;
+    padding-top: 5px;
+  }
+  header .headercontainer {
+    height: 75px;
+  }
+  header .headercontainer h1 {
+    font-size: 35px;
+  }
+  header a {
+    margin-top: 10px;
+  }
+  header a span.hometxt {
+    display: inline-block;
+    margin-right: 3px;
+  }
+  header a #homeicon {
+    font-size: 30px;
+  }
+  .mycontainer {
+    background-color: rgba(240, 240, 240, 0.5);
+  }
+}
+/*# sourceMappingURL=style.css.map */
