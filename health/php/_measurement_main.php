@@ -1,14 +1,14 @@
 <?php
 
-//mesurement.php　からrequireされる
+//measurement.php　からrequireされる
 
 //削除ボタン押下時処理
 if(!empty($_POST) && $_POST['mode']='delete'){
     
     //pic_filenameの取得
-    $sql = 'SELECT * FROM mesurement WHERE mesurement_id=?';
+    $sql = 'SELECT * FROM measurement WHERE measurement_id=?';
     $stmt=$db->prepare($sql);
-    $stmt->execute(array($_POST['mesurement_id']));
+    $stmt->execute(array($_POST['measurement_id']));
     $response = $stmt->fetch();
     $delete_filename = $response['pic_filename'];
     if($delete_filename){
@@ -18,14 +18,14 @@ if(!empty($_POST) && $_POST['mode']='delete'){
     }
     
     // DB Delete
-    $sql = 'DELETE FROM mesurement WHERE mesurement_id=?';
+    $sql = 'DELETE FROM measurement WHERE measurement_id=?';
     $stmt=$db->prepare($sql);
-    $stmt->execute(array($_POST['mesurement_id']));
+    $stmt->execute(array($_POST['measurement_id']));
     $result_db_delete = $stmt->rowCount();
     
     //File Delete
     if($is_attached){
-        if(unlink('images/mesurement_pics/' . $delete_filename)){
+        if(unlink('images/measurement_pics/' . $delete_filename)){
             //元画像があり、正常に削除された場合
             $result_file_delete = 1;
         }else{
@@ -61,7 +61,7 @@ if(!empty($_POST) && $_POST['mode']='delete'){
 }
 
 //データ取得処理
-$sql = 'SELECT * FROM mesurement ms INNER JOIN pets pt ON pt.pet_id = ms.pet_id ORDER BY ms.date DESC';
+$sql = 'SELECT * FROM measurement ms INNER JOIN pets pt ON pt.pet_id = ms.pet_id ORDER BY ms.date DESC';
 $response = $db->query($sql,PDO::FETCH_ASSOC);
 $arr_health = $response->fetchAll(PDO::FETCH_ASSOC);
 // JSに配列渡し

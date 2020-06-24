@@ -31,7 +31,7 @@
                     </li>
                     <li>
                         <span class="menuicon"><i class="fas fa-weight"></i></span>
-                        <span class="menuname"><a href="..\health\mesurement.php">Health Data</a></span>
+                        <span class="menuname"><a href="..\health\measurement.php">Health Data</a></span>
                     </li>
                     <li>
                         <span class="menuicon"><i class="fas fa-thermometer-half"></i></span>
