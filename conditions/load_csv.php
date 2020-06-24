@@ -43,10 +43,9 @@ foreach($files as $file){
 if(count($files)>0){
     if($success + $failed > 0){
         if($success == 0){
-            $res_msg = 'No updates.'.$success;
+            $res_msg = 'No updates.';
         }else{
             $res_msg = count($files) . ' file(s) done, ' . $success . ' new records successfully added.'; 
-            $res_msg = 'records successfully added.'; 
         }
     }else{
         // $error = 'Failed.';
