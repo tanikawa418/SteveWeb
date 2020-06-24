@@ -1,7 +1,7 @@
 <?php
 require("../common/php/login_check.php");
 require("../common/php/dbconnect.php");
-require("php/_mesurement_main.php");
+require("php/_measurement_main.php");
 ?>
 
 <!DOCTYPE html>
@@ -85,10 +85,10 @@ require("php/_mesurement_main.php");
                     </div>
                     <div class="action">
                         <div class="iconwrap">
-                            <!-- <a href="input/mesurement_input.php?mode=edit"><i class="fas fa-edit"></i></a> -->
-                            <form action="input/mesurement_input.php" method="post">
+                            <!-- <a href="input/measurement_input.php?mode=edit"><i class="fas fa-edit"></i></a> -->
+                            <form action="input/measurement_input.php" method="post">
                                 <input type="hidden" name="mode" value="edit">
-                                <input type="hidden" name="mesurement_id" value="23">
+                                <input type="hidden" name="measurement_id" value="23">
                                 <label>
                                     <button type="submit" class="hidden_btn">隠しボタン</button>
                                     <i class="fas fa-edit"></i>
@@ -99,7 +99,7 @@ require("php/_mesurement_main.php");
 
                         <div class="iconwrap">
                             <form action="" onsubmit="return deleteConfirm()" method="post">
-                                <input type="hidden" name="mesurement_id" value="57">
+                                <input type="hidden" name="measurement_id" value="57">
                                 <input type="hidden" name="mode" value="delete">
                                 <label>
                                     <button type="submit" class="hidden_btn">隠しボタン</button>
@@ -114,13 +114,13 @@ require("php/_mesurement_main.php");
         </div>
  
         <div class="addmark">
-            <a href="input/mesurement_input.php"><i class="fas fa-plus"></i></a>    
+            <a href="input/measurement_input.php"><i class="fas fa-plus"></i></a>    
         </div>
         
     </div> <!--mycontainer -->
 
     <script src="../common/js/delete_confirm.js"></script>
-    <script src="js/mesurement_main.js"></script>
+    <script src="js/measurement_main.js"></script>
     <script type="text/javascript">
         //phpからJSON受け取ってループでマークアップ
         var healthData = <?php echo $jsonData; ?>;

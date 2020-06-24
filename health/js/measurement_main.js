@@ -8,7 +8,7 @@ function healthDataMark(healthdata){
         var myCardLeft = document.createElement('div');
         myCardLeft.className = 'cardleft';
         var fileName = healthData[i]['pic_filename'];
-        myCardLeft.innerHTML ='<a href="images/mesurement_pics/' + fileName + '" data-lightbox = "lb"><img class="thumbnails" src="images/mesurement_pics/' + fileName + '" alt=""></a>';
+        myCardLeft.innerHTML ='<a href="images/measurement_pics/' + fileName + '" data-lightbox = "lb"><img class="thumbnails" src="images/measurement_pics/' + fileName + '" alt=""></a>';
         
         var myCardRight = document.createElement('div');
         myCardRight.className = 'cardright';
@@ -87,10 +87,10 @@ function healthDataMark(healthdata){
                             myiconwrap1.className = 'iconwrap';
 
                             var formStr1 = "";
-                            formStr1 += '<form action="input/mesurement_input.php" method="post">';
+                            formStr1 += '<form action="input/measurement_input.php" method="post">';
                             formStr1 += '<input type="hidden" name="mode" value="edit">';
-                            formStr1 += '<input type="hidden" name="mesurement_id" value="';
-                            formStr1 += healthData[i]['mesurement_id'];
+                            formStr1 += '<input type="hidden" name="measurement_id" value="';
+                            formStr1 += healthData[i]['measurement_id'];
                             formStr1 += '">';
                             formStr1 += '<label>';
                             formStr1 += '<button type="submit" class="hidden_btn">隠しボタン</button>';
@@ -104,8 +104,8 @@ function healthDataMark(healthdata){
 
                             var formStr2 = "";
                             formStr2 += '<form action="" onsubmit="return deleteConfirm()" method="post">';
-                            formStr2 += '<input type="hidden" name="mesurement_id" value="';
-                            formStr2 += healthData[i]['mesurement_id'];
+                            formStr2 += '<input type="hidden" name="measurement_id" value="';
+                            formStr2 += healthData[i]['measurement_id'];
                             formStr2 += '">';
                             formStr2 += '<input type="hidden" name="mode" value="delete">';
                             formStr2 += '<label>';
