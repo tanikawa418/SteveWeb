@@ -55,7 +55,7 @@ if(!empty($_POST) && $_POST['mode']='delete'){
         $toast_message_file = '画像削除に失敗しました';
         $toast_type_file = 'error';
     }else{
-        $toast_message_file = '画像データがなかったので削除処理をスキップしました';
+        $toast_message_file = '画像データがなかったので画像削除処理をスキップしました';
         $toast_type_file = 'info';
     }
     
