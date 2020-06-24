@@ -8,7 +8,7 @@ function healthDataMark(healthdata){
         var myCardLeft = document.createElement('div');
         myCardLeft.className = 'cardleft';
         var fileName = healthData[i]['pic_filename'];
-        myCardLeft.innerHTML ='<a href="images/measurement_pics/' + fileName + '" data-lightbox = "lb"><img class="thumbnails" src="images/measurement_pics/' + fileName + '" alt=""></a>';
+        myCardLeft.innerHTML ='<a href="images/measurement_pics/' + fileName + '" data-lightbox = "lb"><img class="thumbnails" src="images/measurement_pics/thumb/' + fileName + '" alt=""></a>';
         
         var myCardRight = document.createElement('div');
         myCardRight.className = 'cardright';

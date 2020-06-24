@@ -122,9 +122,13 @@
             if (empty($error)) {
                 //画像ファイルの処理
                 if(!empty($_FILES['image']['name'])){
+                    $path = '../images/measurement_pics/';
                     $image = date('YmdHis') . $_FILES['image']['name'];
-                    move_uploaded_file($_FILES['image']['tmp_name'], '../images/measurement_pics/' . $image);
+                    move_uploaded_file($_FILES['image']['tmp_name'], $path . $image);
                     $_POST['image'] = $image;
+
+                    require('create_thumb.php');
+
                 }
 
                 //SQL実行
