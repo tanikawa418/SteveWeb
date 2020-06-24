@@ -28,6 +28,7 @@ if(!empty($_POST) && $_POST['mode']='delete'){
         if(unlink('images/measurement_pics/' . $delete_filename)){
             //元画像があり、正常に削除された場合
             $result_file_delete = 1;
+            unlink('images/measurement_pics/thumb/' . $delete_filename);
         }else{
             //元画像があり、削除されなかった場合
             $result_file_delete = 0;
