@@ -44,7 +44,7 @@
             <!-- <span class="tooltoggle" id="toolopen"><img src="icons/arrow_down.jpg" alt="" onclick="openTool()"></span>
             <span class="tooltoggle" id="toolclose" onclick="closeTool()"><img src="icons/arrow_up.jpg" alt=""></span> -->
             <a href="..\home\index.php">
-                <span>Home</span>
+                <span class="hometxt">Home</span>
                 <i class="fas fa-igloo" id="homeicon"></i>
             </a>
             <div class="clearf"></div>
