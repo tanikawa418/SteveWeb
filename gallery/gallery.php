@@ -38,11 +38,11 @@
 </head>
 <body>
     <header>
-        <div class="headercontainer cf">
+        <div class="headercontainer">
             <p>Steve the tortoise</p>
             <h1>Gallery</h1>
-            <span class="tooltoggle" id="toolopen"><img src="icons/arrow_down.jpg" alt="" onclick="openTool()"></span>
-            <span class="tooltoggle" id="toolclose" onclick="closeTool()"><img src="icons/arrow_up.jpg" alt=""></span>
+            <!-- <span class="tooltoggle" id="toolopen"><img src="icons/arrow_down.jpg" alt="" onclick="openTool()"></span>
+            <span class="tooltoggle" id="toolclose" onclick="closeTool()"><img src="icons/arrow_up.jpg" alt=""></span> -->
             <a href="..\home\index.php">
                 <span>Home</span>
                 <i class="fas fa-igloo" id="homeicon"></i>
@@ -52,7 +52,7 @@
     </header>
     
     <div class="mycontainer">
-        <div class="toolwrapper" id="toolwrapper">
+        <!-- <div class="toolwrapper" id="toolwrapper">
             <div class="toolbar" id="toolbar">
                 キーワードで絞り込む
                 <input type="text"><br>
@@ -63,15 +63,21 @@
                 <button id="small_btn">small</button>
                 <button id="normal_btn">normal</button>
                 <button id="large_btn">large</button>
-
+                
             </div>
             <div></div>
+        </div> -->
+        <div class="slide_wrapper">
+            <span>small</span>
+            <input id="slider" class="input-range" type="range" value=2 min=1 max=4 step="1">
+            <span>large</span>
         </div>
+
 
         <div class="category clearf" data-num = "1">
             <h2>2019 September</h2>
-            <div class="collapseicon"  id="category1">＜＜クリックで開閉＞＞</div>
-            <div class="clearf"></div>
+            <!-- <div class="collapseicon"  id="category1">＜＜クリックで開閉＞＞</div> -->
+            <!-- <div class="clearf"></div> -->
         </div>
 
         <div class="photarea">
@@ -178,21 +184,16 @@
             <div class="clearf"></div> -->
         </div> <!--photoarea-->
 
-        <div class="category clearf" data-num = "2">
-            <h2>2019 September</h2>
-            <div class="collapseicon">＜＜クリックで開閉＞＞</div>
-            <div class="clearf"></div>
-
-        </div>
-        <div class="photoarea" id="area2">
+        <!-- <div class="photoarea" id="area2">
             <div class="photoframe size-nrm">
                 <a href="#"><img class="thumbnails" src="images/2019-11-24 09.18.04_preview.jpeg" alt=""></a>
             </div>
-        </div>
+        </div> -->
 
 
     </div>
     <script>
+        /*
         var target_wr = document.getElementById('toolwrapper');
         var target_bar = document.getElementById('toolbar');
         var target_op = document.getElementById('toolopen');
@@ -211,7 +212,6 @@
             target_cl.style.display = 'none';
         }
 
-        let li = document.querySelectorAll('li');
         document.querySelector('#large_btn').addEventListener('click',function(){
             li.forEach(element => {
                 element.className='size_large';
@@ -227,7 +227,31 @@
                 element.className='size_small';
             });
         })
-        
+        */
+        let slider = document.querySelector('#slider').addEventListener('input',function(){
+            console.log(this.value);
+            let val = Number(this.value);
+            let class_changeto = '';
+            switch(val){
+                case 1:
+                    class_changeto = 'size_small'; 
+                    break;
+                case 2:
+                    class_changeto = 'size_normal';
+                    break;
+                case 3:
+                    class_changeto = 'size_large';
+                    break;
+                case 4:
+                    class_changeto = 'size_max';
+                    break;
+            }
+            console.log(class_changeto);
+            let li = document.querySelectorAll('li');
+            li.forEach(element => {
+                element.className=class_changeto;
+        })
+        })
     </script>
     <script src="main.js"></script>
 

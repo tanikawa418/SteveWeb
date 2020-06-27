@@ -1,10 +1,8 @@
-@charset "UTF-8";
 /******************************************************************
 
 Utility Style : base
 
 ******************************************************************/
-@import url("https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+JP&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+JP&display=swap");
 body {
   background: url(/Steveweb/common/images/design/light_honeycomb_@2X.png);
@@ -121,84 +119,6 @@ div.mydialog_header p {
   background-color: lightgray;
 }
 
-/* micro clearfix */
-.cf:before,
-.cf:after {
-  content: " ";
-  display: table;
-}
-
-.cf:after {
-  clear: both;
-}
-
-.cf {
-  *zoom: 1;
-}
-
-/* **************************
-    fonts
-   ************************** */
-/* **************************
-    基本設定
-   ************************** */
-body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  font-family: "Noto Sans";
-  background: url(../../common/images/design/light_honeycomb_@2X.png);
-}
-
-span.tooltoggle {
-  position: absolute;
-  line-height: 30px;
-  right: 30%;
-  bottom: -25px;
-  z-index: 2;
-}
-
-span.tooltoggle img {
-  width: 30px;
-  height: 30px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  z-index: 2;
-}
-
-#toolclose {
-  display: none;
-}
-
-div.toolwrapper {
-  width: 100%;
-  height: 100px;
-  overflow: hidden;
-  /* background-color: cadetblue; */
-  display: none;
-  /* position: absolute; */
-}
-
-div.toolbar {
-  width: 50%;
-  height: 100%;
-  background-color: white;
-  border-bottom: 1px solid gray;
-  /* background-color: burlywood; */
-  margin: 0 auto;
-  position: relative;
-  /* transform: translateY(-100%); */
-  -webkit-transition-duration: 1s;
-          transition-duration: 1s;
-}
-
-div.toolwrapper:hover div.toolbar {
-  -webkit-transform: translateY(0);
-          transform: translateY(0);
-  -webkit-transition-duration: 1s;
-          transition-duration: 1s;
-}
-
 /* **************************
     mycontainer
    ************************** */
@@ -209,6 +129,11 @@ div.toolwrapper:hover div.toolbar {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 80%;
+}
+
+.mycontainer::after {
+  height: 100vh;
+  padding-top: 100%;
 }
 
 div.photoframe {
@@ -224,36 +149,6 @@ div.picnote {
 }
 
 /* **************************
-    tools
-   ************************** */
-div#tools {
-  margin-top: 20px;
-  width: 90%;
-  height: 25px;
-  margin: 0 auto;
-  background-color: black;
-  /* padding-top: 15px; */
-}
-
-#picsize {
-  float: right;
-}
-
-div#tools .searchbtn {
-  float: right;
-  border-radius: 10%;
-  background-color: green;
-  color: #fff;
-  margin: 0 20px 0 5px;
-}
-
-div#tools input {
-  width: 200px;
-  border-radius: 10%;
-  float: right;
-}
-
-/* **************************
     main
    ************************** */
 div.category {
@@ -264,7 +159,7 @@ div.category {
   /* border-left: 10px solid indigo;
     border-bottom: 3px solid indigo; */
   clear: both;
-  margin: 30px 0 30px 0;
+  margin: 20px 0 10px 0;
   padding-left: 10px;
   /* padding-top: 10px; */
 }
@@ -324,15 +219,17 @@ li {
      object-fit: cover;
   position: relative;
   list-style: none;
-}
-
-li.size_normal {
-  width: 24%;
-  margin: 0.5%;
+  -webkit-box-shadow: 1px 2px 20px 3px #ffabc9;
+          box-shadow: 1px 2px 20px 3px #ffabc9;
 }
 
 li.size_large {
   width: 49%;
+  margin: 0.5%;
+}
+
+li.size_normal {
+  width: 24%;
   margin: 0.5%;
 }
 
@@ -341,28 +238,15 @@ li.size_small {
   margin: 0.25%;
 }
 
+li.size_max {
+  width: 96%;
+  margin: 2%;
+}
+
 li::after {
   content: "";
   display: block;
   padding-top: 100%;
-}
-
-li i.favorite {
-  position: absolute;
-  font-size: 30px;
-  top: 5px;
-  right: 5%;
-  z-index: 2;
-  color: yellow;
-}
-
-li i.measurement {
-  position: absolute;
-  font-size: 30px;
-  top: 5px;
-  right: 20%;
-  z-index: 2;
-  color: white;
 }
 
 li a {
@@ -381,43 +265,40 @@ li a img {
      object-fit: cover;
 }
 
-div.photoframe {
+.slide_wrapper {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.input-range[type="range"] {
+  -webkit-appearance: none;
+  display: inline-block;
+  -moz-appearance: none;
+       appearance: none;
+  background-color: black;
+  width: 80%;
+  height: 1px;
+  border-radius: 6px;
+}
+
+.input-range[type="range"]:focus, .input-range[type="range"]:active {
+  outline: none;
+}
+
+.input-range[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
   position: relative;
-  /* float: left; */
-  /* border-bottom: 1px solid black;
-    border-right: 1px solid black; */
-  /* margin-bottom: 20px; */
-  /* object-fit: fill; */
+  width: 22px;
+  height: 22px;
+  display: block;
+  background-color: #07be19;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
 }
 
-div.size-sm {
-  width: 149px;
-  height: 149px;
-}
-
-div.size-lg {
-  width: 297px;
-  height: 297px;
-}
-
-div.photoframe img {
-  /* width:223px; */
-  height: 223px;
-  max-width: 100%;
-  max-height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  /* position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto; */
-}
-
-/* **************************
-    基本設定
-   ************************** */
 @media (min-width: 500px) {
   #date_d {
     display: inline-block;
