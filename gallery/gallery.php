@@ -104,8 +104,6 @@
 
             <div class="category clearf" data-num = "1">
                 <h2>2019 August</h2>
-                <div class="collapseicon"  id="category1">＜＜クリックで開閉＞＞</div>
-                <div class="clearf"></div>
             </div>
 
             <ul>
