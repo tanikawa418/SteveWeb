@@ -127,7 +127,8 @@
                     move_uploaded_file($_FILES['image']['tmp_name'], $path . $image);
                     $_POST['image'] = $image;
 
-                    require('create_thumb.php');
+                    require('../../common/php/create_thumb.php');
+                    create_thumbnail(600,600,$path,$image,60);
 
                 }
 

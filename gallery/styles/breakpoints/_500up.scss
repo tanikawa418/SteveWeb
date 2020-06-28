@@ -9,9 +9,10 @@
 .mycontainer{
   max-width: unset !important;
   width: 80%;
+  height: 100%;
 
   &::after{
-    height: 100vh;
+    height: 100%;
     padding-top: 100%; 
   }
 }

@@ -74,7 +74,7 @@ header a #homeicon {
 
 div.mycontainer {
   max-width: 990px;
-  height: 100vh;
+  height: 100%;
   margin: 0 auto;
   padding-top: 20px;
   position: relative;
@@ -125,6 +125,7 @@ div.mydialog_header p {
 .mycontainer {
   max-width: unset !important;
   width: 100%;
+  height: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding-left: 0.5%;
@@ -254,9 +255,10 @@ li a img {
   .mycontainer {
     max-width: unset !important;
     width: 80%;
+    height: 100%;
   }
   .mycontainer::after {
-    height: 100vh;
+    height: 100%;
     padding-top: 100%;
   }
   /* **************************
