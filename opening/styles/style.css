@@ -1,0 +1,303 @@
+/******************************************************************
+
+Stylesheet: Basic style
+
+******************************************************************/
+/* **************************
+    googlefonts
+   ************************** */
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+JP&display=swap");
+/* **************************
+    Reset
+   ************************** */
+html, body, p, div, ul, li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* **************************
+    Contents
+   ************************** */
+body {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  height: 100%;
+}
+
+div.mycontainer {
+  max-width: 100%;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  background-image: url(/Steveweb/opening/images/home.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+div.wrapper {
+  width: 250px;
+  height: 100vh;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 12px;
+  background-color: rgba(0, 0, 0, 0.4);
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+div.title {
+  width: 222px;
+  height: 100vh;
+  margin: 0 auto;
+  font-family: "Noto Sans", "Noto Sans JP";
+}
+
+div.title p {
+  color: #fff;
+  font-size: 35px;
+  text-align: center;
+  margin: 0;
+}
+
+div.title #steve {
+  visibility: hidden;
+  color: #b6b596;
+  font-size: 60px;
+  width: 222px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+div.title #subtitle {
+  display: none;
+  text-align: center;
+}
+
+div.title #subtitle span.hero.startAnimation {
+  display: inline-block;
+  color: #00aa00;
+  -webkit-animation-name: kf-heroes;
+          animation-name: kf-heroes;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-timing-function: cubic-bezier(0.36, 1.9, 0.84, 1.08);
+          animation-timing-function: cubic-bezier(0.36, 1.9, 0.84, 1.08);
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-direction: normal;
+          animation-direction: normal;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+div.title #crawl-wrapper {
+  visibility: hidden;
+}
+
+div.title #crawl-wrapper .crawl {
+  font-size: 30px;
+  margin-top: 120px;
+  margin-bottom: 20px;
+}
+
+div.title #crawl-wrapper .links {
+  font-size: 25px;
+  text-decoration: none;
+  margin-top: 15px;
+}
+
+div.title #crawl-wrapper .links:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transition-duration: 500ms;
+          transition-duration: 500ms;
+}
+
+div.title #crawl-wrapper .links a {
+  text-decoration: none;
+  color: #b6b596;
+}
+
+@-webkit-keyframes kf-heroes {
+  0% {
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes kf-heroes {
+  0% {
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+#steve.startAnimation {
+  -webkit-transition-property: all;
+  transition-property: all;
+}
+
+#steve.startAnimation .char {
+  visibility: visible;
+  opacity: 1;
+  display: inline-block;
+  -webkit-animation-name: kf-falldown-chars;
+          animation-name: kf-falldown-chars;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-timing-function: cubic-bezier(0.39, 1.57, 0.58, 1);
+          animation-timing-function: cubic-bezier(0.39, 1.57, 0.58, 1);
+  -webkit-animation-delay: 0;
+          animation-delay: 0;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-direction: normal;
+          animation-direction: normal;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+#steve.startAnimation .char:nth-child(1) {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+}
+
+#steve.startAnimation .char:nth-child(2) {
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
+}
+
+#steve.startAnimation .char:nth-child(3) {
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
+}
+
+#steve.startAnimation .char:nth-child(4) {
+  -webkit-animation-delay: 0.8s;
+          animation-delay: 0.8s;
+}
+
+#steve.startAnimation .char:nth-child(5) {
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+}
+
+#steve.startAnimation .char:nth-child(6) {
+  -webkit-animation-delay: 1.2s;
+          animation-delay: 1.2s;
+}
+
+#steve.startAnimation .char:nth-child(7) {
+  -webkit-animation-delay: 1.4s;
+          animation-delay: 1.4s;
+}
+
+#steve.startAnimation .char:nth-child(8) {
+  -webkit-animation-delay: 1.6s;
+          animation-delay: 1.6s;
+}
+
+#steve.startAnimation .char:nth-child(9) {
+  -webkit-animation-delay: 1.8s;
+          animation-delay: 1.8s;
+}
+
+#steve.startAnimation .char:nth-child(10) {
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+#steve.startAnimation .char:nth-child(11) {
+  -webkit-animation-delay: 2.2s;
+          animation-delay: 2.2s;
+}
+
+#steve.startAnimation .char:nth-child(12) {
+  -webkit-animation-delay: 2.4s;
+          animation-delay: 2.4s;
+}
+
+@-webkit-keyframes kf-falldown-chars {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes kf-falldown-chars {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+#subtitle.startAnimation {
+  display: inline-block;
+}
+
+@media (min-width: 900px) {
+  /******************************************************************
+
+Stylesheet: For over 900px
+
+******************************************************************/
+  div.wrapper {
+    width: 860px;
+    padding: 50px;
+  }
+  div.title {
+    width: 600px;
+    height: 70%;
+  }
+  div.title p {
+    font-size: 70px;
+  }
+  div.title #steve {
+    width: 490px;
+    font-size: 130px;
+  }
+  div.title #crawl-wrapper .crawl {
+    font-size: 40px;
+    margin-top: 120px;
+    margin-bottom: 20px;
+  }
+  div.title #crawl-wrapper .links {
+    font-size: 30px;
+    margin-top: 15px;
+  }
+}
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,36 @@
+/******************************************************************
+
+Stylesheet: For over 900px
+
+******************************************************************/
+
+div.wrapper {
+    width: 860px;
+    padding: 50px;
+}
+
+div.title{
+    width: 600px;
+    height: 70%;
+
+    & p{
+        font-size: 70px;
+    }
+
+    & #steve {
+        width: 490px;
+        font-size: 130px;
+    }
+    & #crawl-wrapper{
+        & .crawl{
+            font-size: 40px;
+            margin-top: 120px;
+            margin-bottom: 20px;
+        }
+
+        & .links{
+            font-size: 30px;
+            margin-top: 15px;
+        }
+    }
+}

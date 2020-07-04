@@ -1,0 +1,81 @@
+/* **************************
+    基本設定
+   ************************** */
+
+body {
+  background: url(../../../common/images/design/light_honeycomb_@2X.png);
+}
+
+/* **************************
+    mycontainer
+   ************************** */
+div.mycontainer {
+  max-width: 400px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+
+/* *************************
+    cards
+   ************************** */
+   
+div.mydialog {
+  width: 340px;
+  height: auto;
+  padding-bottom: 20px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.form-group {
+  width: 90%;
+  margin: 0 auto;
+  
+  & p.field_label {
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    
+    & .required {
+      font-size: 0.8em;
+      color: $cRequired;
+    }
+  }
+
+  & .field_error {
+    background-color:$cBG_ErrField;
+  }
+
+  & .error {
+    font-size: 0.8em;
+    color: red;
+    margin-top: 0;
+  }
+
+  & .input_nm {
+    width: 200px;
+  }
+  
+  & .input_sm {
+    width: 150px;
+  }
+
+  & .form-control {
+    margin-bottom: 10px;
+  }
+    
+  & #myPreview {
+    max-width: 200px;
+    background-size: cover;
+  }
+  
+  & #file_change_guide {
+    visibility: hidden;
+    font-size: 0.8em;
+    color: $cRequired;
+  }
+}
+    
+
+

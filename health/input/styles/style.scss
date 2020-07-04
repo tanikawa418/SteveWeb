@@ -1,0 +1,23 @@
+//変数定義
+@import "../../../common/styles/variables"; 
+
+// //Vendor Css
+// @import "../../common/styles/vendor/bootstrap.css";
+
+
+//breakpoints
+@import "../../../common/styles/utility_base";
+
+@import "breakpoints/base"; 
+
+
+@media (min-width: 500px) {
+    @import "breakpoints/500up";
+}
+  
+
+@media (min-width: 900px) {
+    @import "../../../common/styles/utility_900up";
+}
+
+  

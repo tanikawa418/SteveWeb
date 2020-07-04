@@ -1,0 +1,65 @@
+.loader-wrap {
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  z-index: 2;
+}
+
+/* https://projects.lukehaas.me/css-loaders/ */
+.spinner {
+  width: 40px;
+  height: 40px;
+  background-color: #b6b596;
+  color: white;
+  text-align: center;
+  line-height: 40px;
+  margin: 100px auto;
+  -webkit-animation: sk-rotateplane 3.2s infinite ease-in-out;
+          animation: sk-rotateplane 3.2s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-rotateplane {
+  0%, 100% {
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+            transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  }
+  25% {
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+            transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+  }
+  50% {
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+            transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+  75% {
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(-180deg);
+            transform: perspective(120px) rotateX(0deg) rotateY(-180deg);
+  }
+}
+
+@keyframes sk-rotateplane {
+  0%, 100% {
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+            transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  }
+  25% {
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+            transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+  }
+  50% {
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+            transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+  75% {
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(-180deg);
+            transform: perspective(120px) rotateX(0deg) rotateY(-180deg);
+  }
+}
+/*# sourceMappingURL=loader.css.map */

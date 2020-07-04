@@ -8,6 +8,8 @@ $dir = 'C:/Users/itani/Dropbox/Private/STEVE/CageCondition/';
 
 $files = glob($dir . '*.csv');
 
+$success = 0;
+$failed = 0;
 foreach($files as $file){
     $data = file_get_contents($file);
     
@@ -24,10 +26,6 @@ foreach($files as $file){
     }
     fclose($temp);
     
-    
-    
-    $success = 0;
-    $failed = 0;
     for ($i=1; $i < count($csv); $i++){
         $sql = 'INSERT INTO `cage_conditions`(`date`, `device_name`, `temperature`, `humidity`,`modified`) VALUES ("' . $csv[$i][0] . '","Steve01","' . $csv[$i][1] . '","' . $csv[$i][2] . '",now());';
         $stmt = $db->prepare($sql);
@@ -35,9 +33,9 @@ foreach($files as $file){
         $check = $stmt->execute();
         if($check){
             $success += 1;
-            }else{
+        }else{
             $failed += 1;
-            }
+        }
     }
 }
 
@@ -47,29 +45,16 @@ if(count($files)>0){
         if($success == 0){
             $res_msg = 'No updates.';
         }else{
-            $res_msg = count($files) . ' file(s) done, ' . $success . ' new records successfully added.';
+            $res_msg = count($files) . ' file(s) done, ' . $success . ' new records successfully added.'; 
         }
     }else{
         // $error = 'Failed.';
     }
 }else{
-    $res_msg = 'No files.';
+    $res_msg = 'No files.'; //処理すべきファイルがなかった場合
 }
 
-
-
-
-
-
-
-// $res_msg = 'test';
-
-  // Content-TypeをJSONに指定する
-    // header('Content-Type: application/json');
     header('Content-Type: application/x-www-form-urlencoded;charset=UTF-8');
-
-    // 「200 OK」 で {"res_msg":"24歳、学生です"} のように返す
-    // $res_msg = "{$_POST['age']}歳、{$_POST['job']}です";
-    echo json_encode(compact('res_msg','success'));
+    echo json_encode(compact('res_msg','success','failed'));
 
 ?>

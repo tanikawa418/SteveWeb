@@ -1,0 +1,309 @@
+@charset "UTF-8";
+/******************************************************************
+
+Utility Style : base
+
+******************************************************************/
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+JP&display=swap");
+body {
+  background: url(/Steveweb/common/images/design/light_honeycomb_@2X.png);
+}
+
+html, body, p, div, ul, li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+body {
+  font-family: "Noto Sans", "Noto Sans JP";
+}
+
+header {
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  top: 0;
+  position: relative;
+  font-family: "Noto Sans", "Noto Sans JP";
+}
+
+header p {
+  margin: 0;
+}
+
+header .headercontainer {
+  width: 100%;
+  height: 60px;
+  text-align: center;
+  margin: 0 auto;
+  border-bottom: 1px solid black;
+}
+
+header .headercontainer h1 {
+  font-size: 25px;
+  height: 30px;
+}
+
+header a {
+  text-decoration: none;
+  color: black;
+  float: right;
+  margin-right: 30px;
+  margin-top: 20px;
+  position: absolute;
+  bottom: 0;
+  right: 3%;
+}
+
+header a span.hometxt {
+  display: none;
+}
+
+header a:hover {
+  opacity: 0.8;
+}
+
+header a #homeicon {
+  font-size: 20px;
+  float: right;
+}
+
+div.mycontainer {
+  max-width: 990px;
+  height: 100%;
+  margin: 0 auto;
+  padding-top: 20px;
+  position: relative;
+}
+
+.mycard, .mydialog, .graph_wrapper {
+  background-color: white;
+  -webkit-box-shadow: 0 1.9px 2.5px rgba(0, 0, 0, 0.057), 0 5px 6.1px rgba(0, 0, 0, 0.076), 0 10.1px 11.4px rgba(0, 0, 0, 0.086), 0 19.2px 19.8px rgba(0, 0, 0, 0.092), 0 38.4px 34.8px rgba(0, 0, 0, 0.1), 0 101px 74px rgba(0, 0, 0, 0.13);
+          box-shadow: 0 1.9px 2.5px rgba(0, 0, 0, 0.057), 0 5px 6.1px rgba(0, 0, 0, 0.076), 0 10.1px 11.4px rgba(0, 0, 0, 0.086), 0 19.2px 19.8px rgba(0, 0, 0, 0.092), 0 38.4px 34.8px rgba(0, 0, 0, 0.1), 0 101px 74px rgba(0, 0, 0, 0.13);
+}
+
+div.mydialog_header {
+  width: 100%;
+  height: 60px;
+  margin-bottom: 20px;
+  background-color: #004d40;
+  color: lightgray;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+div.mydialog_header p {
+  height: 100%;
+  line-height: 60px;
+}
+
+#btn_submit {
+  display: block;
+  width: 70%;
+  height: 40px;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  background-color: #004d40;
+}
+
+#btn_cancel {
+  display: block;
+  width: 70%;
+  height: 40px;
+  margin: 0 auto;
+  background-color: lightgray;
+}
+
+body {
+  background: url(/steveweb/home/images/home.jpeg) no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+div.mycontainer {
+  max-width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0 auto;
+  background-color: unset;
+}
+
+div.mywrapper {
+  width: 250px;
+  height: 600px;
+  padding: 12px;
+  background-color: rgba(0, 0, 0, 0.4);
+  margin: 0 auto;
+}
+
+/* **************************
+    Title
+   ************************** */
+div.title {
+  width: 222px;
+  height: 150px;
+  margin: 0 auto;
+}
+
+div.title p {
+  color: lightgray;
+  font-size: 35px;
+  text-align: center;
+  margin: 0;
+}
+
+div.title #steve {
+  color: #b6b596;
+  font-size: 60px;
+  width: 222px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+div.title span.hero {
+  color: #00aa00;
+}
+
+/* **************************
+    Menu
+   ************************** */
+div.menu {
+  width: 350px;
+  height: 87px;
+  padding-left: 12px;
+  margin: 0 auto;
+  padding-top: 32px;
+}
+
+div.menu ul li {
+  margin-bottom: 10px;
+  list-style: none;
+  color: lightgray;
+  line-height: 1.5;
+  font-size: 22px;
+}
+
+div.menu ul li .menuicon {
+  display: inline-block;
+  width: 40px;
+  text-align: center;
+  margin-left: 5px;
+}
+
+div.menu ul li .menuname a {
+  display: inline-block;
+  margin-left: 6px;
+  text-decoration: none;
+  color: lightgray;
+}
+
+div.menu ul li .menuname a:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  color: #b6b596;
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
+}
+
+@media (min-width: 900px) {
+  /******************************************************************
+
+Utility Style : base
+
+******************************************************************/
+  div.mydialog_header {
+    height: 60px;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+  }
+  div.mydialog_header p {
+    line-height: 60px;
+  }
+  header {
+    height: 80px;
+    padding-top: 5px;
+  }
+  header .headercontainer {
+    height: 75px;
+  }
+  header .headercontainer h1 {
+    font-size: 35px;
+  }
+  header a {
+    margin-top: 10px;
+  }
+  header a span.hometxt {
+    display: inline-block;
+    margin-right: 3px;
+  }
+  header a #homeicon {
+    font-size: 30px;
+  }
+  .mycontainer {
+    background-color: rgba(240, 240, 240, 0.5);
+  }
+}
+
+@media (min-width: 900px) {
+  div.mycontainer {
+    width: 960px;
+    height: 100vh;
+    position: relative;
+  }
+  div.mywrapper {
+    width: 800px;
+    height: 500px;
+    padding: 50px;
+    /* 上下中央にするための設定ここから */
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    /* 上下中央にするための設定ここまで*/
+  }
+  /* **************************
+Title
+************************** */
+  div.title {
+    width: 440px;
+    height: 350px;
+    float: left;
+    padding-top: 110px;
+  }
+  div.title p {
+    font-size: 55px;
+  }
+  div.title #steve {
+    width: 100%;
+    font-size: 100px;
+    margin: 0 auto;
+  }
+  /* **************************
+        Menu
+   ************************** */
+  div.menu {
+    width: 310px;
+    height: 350px;
+    padding-left: 50px;
+    float: left;
+    padding-top: 130px;
+  }
+  div.menu ul li {
+    font-size: 28px;
+  }
+  div.menu ul li .menuicon {
+    width: 40px;
+  }
+  div.menu ul li .menuname a {
+    margin-left: 15px;
+  }
+}
+/*# sourceMappingURL=style.css.map */
