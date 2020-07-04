@@ -1,49 +1,53 @@
-// alert("hello");
 
-// *****************************
-// 画像ファイルサイズの変更
-// *****************************
+let yearmonth = '';
+const path = 'images/';
 
-var picSizeElms = document.getElementsByName("options");
+for(var i=0; i<db_data.length; i++){
 
-function getSize(){
-    for (var i = 0; i < picSizeElms.length; i++){
-        if (picSizeElms[i].checked){
-            return i;
-            }
+    console.log(db_data[i]['yearmonth']);
+    if(db_data[i]['yearmonth'] !=yearmonth){
+        yearmonth = db_data[i]['yearmonth'];
+
+        let category = document.createElement('div');
+        category.className = 'category';
+        category.dataset['txt'] = db_data[i]['yearmonth'];
+        category.innerHTML = '<h2>' + db_data[i]['yearmonth'] + '</h2>';
+        
+        let photoarea = document.createElement('div');
+        photoarea.className = 'photoarea';
+        
+        var myul = document.createElement('ul');
+        myul.innerHTML = '';
+        
+        photoarea.appendChild(myul);
+        category.appendChild(photoarea);
+        document.querySelector('#mycontainer').appendChild(category);
+
     }
-}
+    myul.innerHTML += ` <li class="size_normal"><a href="${path}${db_data[i]["pic_filename"]}" data-lightbox = "lb"><img class="thumbnails size-nrm" src="thumbnail.php?file=${path}${db_data[i]["pic_filename"]}" alt="no thumbs"></a></li>`;
 
-// 押されたボタン位置とクラス名の関連付け
-var picSetting = {0:"size-lg", 1:"size-nrm", 2:"size-sm"};
+};
 
-var changeSize = function(){
-    var curSize = getSize();
-    var elm = document.getElementsByClassName("photoframe");
-    for(var i = 0; i < elm.length; i++){
-        elm[i].className = "photoframe " + picSetting[curSize];
+
+let slider = document.querySelector('#slider').addEventListener('input',function(){
+    let val = Number(this.value);
+    let class_changeto = '';
+    switch(val){
+        case 1:
+            class_changeto = 'size_small'; 
+            break;
+        case 2:
+            class_changeto = 'size_normal';
+            break;
+        case 3:
+            class_changeto = 'size_large';
+            break;
+        case 4:
+            class_changeto = 'size_max';
+            break;
     }
-}
-document.getElementById("picsize").onchange = changeSize;
-
-
-// *****************************
-// Collapse
-// *****************************
-
-var collapseTarget = document.getElementsByClassName("category");
-console.log(collapseTarget.length);
-
-for(var i = 0; i < collapseTarget.length; i++){
-    collapseTarget[i].addEventListener('click',function(){
-        console.log(this.dataset.num);
-        if(document.getElementById("area" + this.dataset.num).style.display == "none"){
-            document.getElementById("area" + this.dataset.num).style.display = "block";
-        }else{
-            document.getElementById("area" + this.dataset.num).style.display = "none";
-        }
+    let target_li = document.querySelectorAll('li');
+    target_li.forEach(element => {
+        element.className=class_changeto;
     })
-}
-
-
-
+})

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>リクガメWebページの紹介</h1><br>
+        <section>
+            <h2>Opening画面</h2>
+        </section>
+        サイトタイトルのアニメーションを表示し、ログインへ誘導する画面
+        <a href="images/opening.PNG"><img src="images/opening.PNG" alt=""></a>
+        <hr>
+        <p>【ここで挑戦したこと】</p>
+        <ul>
+            <li>アニメーションの基礎</li>
+            <li>ローダー（スピナー）の実装</li>
+            <li>mixinの使い方</li>
+            <li>::hover疑似要素の使い方</li>
+        </ul> 
+
+        <section>
+            <h2>ログイン画面</h2>
+        </section>
+        IDとパスワードを入力してログインする画面。ログイン成功したらホーム画面に遷移する画面
+        <a href="images/login.PNG"><img src="images/login.PNG" alt=""></a>
+        <hr>
+        <p>【ここで挑戦したこと】</p>
+        <ul>
+            <li>Coockieの基礎（次回ログインでユーザーコードの入力を省略）</li>
+            <li>Sessionタイムアウトの実装</li>
+            <li>Mysqlからselectしたパスワードとの照合</li>
+            <li>パスワードの暗号化（saltの付与、md5やsha1による暗号化)</li>
+            <li>エラーメッセージの表示</li>
+        </ul> 
+        <section>
+            <h2>ホーム画面</h2>
+        </section>
+        各メニューへのリンクが表示される画面。全ての画面の起点となる画面
+        <a href="images/home.PNG"><img src="images/home.PNG" alt=""></a>
+        <hr>
+        <p>【ここで挑戦したこと】</p>
+        <ul>
+            <li>Webフォントの使い方</li>
+        </ul> 
+
+        <section>
+            <h2>画像ギャラリー（メニュー名：Gallery）</h2>
+        </section>
+        普通の画像ギャラリー。スライダーで画像サイズを4段階で調整可
+        <a href="images/gallery.PNG"><img src="images/gallery.PNG" alt=""></a>
+        <hr>
+        <p>【ここで挑戦したこと】</p>
+        <ul>
+            <li>スライダー（input type="range"）の使い方と値に応じたclass変更</li>
+            <li>PHPでDBから画像パスを取得し、JSにJson形式で渡し、画像要素を動的生成する</li>
+            <li>画像表示用ライブラリLightBoxの使い方</li>
+            <li>PHPによるサムネイル画像の自動生成処理</li>
+        </ul> 
+
+        <section>
+            <h2>身体測定結果（メニュー名：Health Data）</h2>
+        </section>
+        月1回の身体測定結果をカード式で表示する（追加・削除・編集可能)
+        <a href="images/health.PNG"><img src="images/health.PNG" alt=""></a>
+        <a href="images/health2.PNG"><img src="images/health2.PNG" alt=""></a>
+        <hr>
+        <p>【ここで挑戦したこと】</p>
+        <ul>
+            <li>入力画面の実装（画像アップロードあり）</li>
+            <li>リアルタイムバリデーションチェックの実装（必須・型・長さ）</li>
+            <li>登録時チェックの実装</li>
+            <li>編集画面の実装</li>
+            <li>削除機能の実装（ディレクトリから画像も削除する）</li>
+            <li>削除結果をトーストで表示（ライブラリ使用）</li>
+        </ul> 
+
+        <section>
+            <h2>ケージ内温湿度管理（メニュー名：Cage Conditions）</h2>
+        </section>
+        温度湿度計データロガーから出力したCSVデータを読み取り日別にグラフ表示する機能
+        <a href="images/conditions.PNG"><img src="images/conditions.PNG" alt=""></a>
+        <a href="images/conditions2.PNG"><img src="images/conditions2.PNG" alt=""></a>
+        <hr>
+        <p>【ここで挑戦したこと】</p>
+        <ul>
+            <li>非同期処理によるデータ取込処理と結果表示</li>
+            <li>グラフ描画（Chart.js使用）</li>
+        </ul> 
+
+        <section>
+            <h2>リンク集（メニュー名：Links）</h2>
+        </section>
+        リクガメ飼育に関するウェブページへのリンク集と、YoutubeチャンネルのRSSの取得（画面から新規RSSの追加も可能）
+        <a href="images/links.PNG"><img src="images/links.PNG" alt=""></a>
+        <a href="images/links2.PNG"><img src="images/links2.PNG" alt=""></a>
+        <a href="images/links3.PNG"><img src="images/links3.PNG" alt=""></a>
+        <a href="images/links4.PNG"><img src="images/links4.PNG" alt=""></a>
+        <hr>
+        <p>【ここで挑戦したこと】</p>
+        <ul>
+            <li>リアルタイム検索機能（検索フィールドに入力するたびに絞り込まれる）</li>
+            <li>RSSフィード（JSON）の取り扱い</li>
+        </ul> 
+
+        <section>
+            <h2>全体として取り入れたこと</h2>
+        </section>
+        <ul>
+            <li>SASSによるスタイル記述にした</li>
+            <li>何もかも初めてなので、scriptはJqueryではなくネイティブJSで書いた</li>
+            <li>githubによるソース・課題管理を何となくやってみた</li>
+            <li>レスポンシブ対応（上記すべての画面でスマホでも見れるようにした）</li>
+        </ul> 
+
+        <section>
+            <h2>やりたいけど、まだ出来ていないこと</h2>
+        </section>
+        <ul>
+            <li>Webサーバーへのホスティング・公開</li>
+            <li>パフォーマンス改善</li>
+            <li>ログインユーザー固有の設定（カラーテーマや権限など）</li>
+            <li>PHP側で生じたエラーを適切に表示出来ていない</li>
+            <li>セキュリティ対策がきっと甘い。でもどうすればいいかわかっていない。</li>
+            <li>JSのClass化などによる効率的な書き方がよくわかっていない</li>
+            <li>ソースが汚いってのはわかるんだけど、どうすればいいかわからない</li>
+            <li>Laravelなどのフレームワークの勉強</li>
+        </ul> 
+    </div>
+</body>
+</html>
