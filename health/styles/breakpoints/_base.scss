@@ -59,13 +59,13 @@ header {
 /* **************************
     mycontainer
    ************************** */
-div.mycontainer {
-    max-width: 990px;
-    height: 100vh;
-    margin: 0 auto;
-    padding-top: 20px;
-    position: relative;
-}
+// div.mycontainer {
+//     max-width: 990px;
+//     height: 100vh;
+//     margin: 0 auto;
+//     padding-top: 20px;
+//     position: relative;
+// }
 
 /* **************************
     card
@@ -73,7 +73,6 @@ div.mycontainer {
 
 div.card {
     @extend .mycard;
-
     width: 340px;
     height: 142px;
     margin: 0 auto;

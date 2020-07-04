@@ -3,8 +3,43 @@
 Utility Style : base
 
 ******************************************************************/
-body {
-    @import url('https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+JP&display=swap');
-    font-family: "Noto Sans", "Noto Sans JP";
+
+div.mydialog_header {
+    height: 60px;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+
+    & p{
+        line-height: 60px;
+    }
 }
 
+header {
+    height: 80px;
+    padding-top: 5px;
+
+    & .headercontainer {
+        height: 75px;
+
+        & h1 {
+            font-size: 35px;
+        }
+    }
+
+    & a {
+        margin-top: 10px;
+
+        & span.hometxt {
+        display: inline-block;
+        margin-right: 3px;
+        }
+        
+        & #homeicon {
+        font-size: 30px;
+        }
+    }
+}
+
+.mycontainer {
+    background-color:rgba(240,240,240,0.5);
+}
