@@ -33,7 +33,8 @@
         //指定日付のデータをtmp_dataに格納する
         for(var i = 0; i<conditionData.length; i++){
             var cond_date = new Date(conditionData[i]['date']);
-            if(mydate.getDate() - cond_date.getDate() == 0){
+            if(mydate.toDateString() == cond_date.toDateString()){
+                console.log(mydate.toDateString() + cond_date.toDateString());
                 var mytime = ('0' + cond_date.getHours()).slice(-2)+':'+('0' + cond_date.getMinutes()).slice(-2);
                 //日付=>温度 の連想配列として格納
                 tmp_data[mytime] = conditionData[i]['temperature'];
@@ -41,7 +42,6 @@
                 hmd_data[mytime] = conditionData[i]['humidity'];
             }
         }
-
         //初期化
         tmp_graph_data = [];
         hmd_graph_data = [];
