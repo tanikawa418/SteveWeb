@@ -80,7 +80,7 @@ if(!empty($_POST)){
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../common/css/reset.css">
-    <link rel="stylesheet" href="style.css?dd">
+    <link rel="stylesheet" href="styles/style.css?dd">
     <!-- font awesome -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
