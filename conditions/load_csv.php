@@ -4,7 +4,7 @@ require('../common/php/dbconnect.php');
 
 
 setlocale(LC_ALL, 'ja_JP.UTF-8');
-$dir = 'C:/Users/itani/Dropbox/Private/STEVE/CageCondition/';
+$dir = 'C:/Users/ztani/Dropbox/Private/STEVE/CageCondition/';
 
 $files = glob($dir . '*.csv');
 
@@ -48,7 +48,7 @@ if(count($files)>0){
             $res_msg = count($files) . ' file(s) done, ' . $success . ' new records successfully added.'; 
         }
     }else{
-        // $error = 'Failed.';
+        $error = 'Failed.';
     }
 }else{
     $res_msg = 'No files.'; //処理すべきファイルがなかった場合
