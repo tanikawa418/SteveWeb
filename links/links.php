@@ -2,9 +2,7 @@
 require("../common/php/login_check.php");
 
 require('../common/php/dbconnect.php');
-// echo 'prev : '.$is_prev_mode;
 if(!empty($_POST)){
-    // var_dump($_POST);
     if($_POST['category'] !== ''){ //カテゴリを選ばせるまではDBへの問い合わせをしない
         $category = $_POST['category'];
         $refresh = $_POST['refresh'];
@@ -19,11 +17,8 @@ if(!empty($_POST)){
                     array_push($arr_feed,$value['rss_url']);
                 }
         
-                // var_dump($arr_feed);
                 unset($stmt);
                 unset($value);
-                // echo 'preview : ' . $_POST['preview'];
-                // echo 'channel_id : ' . $_POST['channel_id'];
 
             }elseif($_POST['preview']!=''){ //RSSプレビューの時
                 $arr_feed = array(); //空配列の定義
@@ -54,16 +49,13 @@ if(!empty($_POST)){
                 ));
                 header('Location:links.php');
                 exit();
-
             }
             $stmt = $db->query('SELECT * FROM websites WHERE load_default<>0 ORDER BY display_order');
             $arr_weblink = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            // print_r($arr_weblink);
             $jsonData = json_encode($arr_weblink);
             unset($stmt);
             unset($value);
         }
-
     }
 }else{
     // print '$_POSTがカラです';
@@ -80,7 +72,7 @@ if(!empty($_POST)){
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../common/css/reset.css">
-    <link rel="stylesheet" href="styles/style.css?dd">
+    <link rel="stylesheet" href="styles/style.css">
     <!-- font awesome -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
@@ -226,30 +218,10 @@ if(!empty($_POST)){
                 // print 'website<br>';
                 echo '<div>検索</div>';
                 echo '<input type="text" id="site_kw">';
-                echo '<div id="card"></div>';
-                // echo '<a href="https://woriver.com/8601/" target="_blank">リクガメの飼育方法</a>';
-                
+                echo '<div id="card"></div>';                
             }
 
         ?>
-
-        <!-- <div class="sitewrapper">
-            <div class="sitetitle">
-                <span class="span_title">静的生成Title</span>
-                <span class="span_link_icon"><a href="#"><i class="fas fa-external-link-alt"></i></a></span>
-                <div class="cb"></div>
-            </div>
-            <div class="sitecontents">
-                <dl>
-                    <dt>URL</dt>
-                    <dd><a href="http://www.sample/home/" target="_blank">http://www.sample/home/</a></dd>
-                    <dt>Notes</dt>
-                    <dd>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia repellendus aut quibusdam nostrum pariatur eos odio, explicabo quis quo iure commodi! Aliquam inventore delectus suscipit architecto ab exercitationem molestias incidunt?</dd>
-                    <dd><a href="https://webliker.info/13381/"><img title="HTMLの説明リストタグ【dl・dt・dd】の使い方を徹底解説 | webliker" src="http://capture.heartrails.com/free/1589612975069?https://webliker.info/13381/" alt="https://webliker.info/13381/" width="200" height="300" /></a></dd>
-                </dl>
-            </div>
-        </div>  -->
-
         <div id="card"></div>
             
     </div> <!--mycontainer -->
@@ -266,10 +238,6 @@ if(!empty($_POST)){
             }
         }
 
-        // function removeElm(){
-        //     var target = document.getElementById('card');
-        //     target.removeChild();
-        // }
         function websiteLinkMark(key){
             removeElm();
             console.log('called');
@@ -284,9 +252,6 @@ if(!empty($_POST)){
             var weblinks = <?php echo $jsonData;?>;
     
         
-    
-            // console.log('length:' + weblinks.length);
-    
             for (var i=0; i<weblinks.length; i++){
                 var note = weblinks[i]['note'];
                 var result = note.match(key);
@@ -386,9 +351,7 @@ if(!empty($_POST)){
                     document.getElementById('yt_form').style.display = 'none';
                 }else{
                     document.getElementById('yt_form').style.display = 'flex';                    
-                }
-            
-                // document.getElementById('ws_form').style.display = 'none';
+                }            
             })
 
             document.getElementById('collapse_btn_ws').addEventListener('click',function(){
@@ -400,17 +363,10 @@ if(!empty($_POST)){
                 }else{
                     document.getElementById('ws_form').style.display = 'flex';                    
                 }
-            
-                // document.getElementById('ws_form').style.display = 'none';
             })
-
-
-
-
-
         </script>
 
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
