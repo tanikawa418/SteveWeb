@@ -1,20 +1,5 @@
 @charset "UTF-8";
 
-@charset "utf-8";
-
-
-/* **************************
-    fonts
-   ************************** */
-
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+JP&display=swap');
-
-
-
-/* **************************
-    モバイル用設定
-   ************************** */
-
 
 /* **************************
     基本設定
@@ -25,84 +10,7 @@
     Header
 ************************** */
 body {
-    background: url(../common/images/design/light_honeycomb_@2X.png);
-    /* background-color: lightgray; */
-}
-header {
-    width: 100%;
-    height: 60px;
-    font-family: "Noto Sans", "Noto Sans JP";
-    /* background-color: #004D40; */
-    /* line-height: 40px; */
-    position: fixed;
-    top: 0;
-    position: relative;
-    clear: both;
-}
-
-div.headercontainer {
-    width: 100%;
-    height: 60px;
-    text-align: center;
-    margin: 0 auto;
-    /* font-size: 18px; */
-    /* border-bottom: 5px solid darkgreen; */
-    border-bottom: 1px solid darkgreen;
-
-
-}
-header h1 {
-    font-size: 25px;
-    height: 40px;
-    /* margin: 10px 0; */
-    /* line-height: 40px; */
-    /* background-color: blue; */
-}
-
-
-span.hometxt {
-    display: none;
-}
-
-/* header a {
-    text-decoration: none;
-    color:black;
-    position: absolute;
-    bottom: 0;
-    right: 10px;
-    float: right;
-    margin-right: 30px;
-    margin-top: 20px;
-} */
-header a {
-    text-decoration: none;
-    color:black;
-    float: right;
-    margin-right: 30px;
-    margin-top: 20px;
-    position: absolute;
-    bottom: 0;
-    right: 3%;
-}
-
-
-header a:hover {
-    opacity: 0.8;
-}
-#homeicon {
-    font-size: 20px;
-    float: right;
-}
-
-/* **************************
-    mycontainer
-   ************************** */
-div.mycontainer {
-    max-width: 990px;
-    height: auto;
-    margin: 0 auto;
-    /* background-color: cadetblue; */
-    padding-top: 20px;
+    background: url(../../common/images/design/light_honeycomb_@2X.png);
 }
 
 /* **************************
@@ -114,15 +22,14 @@ div.categorywrapper {
     width: 350px;
     height: 150px;
     margin: 0 auto;
-    /* background-color: brown; */
     text-align: center;
+
+    & form {
+        display: inline-block;
+    }
+    
 }
 
-div.categorywrapper form {
-    /* margin: 0 0px; */
-    display: inline-block;
-    /* background-color: chocolate; */
-}
 
 div.cb {
     clear: both;
@@ -131,38 +38,35 @@ div.cb {
 .picbutton {
     width: 140px;
     height:70px;
-    /* background-color:white; */
+    
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.2, 1.2);
+        transition-duration: 500ms;
+    }
 }
 
-.picbutton:hover {
-    cursor: pointer;
-    transform: scale(1.2, 1.2);
-    transition-duration: 500ms;
-
-}
 
 #pic_btn_youtube {
-    background: url(images/youtube_logo.png) no-repeat center;
+    background: url(../images/youtube_logo.png) no-repeat center;
     background-size: cover;
     margin: 10px;
     float: left;
 }
 
 #pic_btn_website {
-    /* background: url(images/tortoise_shape.png) no-repeat center; */
-    /* background-color: black; */
-    background: url(images/tortoise_shape.png) no-repeat center;
+    background: url(../images/tortoise_shape.png) no-repeat center;
     background-size: contain;
-    color: white;
+    color: lightgray;
     font-size: 1.2em;
     margin: 10px;
     float: left;
 }
+
 span.example {
     font-weight: bold;
-    color:blue;
+    color:$cInfoBlue;
 }
-
 
 span.fieldlabel {
     width: 100px;
@@ -170,6 +74,7 @@ span.fieldlabel {
     display: inline-block;
     margin-bottom: 10px;
 }
+
 #yt_form input{
     width: 300px;
 }
@@ -193,6 +98,10 @@ span.fieldlabel {
    ************************** */
 
 
+
+   // 整形ここから続く
+
+
 div.channelwrapper {
     width: 100%;
     background-color: whitesmoke;
@@ -200,17 +109,17 @@ div.channelwrapper {
     text-align: center;
     margin-bottom: 30px;
     overflow: hidden;
-    /* background-color: chocolate; */
+
+    & p {
+        font-family: "Noto Sans", "Noto Sans JP";
+        color: gray;
+        font-size: 18px;
+        margin-top: 5px;
+    }
+
 }
 
-div.channelwrapper p {
-    font-family: "Noto Sans", "Noto Sans JP";
-    color: gray;
-    font-size: 18px;
-    margin-top: 5px;
-}
 div.moviebox {
-    /* overflow: hidden; */
     /* float: left; */ /*PCの場合はdisplay:inlineではなく、floatにすること */
     display: inline;
     margin: 0;
@@ -230,7 +139,6 @@ iframe {
 
 div.sitewrapper {
     width: 100%;
-    /* border: 1px solid black; */
     padding: 20px 0;
     background-color:#f5f5f5;
     margin-top: 20px;
@@ -254,7 +162,6 @@ div.sitetitle {
     vertical-align: middle;
     font-size: 18px;
     line-height: 1.2;
-    /* background-color: lightsalmon; */
 }
 
 span.span_title {
@@ -288,28 +195,24 @@ div.sitecontents {
     margin-top: 10px;
     vertical-align: middle;
     font-size: 20px;
-    /* line-height: 40px; */
-    /* background-color: lightsalmon; */
 
+    & dl dt{
+        font-size: 1.2em;
+        margin-top: 10px;
+    }
+    
+    & dl dd{
+        margin: 10px;
+        font-size: 1em;
+    }
 }
 
-div.sitecontents dl dt{
-    font-size: 1.2em;
-    margin-top: 10px;
-}
-
-div.sitecontents dl dd{
-    margin: 10px;
-    font-size: 1em;
-}
 
 dd.notecontents {
     line-height: 1.4;
     width: 100%;
     height: 80px;
     overflow: hidden;
-    /* white-space: nowrap; */
-    /* text-overflow: ellipsis; */
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
@@ -323,308 +226,4 @@ dd.notecontents {
 
 
 
-
-/* **************************
-    PC用設定
-   ************************** */
-
-
-
-
-/* **************************
-    Header
-************************** */
-
-
-@media screen and (min-width:500px){
-
-    body {
-        background: url(../common/images/design/light_honeycomb_@2X.png);
-        /* background-color: lightgray; */
-    }
-    header {
-        width: 100%;
-        height: 80px;
-        /* background-color: #004D40; */
-        line-height: 40px;
-        /* position: fixed;
-        top: 0;
-        position: relative;
-        clear: both; */
-    }
-
-    div.headercontainer {
-        width: 100%;
-        height: auto;
-        text-align: center;
-        /* margin: 0 auto; */
-        /* font-size: 18px; */
-        /* border-bottom: 5px solid darkgreen; */
-        position: relative;
-        border-bottom: 1px solid darkgreen;
-    }
-
-    header h1 {
-        font-size: 35px;
-        height: 40px;
-    }
-    
-
-
-    span.hometxt {
-        display: none;
-    }
-
-    header a {
-        text-decoration: none;
-        color:black;
-        position: absolute;
-        bottom: 0;
-        right: 10px;
-        /* float: right; */
-        /* margin-right: 30px;
-        margin-top: 20px; */
-        float: right;
-        margin-right: 30px;
-        margin-top: 20px;
-        position: absolute;
-        bottom: 0;
-        right: 3%;
-    
-    }
-
-    header a:hover {
-        opacity: 0.8;
-    }
-    #homeicon {
-        font-size: 30px;
-        /* float: right; */
-    }
-}
-/* **************************
-    mycontainer
-   ************************** */
-@media screen and (min-width:500px){
-    div.mycontainer {
-        max-width: 990px;
-        height: auto;
-        margin: 0 auto;
-        /* background-color: cadetblue; */
-        padding-top: 20px;
-    }
-}
-
-/* **************************
-    category
-   ************************** */
-
-@media screen and (min-width:500px){
-    div.categorywrapper {
-        width: 350px;
-        height: 150px;
-        margin: 0 auto;
-        /* background-color: brown; */
-        text-align: center;
-    }
-    
-    div.categorywrapper form {
-        /* margin: 0 0px; */
-        display: inline-block;
-        /* background-color: chocolate; */
-    }
-    
-    div.cb {
-        clear: both;
-    }
-    
-    .picbutton {
-        width: 140px;
-        height:70px;
-        /* background-color:white; */
-    }
-    
-    .picbutton:hover {
-        cursor: pointer;
-        transform: scale(1.2, 1.2);
-        transition-duration: 500ms;
-    
-    }
-    
-    #pic_btn_youtube {
-        background: url(images/youtube_logo.png) no-repeat center;
-        background-size: cover;
-        margin: 10px;
-        float: left;
-    }
-    
-    #pic_btn_website {
-        /* background: url(images/tortoise_shape.png) no-repeat center; */
-        /* background-color: black; */
-        background: url(images/tortoise_shape.png) no-repeat center;
-        background-size: contain;
-        color: white;
-        font-size: 1.2em;
-        margin: 10px;
-        float: left;
-    }
-    span.example {
-        font-weight: bold;
-        color:blue;
-    }
-    
-    
-    span.fieldlabel {
-        width: 100px;
-        color: black;
-        display: inline-block;
-        margin-bottom: 10px;
-    }
-    #yt_form input{
-        width: 300px;
-    }
-    
-    #ws_form input {
-        width: 300px;
-    }
-    
-    
-    .hidden {
-        display: none;
-        color: red;
-    }
-    
-    .reveal {
-        display: flex;
-    }
-}
-
-
-/* **************************
-    youtube
-   ************************** */
-
-@media screen and (min-width:500px){
-    div.channelwrapper {
-        width: 100%;
-        background-color: whitesmoke;
-        border: 1px solid black;
-        text-align: center;
-        margin-bottom: 30px;
-        overflow: hidden;
-        /* background-color: chocolate; */
-    }
-    
-    div.channelwrapper p {
-        font-family: "Noto Sans", "Noto Sans JP";
-        color: gray;
-        font-size: 18px;
-        margin-top: 5px;
-    }
-    div.moviebox {
-        /* overflow: hidden; */
-        /* float: left; */ /*PCの場合はdisplay:inlineではなく、floatにすること */
-        display: inline;
-        margin: 0;
-        padding: 0;
-    }
-    
-    iframe {
-        margin: 0;
-        padding: 0;
-        width: 330px;
-        height: 187px;
-    }
-}
-
-/* **************************
-    website
-   ************************** */
-@media screen and (min-width:500px){
-    div.sitewrapper {
-        width: 100%;
-        /* border: 1px solid black; */
-        padding: 20px 0;
-        background-color:#f5f5f5;
-        margin-top: 20px;
-        box-shadow:
-        0 1.9px 2.5px rgba(0, 0, 0, 0.057),
-        0 5px 6.1px rgba(0, 0, 0, 0.076),
-        0 10.1px 11.4px rgba(0, 0, 0, 0.086),
-        0 19.2px 19.8px rgba(0, 0, 0, 0.092),
-        0 38.4px 34.8px rgba(0, 0, 0, 0.1),
-        0 101px 74px rgba(0, 0, 0, 0.13);
-    }
-    
-    div.sitetitle {
-        width: 85%;
-        height: auto;
-        padding: 5px 10px;
-        border: none;
-        border-left: 10px solid rgb(67, 126, 70);
-        background-color: #fff;
-        margin: 0 auto;
-        vertical-align: middle;
-        font-size: 18px;
-        line-height: 1.2;
-        /* background-color: lightsalmon; */
-    }
-    
-    span.span_title {
-        display: block;
-        float: left;
-        font-size: 1.3em;
-    }
-    
-    span.span_link_icon {
-        float: right;
-        margin-right: 10px;
-    }
-    
-    span.span_link_icon {
-        text-decoration: none;
-    }
-    
-    span.span_link_icon:hover{
-        transform: scale(1.4,1.4);
-        transition-duration: 500ms;
-    }
-    
-    div.sitecontents {
-        width: 85%;
-        height: auto;
-        padding: 10px;
-        border: none;
-        border-left: 10px solid #66BB6A;
-        background-color: #fff;
-        margin: 0 auto;
-        margin-top: 10px;
-        vertical-align: middle;
-        font-size: 20px;
-        /* line-height: 40px; */
-        /* background-color: lightsalmon; */
-    
-    }
-    
-    div.sitecontents dl dt{
-        font-size: 1.2em;
-        margin-top: 10px;
-    }
-    
-    div.sitecontents dl dd{
-        margin: 10px;
-        font-size: 1em;
-    }
-    
-    dd.notecontents {
-        line-height: 1.4;
-        width: 100%;
-        height: 80px;
-        overflow: hidden;
-        /* white-space: nowrap; */
-        /* text-overflow: ellipsis; */
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 3;
-    }
-}
 
