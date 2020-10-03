@@ -33,6 +33,7 @@ foreach($files as $file){
         $check = $stmt->execute();
         if($check){
             $success += 1;
+            
         }else{
             $failed += 1;
         }
