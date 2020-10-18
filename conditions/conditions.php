@@ -82,14 +82,9 @@
                     <span id="date_d"></span> <!--phpで最大日を設定する -->
                     <button id="next_btn">Next</button>
                     <br>
-                    <i class="fas fa-thermometer-half"></i>  Ave : <span class="summary_d" id="tmp_ave"></span>
-                ℃ (<span class="summary_d" id="tmp_min"></span>
-                -><span class="summary_d" id="tmp_max"></span>)<br>
-                <i class="fas fa-tint"></i>  Ave : <span class="summary_d" id="hmd_ave"></span>
-                ％ (<span class="summary_d" id="hmd_min"></span>
-                -><span class="summary_d" id="hmd_max"></span>)<br>
-                <button onclick="tglZoom()">Change View</button>
-            </div>
+                    <div id="stats_wrapper"></div>
+                    <button onclick="tglZoom()">Change View</button>
+                </div>
             <div class="graph_wrapper" id="graph_wrapper">
                 <canvas id="temp_d" height="400" width="3000"></canvas>
                 <canvas id="hmd_d" height="400" width="3000"></canvas>
