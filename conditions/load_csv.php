@@ -6,13 +6,19 @@ require('../common/php/dbconnect.php');
 setlocale(LC_ALL, 'ja_JP.UTF-8');
 $dir = 'C:/Users/ztani/Dropbox/Private/STEVE/CageCondition/';
 
-$files = glob($dir . '*.csv');
+//ファイル名のみを取得したいのでCDする
+chdir($dir);
+$files = glob('*.csv');
 
 $success = 0;
 $failed = 0;
 foreach($files as $file){
-    $data = file_get_contents($file);
-    
+    // ファイル名からdevice名を取得する
+    if(strpos($file ,'_log') !== false){
+        $device_name = substr($file,0,strpos($file ,'_log'));
+    }
+
+    $data = file_get_contents($file);    
     //InkBirdの出力データはUTF16なのでUTF8に変換
     $data = mb_convert_encoding($data, 'UTF-8', 'UTF-16LE');
     $temp = tmpfile();
@@ -27,7 +33,7 @@ foreach($files as $file){
     fclose($temp);
     
     for ($i=1; $i < count($csv); $i++){
-        $sql = 'INSERT INTO `cage_conditions`(`date`, `device_name`, `temperature`, `humidity`,`modified`) VALUES ("' . $csv[$i][0] . '","Steve01","' . $csv[$i][1] . '","' . $csv[$i][2] . '",now());';
+        $sql = 'INSERT INTO `cage_conditions`(`date`, `device_name`, `temperature`, `humidity`,`modified`) VALUES ("' . $csv[$i][0] . '","' . $device_name . '","' . $csv[$i][1] . '","' . $csv[$i][2] . '",now());';
         $stmt = $db->prepare($sql);
     
         $check = $stmt->execute();
