@@ -9,4 +9,8 @@ define('DEFAULT_USER','steve@steve.com');
 // require_once('config.php');
 // echo 'USER : ' . DEFAULT_USER;
 
+// InkBirdのデバイス名
+    $device01 = 'hot light';
+    $device02 = 'Shelter';
+    $devices = ['hot light','Shelter'];
 ?>

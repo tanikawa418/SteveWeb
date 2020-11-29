@@ -144,6 +144,11 @@ div.graph_wrapper {
     font-size: 1.5em;
     margin: 5px 10px;
   }
+  div.device_summary {
+    display: inline-block;
+    border: 1px solid black;
+    padding: 3px;
+  }
   span.summary_d {
     display: inline-block;
     font-weight: 600;
